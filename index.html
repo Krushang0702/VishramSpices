@@ -594,35 +594,35 @@ function openPopup(idx) {
         var isPowder = (v.toLowerCase() === "powder");
 
         if(isPowder) {
-          // Powder — show ALL brands
-          if(p.parsed.length===1) {
-            selBrand=p.parsed[0].brand;
+          // Powder — show ALL brands. Always show brand field even if only one brand.
+          var br=document.getElementById("brandRows");
+          br.innerHTML="";
+          document.getElementById("brandField").style.display="block";
+          var singleBrand = (p.parsed.length===1);
+          p.parsed.forEach(function(item, idx) {
+            var row=document.createElement("div");
+            row.className="brand-row" + (singleBrand ? " selected" : "");
+            var nameSpan=document.createElement("span");
+            nameSpan.className="brand-row-name";
+            nameSpan.textContent=item.brand||"No Brand";
+            var sbtn=document.createElement("button");
+            sbtn.className="brand-select-btn" + (singleBrand ? " selected" : "");
+            sbtn.textContent="Select →";
+            sbtn.onclick=function(){
+              document.querySelectorAll(".brand-row").forEach(function(r){r.classList.remove("selected");});
+              document.querySelectorAll(".brand-select-btn").forEach(function(b){b.classList.remove("selected");});
+              row.classList.add("selected"); sbtn.classList.add("selected");
+              selBrand=item.brand; selSize="";
+              showSizes(item);
+            };
+            row.appendChild(nameSpan);
+            row.appendChild(sbtn);
+            br.appendChild(row);
+          });
+          if(singleBrand) {
+            // Auto-select the only brand and show sizes
+            selBrand=p.parsed[0].brand; selSize="";
             showSizes(p.parsed[0]);
-            document.getElementById("brandField").style.display="none";
-          } else {
-            var br=document.getElementById("brandRows");
-            br.innerHTML="";
-            document.getElementById("brandField").style.display="block";
-            p.parsed.forEach(function(item) {
-              var row=document.createElement("div");
-              row.className="brand-row";
-              var nameSpan=document.createElement("span");
-              nameSpan.className="brand-row-name";
-              nameSpan.textContent=item.brand||"No Brand";
-              var sbtn=document.createElement("button");
-              sbtn.className="brand-select-btn";
-              sbtn.textContent="Select →";
-              sbtn.onclick=function(){
-                document.querySelectorAll(".brand-row").forEach(function(r){r.classList.remove("selected");});
-                document.querySelectorAll(".brand-select-btn").forEach(function(b){b.classList.remove("selected");});
-                row.classList.add("selected"); sbtn.classList.add("selected");
-                selBrand=item.brand; selSize="";
-                showSizes(item);
-              };
-              row.appendChild(nameSpan);
-              row.appendChild(sbtn);
-              br.appendChild(row);
-            });
           }
         } else {
           // Any other variant (Whole, Barik, Jada, etc.) — show Vishram only in brand field
@@ -656,21 +656,22 @@ function openPopup(idx) {
     });
 
   } else if(p.parsed.length===1&&p.parsed[0].brand==="") {
+    // No brand at all — skip brand field, go straight to sizes
     selBrand=""; showSizes(p.parsed[0]);
-  } else if(p.parsed.length===1) {
-    selBrand=p.parsed[0].brand; showSizes(p.parsed[0]);
   } else {
+    // Always show brand field, even with one brand. Single brand = auto-selected pill.
     var br=document.getElementById("brandRows");
     br.innerHTML="";
     document.getElementById("brandField").style.display="block";
+    var singleBrand = (p.parsed.length===1);
     p.parsed.forEach(function(item) {
       var row=document.createElement("div");
-      row.className="brand-row";
+      row.className="brand-row" + (singleBrand ? " selected" : "");
       var nameSpan=document.createElement("span");
       nameSpan.className="brand-row-name";
       nameSpan.textContent=item.brand||"No Brand";
       var btn=document.createElement("button");
-      btn.className="brand-select-btn";
+      btn.className="brand-select-btn" + (singleBrand ? " selected" : "");
       btn.textContent="Select →";
       btn.onclick=function(){
         document.querySelectorAll(".brand-row").forEach(function(r){r.classList.remove("selected");});
@@ -683,6 +684,11 @@ function openPopup(idx) {
       row.appendChild(btn);
       br.appendChild(row);
     });
+    if(singleBrand) {
+      // Auto-select the only brand and show sizes
+      selBrand=p.parsed[0].brand; selSize="";
+      showSizes(p.parsed[0]);
+    }
   }
   document.getElementById("popupOverlay").classList.add("show");
 }
