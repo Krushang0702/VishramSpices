@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#6B0F0F">
+<title>Vishram Spices · Client Visit Form</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --maroon: #6B0F0F;
+  --maroon-dark: #4A0808;
+  --amber: #C8965A;
+  --amber-dark: #9F7236;
+  --cream: #FBF5E8;
+  --cream-soft: #F4E5D0;
+  --ink: #2A1810;
+  --ink-soft: #5C453B;
+  --ink-muted: #8A766A;
+  --line: #E8DCC4;
+  --green: #2D7A4C;
+  --red: #B53A2D;
+  --orange: #C97F2A;
+  --shadow-sm: 0 1px 2px rgba(74, 8, 8, 0.06);
+  --shadow-md: 0 4px 12px rgba(74, 8, 8, 0.08);
+  --shadow-lg: 0 12px 32px rgba(74, 8, 8, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; min-height: 100vh; overscroll-behavior: none; }
+body { padding-bottom: env(safe-area-inset-bottom); }
+
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: block; }
+
+/* Header */
+.app-header {
+  background: var(--maroon);
+  color: var(--cream);
+  padding: 14px 18px;
+  padding-top: calc(14px + env(safe-area-inset-top));
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: var(--shadow-md);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.app-header h1 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; letter-spacing: 0.3px; }
+.app-header h1 .sub { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; opacity: 0.7; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2px; }
+.icon-btn {
+  background: rgba(251, 245, 232, 0.12);
+  border: none; color: var(--cream);
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px;
+  transition: background 0.15s;
+}
+.icon-btn:active { background: rgba(251, 245, 232, 0.25); }
+
+/* Search + Filters */
+.search-bar {
+  padding: 14px 16px 10px;
+  background: var(--cream);
+  position: sticky; top: 64px; z-index: 40;
+  border-bottom: 1px solid var(--line);
+}
+.search-bar input {
+  width: 100%; padding: 12px 16px;
+  background: white; border: 1.5px solid var(--line); border-radius: 10px;
+  font: 500 15px 'DM Sans', sans-serif; color: var(--ink);
+  transition: border-color 0.15s;
+}
+.search-bar input:focus { outline: none; border-color: var(--amber); }
+.search-bar input::placeholder { color: var(--ink-muted); }
+
+.filter-chips {
+  display: flex; gap: 6px; padding: 0 16px 12px;
+  overflow-x: auto; scrollbar-width: none;
+  background: var(--cream);
+  position: sticky; top: 130px; z-index: 39;
+  border-bottom: 1px solid var(--line);
+}
+.filter-chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  background: white; border: 1.5px solid var(--line);
+  border-radius: 100px;
+  font: 600 12px 'DM Sans', sans-serif;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.chip.active { background: var(--maroon); color: var(--cream); border-color: var(--maroon); }
+.chip:active:not(.active) { background: var(--cream-soft); }
+
+/* Client list */
+.client-list { padding: 12px 16px 80px; }
+.stats-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 6px; margin-bottom: 14px;
+}
+.stat-pill {
+  background: white; padding: 8px 6px; border-radius: 8px;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+.stat-pill .num { display: block; font: 700 16px 'Playfair Display', serif; color: var(--maroon); line-height: 1; }
+.stat-pill .lbl { display: block; font-size: 9px; color: var(--ink-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+.client-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.client-card.visited::before {
+  content: '✓'; position: absolute; top: 8px; right: 8px;
+  width: 20px; height: 20px; background: var(--green); color: white;
+  border-radius: 50%; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.client-card.skipped::before {
+  content: '−'; position: absolute; top: 8px; right: 8px;
+  width: 20px; height: 20px; background: var(--ink-muted); color: white;
+  border-radius: 50%; font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.client-card.attempted::before {
+  content: '!'; position: absolute; top: 8px; right: 8px;
+  width: 20px; height: 20px; background: var(--orange); color: white;
+  border-radius: 50%; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.client-card:active { transform: scale(0.98); box-shadow: var(--shadow-sm); }
+
+.card-main { flex: 1; min-width: 0; }
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600; font-size: 15px;
+  color: var(--ink); line-height: 1.3;
+  margin-bottom: 4px;
+  padding-right: 24px;
+}
+.card-meta {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  font-size: 11px; color: var(--ink-muted);
+}
+.card-meta .chain-tag {
+  background: var(--cream-soft); color: var(--amber-dark);
+  padding: 2px 8px; border-radius: 6px;
+  font-weight: 700; letter-spacing: 0.4px; font-size: 10px;
+}
+.card-meta .status-dot { font-size: 11px; }
+.card-rev {
+  font: 700 14px 'DM Sans', sans-serif; color: var(--maroon);
+  white-space: nowrap;
+  text-align: right;
+  line-height: 1.2;
+}
+.card-rev .lbl { display: block; font-weight: 500; font-size: 9px; color: var(--ink-muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 2px; }
+
+.no-results { text-align: center; padding: 60px 20px; color: var(--ink-muted); }
+.no-results h3 { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+
+/* Detail screen */
+.detail-header {
+  background: var(--maroon);
+  color: var(--cream);
+  padding: 12px 18px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+  display: flex; align-items: center; gap: 10px;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: var(--shadow-md);
+}
+.back-btn {
+  background: rgba(251, 245, 232, 0.12); border: none;
+  color: var(--cream); width: 38px; height: 38px; border-radius: 10px;
+  font-size: 22px; line-height: 1; cursor: pointer;
+}
+.detail-header-text { flex: 1; min-width: 0; }
+.detail-header-text .sub { font-size: 10px; opacity: 0.7; letter-spacing: 1.5px; text-transform: uppercase; }
+.detail-header-text .name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+
+/* Status banner */
+.status-banner {
+  padding: 14px 18px;
+  font-size: 13px; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.status-banner .emoji { font-size: 20px; }
+.status-banner.growing { background: #E8F4ED; color: #1F5A37; border-bottom: 2px solid #B8DFC5; }
+.status-banner.stable { background: #EDF1F7; color: #2A3D5E; border-bottom: 2px solid #C9D4E5; }
+.status-banner.shrinking { background: #FCEFD7; color: #7A4E18; border-bottom: 2px solid #E8C988; }
+.status-banner.dormant { background: #F8E0DC; color: #7A2520; border-bottom: 2px solid #E3B5AE; }
+.status-banner.new { background: #FBF1C7; color: #6C5414; border-bottom: 2px solid #E8D580; }
+
+.status-banner strong { font-weight: 700; }
+
+/* Context panel */
+.context {
+  background: var(--cream-soft);
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.context-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-bottom: 14px;
+}
+.context-stat {
+  background: white; border-radius: 8px;
+  padding: 10px 8px; text-align: center;
+  border: 1px solid var(--line);
+}
+.context-stat .num { font: 700 14px 'Playfair Display', serif; color: var(--maroon); line-height: 1; }
+.context-stat .num.green { color: var(--green); }
+.context-stat .num.red { color: var(--red); }
+.context-stat .lbl { font-size: 9px; color: var(--ink-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+.context-block { margin-bottom: 14px; }
+.context-block:last-child { margin-bottom: 0; }
+.context-block h4 {
+  font: 700 10px 'DM Sans', sans-serif;
+  color: var(--ink-muted);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cat-pill-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.cat-pill {
+  background: white; border: 1px solid var(--line);
+  padding: 5px 10px; border-radius: 100px;
+  font: 600 11px 'DM Sans', sans-serif; color: var(--ink-soft);
+}
+.cat-pill.rev { background: var(--maroon); color: var(--cream); border-color: var(--maroon); }
+.cat-pill.vol { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.cat-pill.gap { background: white; border: 1.5px dashed var(--amber); color: var(--amber-dark); }
+.cat-pill .pct { font-weight: 500; opacity: 0.8; margin-left: 3px; }
+
+.address-row { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+.address-row strong { color: var(--ink); font-weight: 600; }
+
+/* Form */
+.form {
+  padding: 18px 18px 120px;
+  background: var(--cream);
+}
+.form-section {
+  margin-bottom: 22px;
+}
+.form-section-title {
+  font: 700 11px 'DM Sans', sans-serif;
+  color: var(--amber-dark);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--amber);
+  display: flex; align-items: center; gap: 6px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+.field label {
+  display: block;
+  font: 600 12px 'DM Sans', sans-serif;
+  color: var(--ink); margin-bottom: 6px;
+}
+.field label .req { color: var(--red); font-weight: 700; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 12px 14px;
+  background: white; border: 1.5px solid var(--line); border-radius: 10px;
+  font: 500 15px 'DM Sans', sans-serif; color: var(--ink);
+  transition: border-color 0.15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--amber);
+}
+.field textarea {
+  resize: vertical; min-height: 80px; font-family: 'DM Sans', sans-serif;
+}
+
+/* Pill-style choice fields */
+.pill-group { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill-choice {
+  padding: 9px 14px;
+  background: white; border: 1.5px solid var(--line);
+  border-radius: 100px;
+  font: 600 13px 'DM Sans', sans-serif; color: var(--ink-soft);
+  cursor: pointer; transition: all 0.15s;
+}
+.pill-choice.selected { background: var(--maroon); color: var(--cream); border-color: var(--maroon); }
+.pill-choice:active:not(.selected) { background: var(--cream-soft); }
+
+.pill-choice.status-visited.selected { background: var(--green); border-color: var(--green); }
+.pill-choice.status-attempted.selected { background: var(--orange); border-color: var(--orange); }
+.pill-choice.status-skip.selected { background: var(--ink-muted); border-color: var(--ink-muted); }
+
+/* Sticky submit bar */
+.submit-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--cream);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  z-index: 30;
+  box-shadow: 0 -4px 16px rgba(74, 8, 8, 0.06);
+}
+.submit-btn {
+  width: 100%; padding: 16px;
+  background: var(--maroon); color: var(--cream);
+  border: none; border-radius: 12px;
+  font: 700 15px 'DM Sans', sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.submit-btn:disabled { background: var(--ink-muted); cursor: not-allowed; }
+.submit-btn:active:not(:disabled) { background: var(--maroon-dark); transform: scale(0.99); }
+.submit-btn .spinner {
+  display: inline-block; width: 16px; height: 16px;
+  border: 2px solid rgba(251, 245, 232, 0.3);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(42, 24, 16, 0.5);
+  z-index: 100;
+  display: none;
+  align-items: flex-end; justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--cream);
+  width: 100%; max-width: 500px;
+  border-radius: 16px 16px 0 0;
+  padding: 22px 20px;
+  padding-bottom: calc(22px + env(safe-area-inset-bottom));
+  max-height: 80vh; overflow-y: auto;
+}
+.modal h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.modal p { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; }
+.modal .field { margin-bottom: 14px; }
+
+/* Success screen */
+.success {
+  padding: 80px 24px 24px;
+  text-align: center;
+}
+.success .check {
+  width: 88px; height: 88px;
+  background: var(--green); color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; font-weight: 700;
+  margin: 0 auto 22px;
+  animation: pop 0.4s ease-out;
+}
+@keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.success h2 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 24px; margin-bottom: 8px; color: var(--ink); }
+.success p { color: var(--ink-soft); font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+.success .name-strong { font-weight: 700; color: var(--maroon); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--cream);
+  padding: 11px 18px;
+  border-radius: 100px;
+  font: 500 13px 'DM Sans', sans-serif;
+  z-index: 200;
+  box-shadow: var(--shadow-lg);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.error { background: var(--red); }
+
+@media (min-width: 700px) {
+  .screen { max-width: 600px; margin: 0 auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SCREEN: CLIENT LIST ============ -->
+<div id="screen-list" class="screen active">
+  <div class="app-header">
+    <h1>
+      <span class="sub">VISHRAM SPICES</span>
+      Client Visits
+    </h1>
+    <button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+  </div>
+
+  <div class="search-bar">
+    <input id="searchInput" type="search" placeholder="Search by name or code..." autocomplete="off">
+  </div>
+
+  <div class="filter-chips" id="filterChips">
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="pending">Not Visited</button>
+    <button class="chip" data-filter="done">Visited</button>
+    <button class="chip" data-filter="GROWING">🟢 Growing</button>
+    <button class="chip" data-filter="STABLE">✅ Stable</button>
+    <button class="chip" data-filter="SHRINKING">🔴 Shrinking</button>
+    <button class="chip" data-filter="DORMANT">🔴 Dormant</button>
+    <button class="chip" data-filter="NEW">🆕 New</button>
+    <button class="chip" data-filter="EXPRESS INN">Express Inn</button>
+    <button class="chip" data-filter="MAO">Mao</button>
+    <button class="chip" data-filter="TVT">TVT</button>
+    <button class="chip" data-filter="MERITAS">Meritas</button>
+  </div>
+
+  <div class="client-list" id="clientList">
+    <div class="stats-row" id="statsRow"></div>
+    <div id="clientCards"></div>
+  </div>
+</div>
+
+<!-- ============ SCREEN: CLIENT DETAIL + FORM ============ -->
+<div id="screen-detail" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" id="backBtn">‹</button>
+    <div class="detail-header-text">
+      <div class="sub" id="detailCode">—</div>
+      <div class="name" id="detailName">—</div>
+    </div>
+  </div>
+
+  <div id="detailContent"></div>
+
+  <div class="submit-bar">
+    <button class="submit-btn" id="submitBtn">Save Visit</button>
+  </div>
+</div>
+
+<!-- ============ SCREEN: SUCCESS ============ -->
+<div id="screen-success" class="screen">
+  <div class="success">
+    <div class="check">✓</div>
+    <h2>Visit Saved</h2>
+    <p>Data captured for <span class="name-strong" id="successName">—</span>. You can edit by visiting again.</p>
+    <button class="submit-btn" onclick="goToList()">Back to Client List</button>
+  </div>
+</div>
+
+<!-- ============ MODAL: SETTINGS ============ -->
+<div id="settingsModal" class="modal-overlay">
+  <div class="modal">
+    <h3>Settings</h3>
+    <p>Configure once. Saved on this device.</p>
+    
+    <div class="field">
+      <label>Your Name (Visited By)</label>
+      <input id="settingVisitor" type="text" placeholder="e.g. Krushang">
+    </div>
+    
+    <div class="field">
+      <label>Google Apps Script URL</label>
+      <input id="settingWebhook" type="url" placeholder="https://script.google.com/macros/s/.../exec">
+    </div>
+    
+    <button class="submit-btn" onclick="saveSettings()">Save Settings</button>
+    <button class="submit-btn" style="background: var(--ink-muted); margin-top: 8px;" onclick="closeSettings()">Close</button>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div id="toast" class="toast">—</div>
+
+<script>
+// === DATA ===
+const CLIENTS = [{"code":"HKVD","name":"BINESH REALTORS AND HOTEL","chain":"","status":"🟢 GROWING","address":"PVT LTD, THE KINARA VILLAGE DHABA, VAKSAI LONAVALA","pin":"410405","gstin":"27AADCB2642K1ZP","rev3y":34227869,"rev26":11971020,"rev25":10596762,"yoy":"+13.0%","inv26":53,"avgOrder":225868,"topRev":[{"cat":"Oils/Ghee","pct":25},{"cat":"Flours/Rice","pct":23},{"cat":"Dry Fruits/Nuts","pct":22}],"topVol":[{"cat":"Flours/Rice","pct":63},{"cat":"Pulses/Dal","pct":10},{"cat":"Sugar/Salt","pct":10}],"gaps":["Housekeeping","Canned","Pasta/Intl"],"nonVisitable":""},{"code":"HEITG","name":"EXPRESS INN THANE","chain":"EXPRESS INN","status":"✅ STABLE","address":"GHODBUNDER ROAD.NEAR, VERSAVE BRIDGE.MIRA THANE, MIRA THANE","pin":"401104","gstin":"27AAFCS0440N2Z7","rev3y":20108494,"rev26":9518959,"rev25":8880864,"yoy":"+7.2%","inv26":226,"avgOrder":42119,"topRev":[{"cat":"Oils/Ghee","pct":25},{"cat":"Flours/Rice","pct":19},{"cat":"Dry Fruits/Nuts","pct":15}],"topVol":[{"cat":"Flours/Rice","pct":41},{"cat":"Oils/Ghee","pct":13},{"cat":"Sauces/Pastes","pct":13}],"gaps":["Housekeeping"],"nonVisitable":""},{"code":"HEXNA","name":"EXPRESS INN - NASHIK","chain":"EXPRESS INN","status":"🟢 GROWING","address":"PATHARDI PHATA,MUMBAI AGR, A ROAD,AMBAD NASHIK, MAHARASHTRA","pin":"422010","gstin":"27AAFCS0440N1Z8","rev3y":17239344,"rev26":6522754,"rev25":4558575,"yoy":"+43.1%","inv26":25,"avgOrder":260910,"topRev":[{"cat":"Spices","pct":28},{"cat":"Dry Fruits/Nuts","pct":27},{"cat":"Pulses/Dal","pct":12}],"topVol":[{"cat":"Flours/Rice","pct":24},{"cat":"Pulses/Dal","pct":18},{"cat":"Sugar/Salt","pct":15}],"gaps":["Housekeeping"],"nonVisitable":""},{"code":"HKALA","name":"KALINGA ANDHERI WEST","chain":"","status":"🔴 SHRINKING","address":"OBEROI COMPLEX,NEW LINK R, OAD,NEAR SAB T.V. TOWER., MUMBAI","pin":"400058","gstin":"27AAFFK4008D1ZR","rev3y":13207966,"rev26":3943328,"rev25":4385853,"yoy":"-10.1%","inv26":93,"avgOrder":42401,"topRev":[{"cat":"Spices","pct":39},{"cat":"Dry Fruits/Nuts","pct":39},{"cat":"Pulses/Dal","pct":10}],"topVol":[{"cat":"Spices","pct":23},{"cat":"Pulses/Dal","pct":21},{"cat":"Dry Fruits/Nuts","pct":19}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HADAE","name":"SUNIL HOTEL   APNA DHABA","chain":"","status":"🔴 SHRINKING","address":"ANDHERI, MUMBAI","pin":"400059","gstin":"27AAFCS5261D1ZG","rev3y":12266073,"rev26":3411290,"rev25":4254429,"yoy":"-19.8%","inv26":58,"avgOrder":58815,"topRev":[{"cat":"Dry Fruits/Nuts","pct":36},{"cat":"Spices","pct":33},{"cat":"Oils/Ghee","pct":23}],"topVol":[{"cat":"Spices","pct":27},{"cat":"Dry Fruits/Nuts","pct":20},{"cat":"Sugar/Salt","pct":17}],"gaps":["Snacks/Farsan","Housekeeping","Syrups/Bev","Pasta/Intl"],"nonVisitable":""},{"code":"HHRHK","name":"HARE RAMA HARE KRISHNA-AN","chain":"","status":"🟢 GROWING","address":"DHERI (EAST), MUMBAI","pin":"400093","gstin":"27AACPS8577N1ZQ","rev3y":10794236,"rev26":6685306,"rev25":2518593,"yoy":"+165.4%","inv26":159,"avgOrder":42046,"topRev":[{"cat":"Dry Fruits/Nuts","pct":32},{"cat":"Flours/Rice","pct":23},{"cat":"Spices","pct":23}],"topVol":[{"cat":"Flours/Rice","pct":51},{"cat":"Pulses/Dal","pct":20},{"cat":"Dry Fruits/Nuts","pct":10}],"gaps":["Snacks/Farsan","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HS M","name":"STATUS  MAHIM","chain":"","status":"✅ STABLE","address":"NEAR HINDUJA HOSPITAL., MAHIM, MUMBAI","pin":"400016","gstin":"27AAEPS9731L3Z0","rev3y":9988915,"rev26":3199318,"rev25":3272456,"yoy":"-2.2%","inv26":90,"avgOrder":35548,"topRev":[{"cat":"Flours/Rice","pct":33},{"cat":"Spices","pct":24},{"cat":"Dry Fruits/Nuts","pct":20}],"topVol":[{"cat":"Flours/Rice","pct":61},{"cat":"Pulses/Dal","pct":11},{"cat":"Housekeeping","pct":8}],"gaps":["Oils/Ghee","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSVB","name":"SATTVA VEG - KANDIVALI W)","chain":"","status":"🔴 SHRINKING","address":"MAHAVIR NAGAR, DAHNUKAR, WADI KANDIVALI (WEST)","pin":"400092","gstin":"27AHBPS3881P1ZK","rev3y":9923015,"rev26":2164988,"rev25":2975115,"yoy":"-27.2%","inv26":89,"avgOrder":24326,"topRev":[{"cat":"Spices","pct":36},{"cat":"Dry Fruits/Nuts","pct":31},{"cat":"Flours/Rice","pct":15}],"topVol":[{"cat":"Flours/Rice","pct":35},{"cat":"Pulses/Dal","pct":24},{"cat":"Spices","pct":18}],"gaps":["Housekeeping","Pasta/Intl"],"nonVisitable":""},{"code":"HVAW","name":"ULHAS HOTEL'S - ANDHERI","chain":"","status":"🟢 GROWING","address":"ANDHERI, MUMBAI","pin":"400058","gstin":"27AABFH8048L1Z1","rev3y":9080494,"rev26":2537062,"rev25":2174920,"yoy":"+16.7%","inv26":116,"avgOrder":21871,"topRev":[{"cat":"Spices","pct":72},{"cat":"Dry Fruits/Nuts","pct":18},{"cat":"Flours/Rice","pct":5}],"topVol":[{"cat":"Spices","pct":43},{"cat":"Flours/Rice","pct":31},{"cat":"Dry Fruits/Nuts","pct":17}],"gaps":["Sauces/Pastes","Canned","Pasta/Intl"],"nonVisitable":""},{"code":"HSSL","name":"MERITAS HOTEL PVT LTD","chain":"MERITAS","status":"✅ STABLE","address":"RESORT BY PICADDLE LUXURY, BOUTIQUE KUMAR RESORT DAM, LONAWALA","pin":"410401","gstin":"27AAJCM4777C1Z9","rev3y":8770540,"rev26":2973812,"rev25":2781774,"yoy":"+6.9%","inv26":15,"avgOrder":198254,"topRev":[{"cat":"Pulses/Dal","pct":29},{"cat":"Dry Fruits/Nuts","pct":27},{"cat":"Spices","pct":20}],"topVol":[{"cat":"Pulses/Dal","pct":38},{"cat":"Flours/Rice","pct":31},{"cat":"Dry Fruits/Nuts","pct":7}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HSKMK","name":"SHREE KRISHNA MURARI","chain":"","status":"🟢 GROWING","address":"344/46,DAMODAR BHAVAN,, KALBADEVI ROAD,, MUMBAI","pin":"400002","gstin":"27AAFPG3737K1ZL","rev3y":8744394,"rev26":3104458,"rev25":2780868,"yoy":"+11.6%","inv26":133,"avgOrder":23342,"topRev":[{"cat":"Spices","pct":46},{"cat":"Dry Fruits/Nuts","pct":38},{"cat":"Flours/Rice","pct":11}],"topVol":[{"cat":"Flours/Rice","pct":34},{"cat":"Spices","pct":31},{"cat":"Dry Fruits/Nuts","pct":19}],"gaps":["Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HEXBH","name":"EXPRESS INN - BOISAR","chain":"EXPRESS INN","status":"✅ STABLE","address":"NEXT TO BIG BAZAR OSWAL, EMPIRE,BOISAR,TARAPUR RD, BOISAR","pin":"401501","gstin":"27AAFCS0440N3Z6","rev3y":8000396,"rev26":2874178,"rev25":2672724,"yoy":"+7.5%","inv26":25,"avgOrder":114967,"topRev":[{"cat":"Flours/Rice","pct":23},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Spices","pct":17}],"topVol":[{"cat":"Flours/Rice","pct":43},{"cat":"Sauces/Pastes","pct":19},{"cat":"Pulses/Dal","pct":9}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HVVMR","name":"RESHAM DA DHABA","chain":"","status":"✅ STABLE","address":"209 MAHESH IND ESTATE, SILVER PARK-MIRA ROAD, MUMBAI","pin":"401107","gstin":"27AAIFR0595F1Z1","rev3y":7821384,"rev26":2767067,"rev25":2719506,"yoy":"+1.7%","inv26":60,"avgOrder":46118,"topRev":[{"cat":"Spices","pct":42},{"cat":"Dry Fruits/Nuts","pct":15},{"cat":"Sauces/Pastes","pct":11}],"topVol":[{"cat":"Sauces/Pastes","pct":73},{"cat":"Spices","pct":21},{"cat":"Pulses/Dal","pct":1}],"gaps":[],"nonVisitable":""},{"code":"HPME","name":"PARIVAR - MIRA ROAD","chain":"","status":"🔴 SHRINKING","address":"POONAM SAGAR COMPLEX., MIRA ROAD, MUMBAI","pin":"401107","gstin":"27AAIFP9502C1ZC","rev3y":7444037,"rev26":2163388,"rev25":2577563,"yoy":"-16.1%","inv26":84,"avgOrder":25755,"topRev":[{"cat":"Spices","pct":49},{"cat":"Flours/Rice","pct":20},{"cat":"Dry Fruits/Nuts","pct":12}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Spices","pct":21},{"cat":"Pulses/Dal","pct":13}],"gaps":["Canned","Pasta/Intl"],"nonVisitable":""},{"code":"HCASA","name":"CASH SALE","chain":"","status":"🟢 GROWING","address":"","pin":"400009","gstin":"","rev3y":7122644,"rev26":2437032,"rev25":2204165,"yoy":"+10.6%","inv26":604,"avgOrder":4035,"topRev":[{"cat":"Spices","pct":61},{"cat":"Dry Fruits/Nuts","pct":13},{"cat":"Oils/Ghee","pct":13}],"topVol":[{"cat":"Housekeeping","pct":26},{"cat":"Spices","pct":26},{"cat":"Flours/Rice","pct":19}],"gaps":[],"nonVisitable":"CASH (walk-in aggregate)"},{"code":"HGEI","name":"GULSHAN E IRAN - CRAWFORD","chain":"","status":"✅ STABLE","address":"MARKET, 8691816752 REHMAT","pin":"400001","gstin":"27AAAFG2881M1Z4","rev3y":5608631,"rev26":1725028,"rev25":1838694,"yoy":"-6.2%","inv26":314,"avgOrder":5494,"topRev":[{"cat":"Spices","pct":43},{"cat":"Housekeeping","pct":30},{"cat":"Dry Fruits/Nuts","pct":11}],"topVol":[{"cat":"Housekeeping","pct":69},{"cat":"Spices","pct":9},{"cat":"Sugar/Salt","pct":8}],"gaps":["Breakfast","Canned","Ready Mixes"],"nonVisitable":""},{"code":"HBTC","name":"BHATT - CHEMBUR","chain":"","status":"✅ STABLE","address":"CHEMBUR, MUMBAI","pin":"400071","gstin":"27AAEFB0241Q1ZF","rev3y":5415340,"rev26":1876662,"rev25":1878658,"yoy":"-0.1%","inv26":47,"avgOrder":39929,"topRev":[{"cat":"Pulses/Dal","pct":53},{"cat":"Spices","pct":17},{"cat":"Flours/Rice","pct":16}],"topVol":[{"cat":"Pulses/Dal","pct":54},{"cat":"Flours/Rice","pct":24},{"cat":"Sugar/Salt","pct":16}],"gaps":["Oils/Ghee","Sauces/Pastes","Breakfast","Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSP","name":"SHAGUN-SAKINAKA.SAKI VIHA","chain":"","status":"✅ STABLE","address":"R RD.UDAI NAGAR.NEXT TO P, OST OFFICE.INSIDE FISH MK, MUMBAI","pin":"400072","gstin":"27AAKPS0662G1ZJ","rev3y":5364593,"rev26":1770420,"rev25":1774720,"yoy":"-0.2%","inv26":59,"avgOrder":30007,"topRev":[{"cat":"Dry Fruits/Nuts","pct":34},{"cat":"Spices","pct":23},{"cat":"Oils/Ghee","pct":12}],"topVol":[{"cat":"Flours/Rice","pct":24},{"cat":"Sauces/Pastes","pct":16},{"cat":"Sugar/Salt","pct":15}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HNEWL","name":"NEO WELCOME - GHATKOPAR","chain":"","status":"🔴 SHRINKING","address":"NEAR STATION-GHATKOPAR(W, MUMBAI","pin":"400086","gstin":"27AAAFN1285C1ZM","rev3y":5293520,"rev26":1712247,"rev25":2186701,"yoy":"-21.7%","inv26":89,"avgOrder":19239,"topRev":[{"cat":"Flours/Rice","pct":39},{"cat":"Pulses/Dal","pct":38},{"cat":"Sugar/Salt","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":58},{"cat":"Sugar/Salt","pct":20},{"cat":"Pulses/Dal","pct":20}],"gaps":["Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSSEA","name":"SHREE SIDDHI ENTERPRISES","chain":"","status":"🟢 GROWING","address":"ANDHERI WEST, RECREATION CLUB, MUMBAI","pin":"400058","gstin":"27AGQPB0520L1ZI","rev3y":5009922,"rev26":1685032,"rev25":1515188,"yoy":"+11.2%","inv26":59,"avgOrder":28560,"topRev":[{"cat":"Spices","pct":45},{"cat":"Oils/Ghee","pct":15},{"cat":"Dry Fruits/Nuts","pct":15}],"topVol":[{"cat":"Housekeeping","pct":30},{"cat":"Sauces/Pastes","pct":26},{"cat":"Spices","pct":15}],"gaps":[],"nonVisitable":""},{"code":"HGRC","name":"GAYLORD RESTAURANT-C'GATE","chain":"","status":"🔴 SHRINKING","address":"CHURCHGATE, MUMBAI","pin":"400020","gstin":"27AAAFG2753L1ZB","rev3y":4799339,"rev26":1071817,"rev25":1844349,"yoy":"-41.9%","inv26":210,"avgOrder":5104,"topRev":[{"cat":"Spices","pct":29},{"cat":"Pulses/Dal","pct":24},{"cat":"Flours/Rice","pct":24}],"topVol":[{"cat":"Flours/Rice","pct":38},{"cat":"Pulses/Dal","pct":20},{"cat":"Sugar/Salt","pct":13}],"gaps":[],"nonVisitable":""},{"code":"HNHK","name":"NAANAYA'S SIMPLY VEG","chain":"","status":"✅ STABLE","address":"SHOP NO.11,PARIJAT TOWERS, SAKI VIHAR ROAD,POWAI, MUMBAI","pin":"400072","gstin":"27AAVFN4994K1Z6","rev3y":4297959,"rev26":1947506,"rev25":1841304,"yoy":"+5.8%","inv26":52,"avgOrder":37452,"topRev":[{"cat":"Dry Fruits/Nuts","pct":31},{"cat":"Spices","pct":27},{"cat":"Pulses/Dal","pct":14}],"topVol":[{"cat":"Sauces/Pastes","pct":33},{"cat":"Flours/Rice","pct":25},{"cat":"Spices","pct":16}],"gaps":[],"nonVisitable":""},{"code":"HSRSS","name":"LAXMICHAYA - ANDHERI","chain":"","status":"✅ STABLE","address":"21-R LAXMI INDUSTRIAL EST, ATE,NEW LINK RD, ANDHERI(W)","pin":"400053","gstin":"27AMYPS1867M1ZU","rev3y":4247838,"rev26":1314303,"rev25":1437716,"yoy":"-8.6%","inv26":64,"avgOrder":20536,"topRev":[{"cat":"Spices","pct":31},{"cat":"Dry Fruits/Nuts","pct":27},{"cat":"Oils/Ghee","pct":11}],"topVol":[{"cat":"Sauces/Pastes","pct":75},{"cat":"Spices","pct":12},{"cat":"Housekeeping","pct":3}],"gaps":["Pasta/Intl"],"nonVisitable":""},{"code":"HTVTS","name":"VEG TREAT SECOND-KUL PREM","chain":"TVT","status":"✅ STABLE","address":"BLDG,L.T.ROAD,VAZIRA NAKA, BORIVALI (WEST)., MUMBAI","pin":"400091","gstin":"27AADFT9591J1ZH","rev3y":4217132,"rev26":1445551,"rev25":1372089,"yoy":"+5.4%","inv26":114,"avgOrder":12680,"topRev":[{"cat":"Spices","pct":54},{"cat":"Dry Fruits/Nuts","pct":24},{"cat":"Flours/Rice","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":36},{"cat":"Spices","pct":28},{"cat":"Sugar/Salt","pct":12}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSLE","name":"AFZALS MAO-MAZGOAN","chain":"MAO","status":"🔴 SHRINKING","address":"GR FL,9A/PLOT 115A,SHIR, MARG,MAZGOAN, MAZOGAN","pin":"400010","gstin":"27AEJPA1713R1ZD","rev3y":4091812,"rev26":1213294,"rev25":1397077,"yoy":"-13.2%","inv26":36,"avgOrder":33703,"topRev":[{"cat":"Spices","pct":80},{"cat":"Dry Fruits/Nuts","pct":8},{"cat":"Flours/Rice","pct":6}],"topVol":[{"cat":"Spices","pct":66},{"cat":"Flours/Rice","pct":15},{"cat":"Dry Fruits/Nuts","pct":6}],"gaps":["Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HOHCA","name":"PRAVEEN SHETTY - ANDHERI","chain":"","status":"🔴 SHRINKING","address":"S.P.JAIN MESS,C/O-BHAVANS, COLLEGE, MUMBAI","pin":"400058","gstin":"27APTPS2487K1ZV","rev3y":3941453,"rev26":817871,"rev25":1269738,"yoy":"-35.6%","inv26":27,"avgOrder":30292,"topRev":[{"cat":"Spices","pct":54},{"cat":"Dry Fruits/Nuts","pct":21},{"cat":"Snacks/Farsan","pct":13}],"topVol":[{"cat":"Snacks/Farsan","pct":41},{"cat":"Sugar/Salt","pct":23},{"cat":"Spices","pct":19}],"gaps":["Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMSWB","name":"MERITAS GETAWAYS LLP","chain":"MERITAS","status":"🟢 GROWING","address":"MAHESHWAR PAKHADI, JIVANA, BUNDER ROAD, SHRIWARDHAN, RAIGAD","pin":"402110","gstin":"27ABYFM8495L1ZW","rev3y":3883303,"rev26":1767774,"rev25":1429846,"yoy":"+23.6%","inv26":13,"avgOrder":135983,"topRev":[{"cat":"Oils/Ghee","pct":22},{"cat":"Flours/Rice","pct":18},{"cat":"Spices","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Sauces/Pastes","pct":10},{"cat":"Sugar/Salt","pct":10}],"gaps":[],"nonVisitable":""},{"code":"HLEEG","name":"LE GARDEN - MALAD","chain":"","status":"✅ STABLE","address":"S.V.ROAD,MUDBAR LANE,NEAR, LEAF SIDE- MALAD, MUMBAI","pin":"400064","gstin":"27AAPFA5143F1ZH","rev3y":3839841,"rev26":1207553,"rev25":1287237,"yoy":"-6.2%","inv26":32,"avgOrder":37736,"topRev":[{"cat":"Spices","pct":31},{"cat":"Dry Fruits/Nuts","pct":27},{"cat":"Canned","pct":11}],"topVol":[{"cat":"Sauces/Pastes","pct":28},{"cat":"Spices","pct":21},{"cat":"Canned","pct":12}],"gaps":["Snacks/Farsan","Housekeeping","Syrups/Bev","Pasta/Intl"],"nonVisitable":""},{"code":"HGP","name":"GURU KRUPA - POWAI","chain":"","status":"🟢 GROWING","address":"POWAI, MUMBAI","pin":"400072","gstin":"27BKHPS9980F1ZF","rev3y":3417179,"rev26":2144748,"rev25":712481,"yoy":"+201.0%","inv26":65,"avgOrder":32996,"topRev":[{"cat":"Spices","pct":56},{"cat":"Dry Fruits/Nuts","pct":17},{"cat":"Flours/Rice","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":55},{"cat":"Spices","pct":21},{"cat":"Pulses/Dal","pct":12}],"gaps":["Snacks/Farsan","Sauces/Pastes","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMAOK","name":"MAO - KURLA","chain":"MAO","status":"🟢 GROWING","address":"SHOP 7,PLOT 216,OPP KURLA, WEIGHT BRIDGE,LBS ROAD, KURLA(W),MUMBAI","pin":"400 070","gstin":"","rev3y":3371853,"rev26":1493423,"rev25":1084537,"yoy":"+37.7%","inv26":28,"avgOrder":53337,"topRev":[{"cat":"Spices","pct":74},{"cat":"Flours/Rice","pct":6},{"cat":"Snacks/Farsan","pct":5}],"topVol":[{"cat":"Spices","pct":59},{"cat":"Flours/Rice","pct":14},{"cat":"Bakery","pct":8}],"gaps":["Pulses/Dal","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HGKAE","name":"GOPAL KRISHNA-J.B.NAGAR.","chain":"","status":"🟢 GROWING","address":"ANDHERI(E).OPP.HOTEL KOHI, NOOR HOTEL.","pin":"400059","gstin":"27AAUHS0243P1ZE","rev3y":3111925,"rev26":1151311,"rev25":917014,"yoy":"+25.5%","inv26":50,"avgOrder":23026,"topRev":[{"cat":"Spices","pct":76},{"cat":"Dry Fruits/Nuts","pct":20},{"cat":"Pulses/Dal","pct":4}],"topVol":[{"cat":"Spices","pct":71},{"cat":"Dry Fruits/Nuts","pct":17},{"cat":"Pulses/Dal","pct":6}],"gaps":["Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HCS","name":"MUMBAI DARBAR-CURRY ROAD","chain":"","status":"✅ STABLE","address":"CURRY ROAD, MUMBAI","pin":"400013","gstin":"27AHCPG6301R1Z6","rev3y":3111600,"rev26":1042073,"rev25":972106,"yoy":"+7.2%","inv26":117,"avgOrder":8907,"topRev":[{"cat":"Spices","pct":59},{"cat":"Dry Fruits/Nuts","pct":12},{"cat":"Snacks/Farsan","pct":6}],"topVol":[{"cat":"Sauces/Pastes","pct":56},{"cat":"Spices","pct":39},{"cat":"Bakery","pct":2}],"gaps":["Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HVCM","name":"VRINDAVAN-WELINGKAR COLL","chain":"","status":"🔴 SHRINKING","address":"EGE.MATUNGA (EAST), MUMBAI","pin":"400019","gstin":"27AAFFV0093F1Z7","rev3y":3054731,"rev26":889125,"rev25":1172290,"yoy":"-24.2%","inv26":75,"avgOrder":11855,"topRev":[{"cat":"Spices","pct":24},{"cat":"Flours/Rice","pct":20},{"cat":"Pulses/Dal","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":33},{"cat":"Sugar/Salt","pct":21},{"cat":"Pulses/Dal","pct":13}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HALAK","name":"AT LAKE - BHAYANDAR (W)","chain":"","status":"✅ STABLE","address":"A/105,106,MANORAMA CHSL,, TEMBA ROAD,OPP.NAGAR BHAV, AN BHAYANDAR(W)","pin":"401101","gstin":"27BBUPS3358D1Z5","rev3y":2922987,"rev26":908663,"rev25":919282,"yoy":"-1.2%","inv26":41,"avgOrder":22163,"topRev":[{"cat":"Flours/Rice","pct":31},{"cat":"Spices","pct":24},{"cat":"Dry Fruits/Nuts","pct":17}],"topVol":[{"cat":"Flours/Rice","pct":50},{"cat":"Sauces/Pastes","pct":14},{"cat":"Spices","pct":13}],"gaps":["Housekeeping","Pasta/Intl"],"nonVisitable":""},{"code":"HSPF","name":"SAI POOJA FAMILY-ASALPHA","chain":"","status":"✅ STABLE","address":"HIMALAYA STONE COMPOUND,, J.M MANDIR ROAD SUBHASH, MUMBAI","pin":"400084","gstin":"27AMSPS9793C1Z4","rev3y":2883013,"rev26":965878,"rev25":883567,"yoy":"+9.3%","inv26":40,"avgOrder":24147,"topRev":[{"cat":"Oils/Ghee","pct":33},{"cat":"Spices","pct":27},{"cat":"Dry Fruits/Nuts","pct":11}],"topVol":[{"cat":"Flours/Rice","pct":26},{"cat":"Spices","pct":26},{"cat":"Sauces/Pastes","pct":20}],"gaps":["Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HLFM","name":"LIBERTY FAMILY R-MALAD(W)","chain":"","status":"✅ STABLE","address":"OPP.LIBERTY GARDEN, MUMBAI","pin":"400064","gstin":"27AAACH9348D1ZK","rev3y":2843343,"rev26":898037,"rev25":934236,"yoy":"-3.9%","inv26":57,"avgOrder":15755,"topRev":[{"cat":"Spices","pct":40},{"cat":"Dry Fruits/Nuts","pct":39},{"cat":"Housekeeping","pct":9}],"topVol":[{"cat":"Housekeeping","pct":40},{"cat":"Spices","pct":23},{"cat":"Dry Fruits/Nuts","pct":13}],"gaps":["Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HGCT","name":"GOLD COIN - TARDEO","chain":"","status":"🟢 GROWING","address":"6,ARUN CHEMBERS, MUMBAI","pin":"400034","gstin":"27ARFPS3662L1Z8","rev3y":2832891,"rev26":943477,"rev25":855180,"yoy":"+10.3%","inv26":57,"avgOrder":16552,"topRev":[{"cat":"Dry Fruits/Nuts","pct":43},{"cat":"Spices","pct":33},{"cat":"Housekeeping","pct":7}],"topVol":[{"cat":"Housekeeping","pct":34},{"cat":"Flours/Rice","pct":17},{"cat":"Sugar/Salt","pct":16}],"gaps":["Sauces/Pastes","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSDVP","name":"SHREE DEVI REFRESHMENT","chain":"","status":"✅ STABLE","address":"SRI DEVI - VILE PARLE, MUMBAI","pin":"400056","gstin":"27ADJFS9850Q1ZY","rev3y":2782507,"rev26":906912,"rev25":843875,"yoy":"+7.5%","inv26":54,"avgOrder":16795,"topRev":[{"cat":"Spices","pct":53},{"cat":"Dry Fruits/Nuts","pct":17},{"cat":"Pulses/Dal","pct":17}],"topVol":[{"cat":"Sugar/Salt","pct":33},{"cat":"Spices","pct":28},{"cat":"Flours/Rice","pct":17}],"gaps":["Sauces/Pastes","Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HLEMG","name":"LEAFIO MARIGOLD ANDHERI(E","chain":"","status":"✅ STABLE","address":"MAROL MAROSHI ROAD NEAR I, NT AIRPORT NEXT,SANGEET, MUMBAI","pin":"400059","gstin":"27AAHFL3779J1ZR","rev3y":2760211,"rev26":963042,"rev25":942610,"yoy":"+2.2%","inv26":78,"avgOrder":12347,"topRev":[{"cat":"Spices","pct":29},{"cat":"Dry Fruits/Nuts","pct":22},{"cat":"Flours/Rice","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":53},{"cat":"Spices","pct":14},{"cat":"Sugar/Salt","pct":9}],"gaps":["Housekeeping"],"nonVisitable":""},{"code":"HALRN","name":"AL RON CATERERS(W)-BANDRA","chain":"","status":"🟢 GROWING","address":"9,1/1,SARKARI BOWDI DR.PE, TER DAIS ROAD,OPP SAI ASH, MUMBAI.","pin":"400050","gstin":"27AAIFA4450A1ZY","rev3y":2672877,"rev26":1069402,"rev25":761250,"yoy":"+40.5%","inv26":34,"avgOrder":31453,"topRev":[{"cat":"Oils/Ghee","pct":43},{"cat":"Spices","pct":22},{"cat":"Dry Fruits/Nuts","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":35},{"cat":"Housekeeping","pct":17},{"cat":"Pulses/Dal","pct":15}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HPNME","name":"PRABHU NIKETAN - MALAD","chain":"","status":"✅ STABLE","address":"","pin":"","gstin":"27AAGFS8889P1ZW","rev3y":2654543,"rev26":850306,"rev25":778957,"yoy":"+9.2%","inv26":43,"avgOrder":19775,"topRev":[{"cat":"Spices","pct":63},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Sauces/Pastes","pct":7}],"topVol":[{"cat":"Sauces/Pastes","pct":53},{"cat":"Spices","pct":35},{"cat":"Sugar/Salt","pct":5}],"gaps":["Oils/Ghee","Snacks/Farsan","Housekeeping","Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HKRAE","name":"KINARA REST - ANDHERI","chain":"","status":"✅ STABLE","address":"SARGAON ,INDIAN OIL ROAD,, GATE NO.5), MUMBAI","pin":"400099","gstin":"27AAGFH3435G1ZI","rev3y":2629913,"rev26":798500,"rev25":835685,"yoy":"-4.4%","inv26":25,"avgOrder":31940,"topRev":[{"cat":"Spices","pct":31},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Oils/Ghee","pct":10}],"topVol":[{"cat":"Sauces/Pastes","pct":50},{"cat":"Spices","pct":27},{"cat":"Flours/Rice","pct":8}],"gaps":["Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HAFZL","name":"AFZAL CRAWFORD MARKET","chain":"MAO","status":"🟢 GROWING","address":"CRAWFORD MAREKT, MUMBAI","pin":"400002","gstin":"","rev3y":2574298,"rev26":1066028,"rev25":844856,"yoy":"+26.2%","inv26":52,"avgOrder":20501,"topRev":[{"cat":"Spices","pct":86},{"cat":"Snacks/Farsan","pct":7},{"cat":"Flours/Rice","pct":4}],"topVol":[{"cat":"Spices","pct":76},{"cat":"Flours/Rice","pct":10},{"cat":"Snacks/Farsan","pct":9}],"gaps":["Pulses/Dal","Oils/Ghee","Sauces/Pastes","Housekeeping","Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMDMM","name":"MUMBAI DARBAR - MAHIM","chain":"","status":"✅ STABLE","address":"OPP MAHIM CHURCH,GRD FLR,, 10/12, ANCHORAGE,L.J.RD,, MAHIM,MUMBAI","pin":"400016","gstin":"","rev3y":2517899,"rev26":894031,"rev25":944546,"yoy":"-5.3%","inv26":106,"avgOrder":8434,"topRev":[{"cat":"Flours/Rice","pct":32},{"cat":"Spices","pct":31},{"cat":"Sauces/Pastes","pct":9}],"topVol":[{"cat":"Flours/Rice","pct":39},{"cat":"Sauces/Pastes","pct":26},{"cat":"Spices","pct":21}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HSBR","name":"SAGAR BAR-BHANDUP(WEST)","chain":"","status":"🔴 SHRINKING","address":"L.B.S.RD,MAGATRAM PETROL, PUMP,LEAF SIDE GADAVNAKA,, MUMBAI","pin":"400078","gstin":"27AVUPS8335H1ZQ","rev3y":2511423,"rev26":465142,"rev25":1102209,"yoy":"-57.8%","inv26":18,"avgOrder":25841,"topRev":[{"cat":"Spices","pct":26},{"cat":"Flours/Rice","pct":25},{"cat":"Dry Fruits/Nuts","pct":20}],"topVol":[{"cat":"Sauces/Pastes","pct":29},{"cat":"Flours/Rice","pct":27},{"cat":"Spices","pct":25}],"gaps":["Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTVTL","name":"THE VEG TREAT LEGACY","chain":"TVT","status":"🔴 SHRINKING","address":"SHOP NO 1,2,3 & A2,, DWARKESH CHSL,LT ROAD, BORIVALI(W)MUMBAI","pin":"400092","gstin":"27AASFT6189P1ZU","rev3y":2499755,"rev26":794882,"rev25":919653,"yoy":"-13.6%","inv26":68,"avgOrder":11689,"topRev":[{"cat":"Spices","pct":55},{"cat":"Dry Fruits/Nuts","pct":17},{"cat":"Pulses/Dal","pct":10}],"topVol":[{"cat":"Flours/Rice","pct":22},{"cat":"Spices","pct":21},{"cat":"Sugar/Salt","pct":18}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMFRC","name":"MAO - CHEMBUR","chain":"MAO","status":"🟢 GROWING","address":"INDIRA NAGAR,VASHI NAKA,, RC MARG,MAHUL RD,MR.BHARA, T PETOL PUMP MUM","pin":"400074","gstin":"","rev3y":2451712,"rev26":982260,"rev25":826905,"yoy":"+18.8%","inv26":21,"avgOrder":46774,"topRev":[{"cat":"Spices","pct":76},{"cat":"Flours/Rice","pct":10},{"cat":"Snacks/Farsan","pct":5}],"topVol":[{"cat":"Spices","pct":51},{"cat":"Flours/Rice","pct":20},{"cat":"Bakery","pct":19}],"gaps":["Pulses/Dal","Oils/Ghee","Housekeeping","Syrups/Bev","Canned","Pasta/Intl"],"nonVisitable":""},{"code":"HSB","name":"SAHIBAAN - BANDRA","chain":"","status":"🔴 DORMANT","address":"SHOP NO.1&3,CARLTON COURT, OPP AXIS BANK,TURNER ROAD, MUMBAI","pin":"400050","gstin":"27AAGPK7172B1ZU","rev3y":2449336,"rev26":0,"rev25":853642,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":33},{"cat":"Oils/Ghee","pct":28},{"cat":"Sauces/Pastes","pct":12}],"topVol":[{"cat":"Flours/Rice","pct":30},{"cat":"Spices","pct":16},{"cat":"Sauces/Pastes","pct":15}],"gaps":["Snacks/Farsan","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTVTE","name":"VEG TREAT EXPRESS-4 BORIV","chain":"TVT","status":"🔴 SHRINKING","address":"CHIKUWADI,BORIVALI WEST, MUMBAI","pin":"400092","gstin":"27AAQFT7358E1ZM","rev3y":2392220,"rev26":550305,"rev25":884284,"yoy":"-37.8%","inv26":69,"avgOrder":7975,"topRev":[{"cat":"Spices","pct":56},{"cat":"Flours/Rice","pct":18},{"cat":"Syrups/Bev","pct":5}],"topVol":[{"cat":"Flours/Rice","pct":39},{"cat":"Sugar/Salt","pct":19},{"cat":"Spices","pct":17}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HLCKW","name":"LA CLASSIC KITCHEN & BAR","chain":"","status":"✅ STABLE","address":"KANDHAR PADA,NEAR D MART, NEW LINK ROAD, DAHISAR (W)","pin":"400068","gstin":"27AAKFL4825G1Z6","rev3y":2381292,"rev26":777730,"rev25":755492,"yoy":"+2.9%","inv26":34,"avgOrder":22874,"topRev":[{"cat":"Spices","pct":30},{"cat":"Flours/Rice","pct":27},{"cat":"Pulses/Dal","pct":15}],"topVol":[{"cat":"Flours/Rice","pct":39},{"cat":"Sauces/Pastes","pct":20},{"cat":"Spices","pct":12}],"gaps":["Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSSBW","name":"SHREE SAGAR BANDRA WEST","chain":"","status":"🔴 SHRINKING","address":"PALI NAKA,SOLA ROAD, BANDRA-WEST, MUMBAI","pin":"400050","gstin":"27AQNPS6466P1ZM","rev3y":2364205,"rev26":532702,"rev25":684582,"yoy":"-22.2%","inv26":40,"avgOrder":13318,"topRev":[{"cat":"Spices","pct":31},{"cat":"Dry Fruits/Nuts","pct":15},{"cat":"Sauces/Pastes","pct":12}],"topVol":[{"cat":"Sauces/Pastes","pct":59},{"cat":"Spices","pct":24},{"cat":"Flours/Rice","pct":4}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HSAMB","name":"SAMUNDRA - BHANDUP","chain":"","status":"✅ STABLE","address":"NEAR SHIV SENA SHAKHA,, SHIVAJI TALAO,BHANDUP(W), MUMBAI","pin":"400078","gstin":"27ADUFS3696K1ZZ","rev3y":2331410,"rev26":874352,"rev25":803597,"yoy":"+8.8%","inv26":26,"avgOrder":33629,"topRev":[{"cat":"Spices","pct":28},{"cat":"Flours/Rice","pct":27},{"cat":"Dry Fruits/Nuts","pct":19}],"topVol":[{"cat":"Flours/Rice","pct":33},{"cat":"Sauces/Pastes","pct":31},{"cat":"Spices","pct":18}],"gaps":["Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMRM","name":"MAO - DHOBI TALAO","chain":"","status":"✅ STABLE","address":"OPP HOTEL SUN LIGHT","pin":"","gstin":"27AAAFR8195D1Z1","rev3y":2280800,"rev26":878570,"rev25":950363,"yoy":"-7.6%","inv26":60,"avgOrder":14643,"topRev":[{"cat":"Spices","pct":70},{"cat":"Sauces/Pastes","pct":14},{"cat":"Bakery","pct":6}],"topVol":[{"cat":"Spices","pct":52},{"cat":"Bakery","pct":21},{"cat":"Sauces/Pastes","pct":12}],"gaps":["Pulses/Dal","Oils/Ghee","Snacks/Farsan","Housekeeping","Syrups/Bev","Canned","Ready Mixes"],"nonVisitable":""},{"code":"HMERD","name":"MERITAS HOSPITALITY LLP","chain":"MERITAS","status":"🔴 SHRINKING","address":"","pin":"400068","gstin":"27ABPFM9049K1ZF","rev3y":2219834,"rev26":664284,"rev25":805640,"yoy":"-17.5%","inv26":13,"avgOrder":51099,"topRev":[{"cat":"Pulses/Dal","pct":36},{"cat":"Spices","pct":21},{"cat":"Flours/Rice","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Pulses/Dal","pct":34},{"cat":"Spices","pct":5}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HSGGD","name":"SHRI GURUDEV GRIHA-DADAR","chain":"","status":"🔴 SHRINKING","address":"-NAIGAON OPP SPRING MILL, CHAWL NO.5,G.G,AMBEDKAR, MUMBAI","pin":"400014","gstin":"27AQJPP2388M1Z2","rev3y":2126285,"rev26":589562,"rev25":718198,"yoy":"-17.9%","inv26":11,"avgOrder":53597,"topRev":[{"cat":"Flours/Rice","pct":24},{"cat":"Spices","pct":22},{"cat":"Pulses/Dal","pct":16}],"topVol":[{"cat":"Sauces/Pastes","pct":41},{"cat":"Spices","pct":22},{"cat":"Flours/Rice","pct":21}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HMDMZ","name":"MUMBAI DARBAR - MAZGAON","chain":"","status":"🔴 SHRINKING","address":"","pin":"","gstin":"27AHCPG6300Q1Z9","rev3y":2084598,"rev26":617234,"rev25":704644,"yoy":"-12.4%","inv26":44,"avgOrder":14028,"topRev":[{"cat":"Spices","pct":62},{"cat":"Dry Fruits/Nuts","pct":15},{"cat":"Bakery","pct":8}],"topVol":[{"cat":"Spices","pct":39},{"cat":"Bakery","pct":26},{"cat":"Dry Fruits/Nuts","pct":13}],"gaps":["Canned","Ready Mixes"],"nonVisitable":""},{"code":"HLACG","name":"LA CLASSIQUE GREENS KANDI","chain":"","status":"✅ STABLE","address":"KANDIWALI SHANKAR GULL, AHEAD OF JAIN MANDIR,, KANDIWALI(WEST)","pin":"400064","gstin":"27AAJFL3005D1ZR","rev3y":2043359,"rev26":547346,"rev25":603274,"yoy":"-9.3%","inv26":36,"avgOrder":15204,"topRev":[{"cat":"Spices","pct":47},{"cat":"Dry Fruits/Nuts","pct":21},{"cat":"Housekeeping","pct":12}],"topVol":[{"cat":"Sauces/Pastes","pct":48},{"cat":"Housekeeping","pct":23},{"cat":"Spices","pct":9}],"gaps":["Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMALL","name":"MERITAS AUBERGE LLP","chain":"MERITAS","status":"🔴 SHRINKING","address":"10/7-A,NAIKAVADDO,CALANGU, TE BARDEZ,NORTH GOA, GOA","pin":"403516","gstin":"30AAZFM4346E1Z7","rev3y":2034643,"rev26":726511,"rev25":1308132,"yoy":"-44.5%","inv26":5,"avgOrder":145302,"topRev":[{"cat":"Flours/Rice","pct":20},{"cat":"Oils/Ghee","pct":20},{"cat":"Pulses/Dal","pct":14}],"topVol":[{"cat":"Flours/Rice","pct":38},{"cat":"Sauces/Pastes","pct":27},{"cat":"Pulses/Dal","pct":10}],"gaps":[],"nonVisitable":""},{"code":"HPVL","name":"PALI VILLAGE LONAVALA","chain":"","status":"🔴 SHRINKING","address":"G NO.713/721(1),P NO 19,, VARSOLI,TOLL NAKA,WAKSAI,, LONAVALA","pin":"410401","gstin":"27AANCP1045Q1ZU","rev3y":2027462,"rev26":245525,"rev25":1781938,"yoy":"-86.2%","inv26":6,"avgOrder":40921,"topRev":[{"cat":"Oils/Ghee","pct":24},{"cat":"Flours/Rice","pct":22},{"cat":"Dry Fruits/Nuts","pct":15}],"topVol":[{"cat":"Flours/Rice","pct":59},{"cat":"Pulses/Dal","pct":11},{"cat":"Sugar/Salt","pct":7}],"gaps":["Housekeeping"],"nonVisitable":""},{"code":"HARSA","name":"TARA PUNJAB - CHEMBUR","chain":"","status":"🟢 GROWING","address":"SINDI SOCIETY,OPP SWASTIK, CHAMBER,CHEMBUR, MUMBAI","pin":"400071","gstin":"27AABFU0019L1Z9","rev3y":1990128,"rev26":675096,"rev25":603049,"yoy":"+11.9%","inv26":24,"avgOrder":28129,"topRev":[{"cat":"Spices","pct":61},{"cat":"Pulses/Dal","pct":7},{"cat":"Oils/Ghee","pct":6}],"topVol":[{"cat":"Sauces/Pastes","pct":66},{"cat":"Spices","pct":23},{"cat":"Sugar/Salt","pct":3}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HSC","name":"SAHIBAAN REST - COLABA","chain":"","status":"🔴 DORMANT","address":"NEXT TO KAILASH PURBHAT, OPP COLABA MARKET-COLABA, MUMBAI","pin":"400005","gstin":"27AAMPK1689D1ZI","rev3y":1973062,"rev26":0,"rev25":972445,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":47},{"cat":"Flours/Rice","pct":13},{"cat":"Housekeeping","pct":10}],"topVol":[{"cat":"Flours/Rice","pct":36},{"cat":"Spices","pct":17},{"cat":"Sugar/Salt","pct":16}],"gaps":["Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HBIND","name":"HAPPY KING HOSPITALITY","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AAMFH0872M1ZW","rev3y":1963009,"rev26":0,"rev25":1223599,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":33},{"cat":"Spices","pct":21},{"cat":"Pulses/Dal","pct":19}],"topVol":[{"cat":"Flours/Rice","pct":62},{"cat":"Pulses/Dal","pct":14},{"cat":"Sugar/Salt","pct":8}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HMBRP","name":"MADIRA BAR - PAREL","chain":"","status":"🔴 SHRINKING","address":"GURU KRUPA BLDG,G BORGES, ROAD,OPP.BATA SHOWROOM, PAREL,MUMBAI","pin":"400012","gstin":"","rev3y":1864163,"rev26":609061,"rev25":1047418,"yoy":"-41.9%","inv26":57,"avgOrder":10685,"topRev":[{"cat":"Flours/Rice","pct":26},{"cat":"Spices","pct":25},{"cat":"Dry Fruits/Nuts","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Pasta/Intl","pct":18},{"cat":"Pulses/Dal","pct":9}],"gaps":["Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HFREN","name":"FRESSIA RESORT BY EXPRESS","chain":"","status":"✅ STABLE","address":"INN(SHELAR PROPERTIES PVT, LTD)GATE NO.38/2,SAVRGAON, RD,SHIVAR,NASIK","pin":"422101","gstin":"27AAFCS0440N4Z5","rev3y":1840454,"rev26":605766,"rev25":594656,"yoy":"+1.9%","inv26":12,"avgOrder":50480,"topRev":[{"cat":"Spices","pct":33},{"cat":"Dry Fruits/Nuts","pct":18},{"cat":"Pulses/Dal","pct":18}],"topVol":[{"cat":"Pulses/Dal","pct":30},{"cat":"Flours/Rice","pct":21},{"cat":"Spices","pct":14}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HMDP","name":"MUMBAI DARBAR - PAREL","chain":"","status":"✅ STABLE","address":"12/16 GRD FLR,IQBAL MANSI, ON,DR.BABASAHEB AMBEDKAR, RD,PAREL EAST","pin":"400 012","gstin":"","rev3y":1802555,"rev26":619882,"rev25":626021,"yoy":"-1.0%","inv26":29,"avgOrder":21375,"topRev":[{"cat":"Spices","pct":62},{"cat":"Dry Fruits/Nuts","pct":11},{"cat":"Flours/Rice","pct":10}],"topVol":[{"cat":"Spices","pct":33},{"cat":"Flours/Rice","pct":24},{"cat":"Sugar/Salt","pct":17}],"gaps":["Oils/Ghee","Sauces/Pastes","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMHLA","name":"MERITAS HOSPITALITY(AURA)","chain":"MERITAS","status":"✅ STABLE","address":"LONAWALA","pin":"410401","gstin":"27ABPFM9049K2ZE","rev3y":1782967,"rev26":619685,"rev25":635287,"yoy":"-2.5%","inv26":14,"avgOrder":44263,"topRev":[{"cat":"Pulses/Dal","pct":34},{"cat":"Spices","pct":21},{"cat":"Dry Fruits/Nuts","pct":15}],"topVol":[{"cat":"Pulses/Dal","pct":38},{"cat":"Flours/Rice","pct":36},{"cat":"Spices","pct":6}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HLCMW","name":"SPARSH DREAM PALACE MALAD","chain":"","status":"🔴 DORMANT","address":"ORIEM CHURCH SIDDHIVINAYA, K TOWER,TANK ROAD,MALAD W, MUMBAI","pin":"400064","gstin":"27AAEPS2275F1ZM","rev3y":1779045,"rev26":0,"rev25":769475,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":58},{"cat":"Housekeeping","pct":15},{"cat":"Oils/Ghee","pct":10}],"topVol":[{"cat":"Housekeeping","pct":48},{"cat":"Spices","pct":24},{"cat":"Sugar/Salt","pct":11}],"gaps":["Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMBDK","name":"MODERN BAR - DOCKYARD","chain":"","status":"🔴 SHRINKING","address":"DOCKYARD, MUMBAI","pin":"400010","gstin":"27BTEPS0457H1ZI","rev3y":1692758,"rev26":418426,"rev25":621027,"yoy":"-32.6%","inv26":15,"avgOrder":27895,"topRev":[{"cat":"Spices","pct":51},{"cat":"Pulses/Dal","pct":23},{"cat":"Dry Fruits/Nuts","pct":20}],"topVol":[{"cat":"Pulses/Dal","pct":39},{"cat":"Spices","pct":28},{"cat":"Flours/Rice","pct":14}],"gaps":["Oils/Ghee","Snacks/Farsan","Sauces/Pastes","Breakfast","Housekeeping","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTVTR","name":"THE VEG TREAT ROYALE","chain":"TVT","status":"🔴 SHRINKING","address":"CHANDAVARKAR ROAD,NEAR, EKSAR ROAD,BORIVALI(WEST), MUMBAI","pin":"400092","gstin":"27AAKFT9631Q1Z7","rev3y":1692381,"rev26":416696,"rev25":714799,"yoy":"-41.7%","inv26":68,"avgOrder":6128,"topRev":[{"cat":"Spices","pct":44},{"cat":"Flours/Rice","pct":21},{"cat":"Pulses/Dal","pct":14}],"topVol":[{"cat":"Flours/Rice","pct":37},{"cat":"Sugar/Salt","pct":19},{"cat":"Spices","pct":12}],"gaps":["Oils/Ghee","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSSHS","name":"SHREE SAI HOSPITALITY SER","chain":"","status":"🔴 SHRINKING","address":"VICES - ANDHERI (WEST), (RECREATION CLUB), MUMBAI","pin":"400058","gstin":"27ADBPR3172N1Z5","rev3y":1654321,"rev26":523414,"rev25":591748,"yoy":"-11.5%","inv26":27,"avgOrder":19386,"topRev":[{"cat":"Spices","pct":38},{"cat":"Oils/Ghee","pct":17},{"cat":"Dry Fruits/Nuts","pct":16}],"topVol":[{"cat":"Sauces/Pastes","pct":35},{"cat":"Housekeeping","pct":27},{"cat":"Spices","pct":12}],"gaps":[],"nonVisitable":""},{"code":"HRD","name":"RAVINDRA - DAHISAR","chain":"TVT","status":"🔴 SHRINKING","address":"MUMBAI","pin":"400068","gstin":"27AAJFH9762K1ZO","rev3y":1630787,"rev26":376888,"rev25":566873,"yoy":"-33.5%","inv26":69,"avgOrder":5462,"topRev":[{"cat":"Spices","pct":54},{"cat":"Flours/Rice","pct":18},{"cat":"Syrups/Bev","pct":11}],"topVol":[{"cat":"Spices","pct":40},{"cat":"Flours/Rice","pct":32},{"cat":"Syrups/Bev","pct":11}],"gaps":["Oils/Ghee","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HPM","name":"PANCHRATNA-MAROL","chain":"","status":"🟢 GROWING","address":"ANDHERI, MUMBAI","pin":"400059","gstin":"27ABHPH1277N2ZA","rev3y":1589837,"rev26":632634,"rev25":480168,"yoy":"+31.8%","inv26":69,"avgOrder":9169,"topRev":[{"cat":"Spices","pct":26},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Flours/Rice","pct":10}],"topVol":[{"cat":"Housekeeping","pct":29},{"cat":"Flours/Rice","pct":21},{"cat":"Sugar/Salt","pct":13}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HADAR","name":"ADARSH BAR - OSHIWARA","chain":"","status":"🔴 DORMANT","address":"LINK ROAD, MUMBAI","pin":"400053","gstin":"27AAQFA2329A1ZS","rev3y":1578831,"rev26":0,"rev25":718209,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":27},{"cat":"Spices","pct":19},{"cat":"Dry Fruits/Nuts","pct":17}],"topVol":[{"cat":"Flours/Rice","pct":45},{"cat":"Pulses/Dal","pct":11},{"cat":"Spices","pct":11}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HDAVI","name":"DAVID CATERERS SANTACRUZ","chain":"","status":"✅ STABLE","address":"","pin":"","gstin":"","rev3y":1493548,"rev26":441038,"rev25":477389,"yoy":"-7.6%","inv26":12,"avgOrder":36753,"topRev":[{"cat":"Oils/Ghee","pct":27},{"cat":"Flours/Rice","pct":26},{"cat":"Spices","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":58},{"cat":"Pulses/Dal","pct":9},{"cat":"Spices","pct":7}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HSSCT","name":"S.V.M.SHAH CHARITABLE","chain":"","status":"🔴 SHRINKING","address":"TRUST, MUMBAI, ANDHERI","pin":"400058","gstin":"","rev3y":1461291,"rev26":355533,"rev25":568583,"yoy":"-37.5%","inv26":12,"avgOrder":29628,"topRev":[{"cat":"Pulses/Dal","pct":63},{"cat":"Dry Fruits/Nuts","pct":26},{"cat":"Flours/Rice","pct":11}],"topVol":[{"cat":"Pulses/Dal","pct":66},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Flours/Rice","pct":15}],"gaps":["Spices","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HAM","name":"AMBIKA LUNCH HOME - MAROL","chain":"","status":"🟢 GROWING","address":"OPP.STAR PLUS,MAROL NAKA,, A.K.ROAD,ANDHERI (E)., MUMBAI","pin":"400059","gstin":"27AEPPA9741R1ZN","rev3y":1453570,"rev26":482785,"rev25":398040,"yoy":"+21.3%","inv26":18,"avgOrder":26821,"topRev":[{"cat":"Spices","pct":50},{"cat":"Dry Fruits/Nuts","pct":39},{"cat":"Pulses/Dal","pct":6}],"topVol":[{"cat":"Spices","pct":44},{"cat":"Dry Fruits/Nuts","pct":26},{"cat":"Sauces/Pastes","pct":12}],"gaps":["Snacks/Farsan","Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HAMRB","name":"AFZAL MAO - BELAPUR","chain":"MAO","status":"🟢 GROWING","address":"SHOP NO.4,PLOT NO.89/90, MAHAVIR ICON SECTOR-15CBD, NAVI MUMBAI","pin":"400703","gstin":"","rev3y":1448777,"rev26":1094090,"rev25":354687,"yoy":"+208.5%","inv26":26,"avgOrder":42080,"topRev":[{"cat":"Spices","pct":69},{"cat":"Flours/Rice","pct":20},{"cat":"Snacks/Farsan","pct":6}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Spices","pct":42},{"cat":"Snacks/Farsan","pct":7}],"gaps":["Pulses/Dal","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HEXVI","name":"EXOTIC VILLA - BORIVALI","chain":"TVT","status":"🔴 SHRINKING","address":"CHIKUWADI,SHIMPOLI, NEAR, VEG TRAE EXPRESS HOTEL, BORIVALI WEST","pin":"400092","gstin":"27AAUFT3153F1ZV","rev3y":1416574,"rev26":350788,"rev25":606062,"yoy":"-42.1%","inv26":66,"avgOrder":5315,"topRev":[{"cat":"Spices","pct":54},{"cat":"Flours/Rice","pct":22},{"cat":"Pulses/Dal","pct":9}],"topVol":[{"cat":"Flours/Rice","pct":46},{"cat":"Sugar/Salt","pct":21},{"cat":"Spices","pct":14}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMNC","name":"MAHARAJA-NANA CHOWK","chain":"","status":"🟢 GROWING","address":"MUMBAI","pin":"400036","gstin":"27AOPPS3430R1Z2","rev3y":1409201,"rev26":692351,"rev25":205140,"yoy":"+237.5%","inv26":41,"avgOrder":16887,"topRev":[{"cat":"Spices","pct":52},{"cat":"Dry Fruits/Nuts","pct":18},{"cat":"Flours/Rice","pct":9}],"topVol":[{"cat":"Spices","pct":42},{"cat":"Flours/Rice","pct":20},{"cat":"Pulses/Dal","pct":12}],"gaps":["Snacks/Farsan","Sauces/Pastes","Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTVTF","name":"THE VEG TREAT F&B-BORIVAL","chain":"TVT","status":"🔴 SHRINKING","address":"C/O.FOOD LORD THE DINING, BAR,G1 GROUND FLOOR,ZONEM, MUMBAI","pin":"400092","gstin":"27AAPFT2450G1Z0","rev3y":1356418,"rev26":325581,"rev25":546904,"yoy":"-40.5%","inv26":67,"avgOrder":4859,"topRev":[{"cat":"Spices","pct":47},{"cat":"Flours/Rice","pct":17},{"cat":"Pulses/Dal","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":38},{"cat":"Sugar/Salt","pct":20},{"cat":"Pulses/Dal","pct":18}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMERI","name":"MERITAS COUNTRY SIDE","chain":"MERITAS","status":"✅ STABLE","address":"OPP.KAVERI FARM,SWAMISAMA, RTH MANDIR,NANGARGAON(NEW, LONAWALA","pin":"410401","gstin":"27ABJFM3368F1Z2","rev3y":1354343,"rev26":461978,"rev25":444426,"yoy":"+3.9%","inv26":12,"avgOrder":38498,"topRev":[{"cat":"Pulses/Dal","pct":39},{"cat":"Flours/Rice","pct":19},{"cat":"Spices","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":40},{"cat":"Pulses/Dal","pct":34},{"cat":"Breakfast","pct":7}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HGBSC","name":"GAYLORD BAKE SHOP-C'GATE","chain":"","status":"🔴 SHRINKING","address":"CHURCHGATE","pin":"400020","gstin":"27AAAFG2753L1ZB","rev3y":1349637,"rev26":303960,"rev25":562582,"yoy":"-46.0%","inv26":128,"avgOrder":2375,"topRev":[{"cat":"Breakfast","pct":33},{"cat":"Sugar/Salt","pct":33},{"cat":"Dry Fruits/Nuts","pct":25}],"topVol":[{"cat":"Sugar/Salt","pct":78},{"cat":"Breakfast","pct":12},{"cat":"Dry Fruits/Nuts","pct":5}],"gaps":["Pulses/Dal","Snacks/Farsan","Sauces/Pastes","Housekeeping","Pasta/Intl"],"nonVisitable":""},{"code":"HSKSS","name":"NATIONAL HINDU HOTEL","chain":"","status":"🔴 SHRINKING","address":"(SHAKTI BAR - COLABA), SASOON DOCK FIRE BRIGADE, MUMBAI","pin":"400005","gstin":"27AAGPS7410N1Z8","rev3y":1295296,"rev26":383374,"rev25":427682,"yoy":"-10.4%","inv26":27,"avgOrder":14199,"topRev":[{"cat":"Spices","pct":42},{"cat":"Sauces/Pastes","pct":16},{"cat":"Dry Fruits/Nuts","pct":13}],"topVol":[{"cat":"Sauces/Pastes","pct":39},{"cat":"Spices","pct":33},{"cat":"Sugar/Salt","pct":9}],"gaps":["Oils/Ghee","Snacks/Farsan","Housekeeping","Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HRBA","name":"ROYAL REST&BAR J.B.NAGAR","chain":"","status":"✅ STABLE","address":"SIDDHIVINAYK CORPORATION, MUMBAI","pin":"400059","gstin":"27AAKAS9592C1ZZ","rev3y":1290126,"rev26":510074,"rev25":469832,"yoy":"+8.6%","inv26":21,"avgOrder":24289,"topRev":[{"cat":"Spices","pct":37},{"cat":"Dry Fruits/Nuts","pct":23},{"cat":"Canned","pct":8}],"topVol":[{"cat":"Sauces/Pastes","pct":77},{"cat":"Spices","pct":5},{"cat":"Sugar/Salt","pct":5}],"gaps":["Housekeeping","Syrups/Bev","Pasta/Intl"],"nonVisitable":""},{"code":"HGG","name":"SHREE GURU KRUPA-GHATKOPR","chain":"","status":"🟢 GROWING","address":"SHOP NO-4/5,NEW MANEKLAL, EST NEAR JAGRUTI NAGAR, METRO STA-MUMBAI","pin":"400084","gstin":"27ABEFS9358N1ZA","rev3y":1286562,"rev26":503753,"rev25":447573,"yoy":"+12.6%","inv26":14,"avgOrder":35982,"topRev":[{"cat":"Oils/Ghee","pct":48},{"cat":"Flours/Rice","pct":35},{"cat":"Dry Fruits/Nuts","pct":11}],"topVol":[{"cat":"Flours/Rice","pct":88},{"cat":"Oils/Ghee","pct":4},{"cat":"Pulses/Dal","pct":3}],"gaps":["Sugar/Salt","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HVTCD","name":"VEG TREAT CELEBRATION","chain":"TVT","status":"🔴 SHRINKING","address":"DAHISAR(E) NEAR JAMATKHAN, A,NEAR RAVINDAR HOTEL, MUMBAI","pin":"400068","gstin":"27AASFT3786G1ZG","rev3y":1285509,"rev26":350133,"rev25":486741,"yoy":"-28.1%","inv26":67,"avgOrder":5226,"topRev":[{"cat":"Spices","pct":49},{"cat":"Flours/Rice","pct":24},{"cat":"Sugar/Salt","pct":9}],"topVol":[{"cat":"Flours/Rice","pct":41},{"cat":"Sugar/Salt","pct":30},{"cat":"Spices","pct":15}],"gaps":["Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HKRD","name":"KINARA REST - GHODBUNDAR","chain":"","status":"🆕 NEW","address":"SASUPADA,NATONAL EXPRESS, MUMBAI, MUMBAI","pin":"401201","gstin":"27AABCV5168J1ZY","rev3y":1268977,"rev26":1268977,"rev25":0,"yoy":"NEW","inv26":23,"avgOrder":55173,"topRev":[{"cat":"Flours/Rice","pct":23},{"cat":"Dry Fruits/Nuts","pct":22},{"cat":"Spices","pct":17}],"topVol":[{"cat":"Flours/Rice","pct":54},{"cat":"Pulses/Dal","pct":18},{"cat":"Sugar/Salt","pct":8}],"gaps":["Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HARBY","name":"AROGYA BHAVAN-BYCULLA (E)","chain":"","status":"🟢 GROWING","address":"UDIPI REFRESHMENT,OPPOSIT, BYCULLA RAILWAY STATION, BYCULLA EAST","pin":"400027","gstin":"27AAHFU9586G1ZG","rev3y":1258553,"rev26":750871,"rev25":507682,"yoy":"+47.9%","inv26":43,"avgOrder":17462,"topRev":[{"cat":"Dry Fruits/Nuts","pct":67},{"cat":"Spices","pct":19},{"cat":"Pulses/Dal","pct":10}],"topVol":[{"cat":"Dry Fruits/Nuts","pct":38},{"cat":"Flours/Rice","pct":26},{"cat":"Spices","pct":18}],"gaps":["Oils/Ghee","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSNXJ","name":"SUDARSHAN NX-JOGESHWARI","chain":"","status":"🔴 SHRINKING","address":"JOGESHWARI, MUMBAI","pin":"400060","gstin":"27AEEPH0685N1Z6","rev3y":1244485,"rev26":30524,"rev25":613068,"yoy":"-95.0%","inv26":2,"avgOrder":15262,"topRev":[{"cat":"Flours/Rice","pct":69},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Spices","pct":8}],"topVol":[{"cat":"Flours/Rice","pct":94},{"cat":"Dry Fruits/Nuts","pct":2},{"cat":"Bakery","pct":2}],"gaps":["Oils/Ghee","Sugar/Salt","Breakfast","Housekeeping","Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HAAC","name":"ADITYA-CHEMBUR.NEAR BASAN","chain":"","status":"🔴 SHRINKING","address":"T TALKIES.ACHARYA BLDG., SHOP NO.15/19,DR.GIDWANI, MUMBAI","pin":"400074","gstin":"27AAXPH4930P1ZV","rev3y":1233659,"rev26":323633,"rev25":445973,"yoy":"-27.4%","inv26":51,"avgOrder":6346,"topRev":[{"cat":"Spices","pct":46},{"cat":"Dry Fruits/Nuts","pct":24},{"cat":"Pulses/Dal","pct":14}],"topVol":[{"cat":"Spices","pct":25},{"cat":"Flours/Rice","pct":22},{"cat":"Sugar/Salt","pct":20}],"gaps":["Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMADR","name":"MERITAS ADORE RESORT-4104","chain":"MERITAS","status":"🟢 GROWING","address":"01 NEAR NARAYANI DHAM, TUNGARLI-LONAVALA, LONAVALA","pin":"410401","gstin":"27ABJFM3368F1Z2","rev3y":1178932,"rev26":474902,"rev25":348965,"yoy":"+36.1%","inv26":13,"avgOrder":36531,"topRev":[{"cat":"Pulses/Dal","pct":31},{"cat":"Spices","pct":22},{"cat":"Flours/Rice","pct":20}],"topVol":[{"cat":"Flours/Rice","pct":45},{"cat":"Pulses/Dal","pct":28},{"cat":"Spices","pct":8}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HUK","name":"UDIPI - KURLA (WEST)","chain":"","status":"✅ STABLE","address":"KURLA, MUMBAI","pin":"400070","gstin":"27AACPB9772C1ZV","rev3y":1164248,"rev26":382115,"rev25":384050,"yoy":"-0.5%","inv26":58,"avgOrder":6588,"topRev":[{"cat":"Spices","pct":61},{"cat":"Pulses/Dal","pct":23},{"cat":"Dry Fruits/Nuts","pct":12}],"topVol":[{"cat":"Spices","pct":50},{"cat":"Pulses/Dal","pct":27},{"cat":"Dry Fruits/Nuts","pct":9}],"gaps":["Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMDGR","name":"MUMBAI DARBAR- GRANT RD-E","chain":"","status":"🔴 SHRINKING","address":"OPP PAKIYA MARKET","pin":"","gstin":"27AXHPG0588P1ZV","rev3y":1024441,"rev26":222795,"rev25":397318,"yoy":"-43.9%","inv26":15,"avgOrder":14853,"topRev":[{"cat":"Spices","pct":63},{"cat":"Dry Fruits/Nuts","pct":13},{"cat":"Snacks/Farsan","pct":6}],"topVol":[{"cat":"Spices","pct":35},{"cat":"Bakery","pct":26},{"cat":"Dry Fruits/Nuts","pct":14}],"gaps":["Oils/Ghee","Sauces/Pastes","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSKYE","name":"SKYLINE RECREATION P.LTD.","chain":"","status":"✅ STABLE","address":"SAGAR TECH PLAZA COMPLEX,, S'NAKA JUNCTION ANDHERIKU, RLA ROAD MUMBAI","pin":"400072","gstin":"27AAMCS6308Q1ZK","rev3y":976246,"rev26":319400,"rev25":332768,"yoy":"-4.0%","inv26":29,"avgOrder":11014,"topRev":[{"cat":"Pulses/Dal","pct":30},{"cat":"Flours/Rice","pct":27},{"cat":"Spices","pct":21}],"topVol":[{"cat":"Flours/Rice","pct":48},{"cat":"Pulses/Dal","pct":21},{"cat":"Sugar/Salt","pct":12}],"gaps":["Canned"],"nonVisitable":""},{"code":"HSJB","name":"SADANAND - J B NAGAR ANDH","chain":"","status":"🔴 SHRINKING","address":"ERI-(E), (SPIRIT KITCHEN & BAR), MUMBAI","pin":"400059","gstin":"27AANFH1001R1Z6","rev3y":949867,"rev26":302524,"rev25":350364,"yoy":"-13.7%","inv26":25,"avgOrder":12101,"topRev":[{"cat":"Spices","pct":56},{"cat":"Dry Fruits/Nuts","pct":22},{"cat":"Oils/Ghee","pct":7}],"topVol":[{"cat":"Sauces/Pastes","pct":48},{"cat":"Spices","pct":33},{"cat":"Sugar/Salt","pct":7}],"gaps":["Pulses/Dal","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HVTNX","name":"THE VEG TREAT-(NX)BORIVLI","chain":"TVT","status":"🔴 SHRINKING","address":"SHOP NO.2, AVANTI BLDG, SIMPOLI RD,HARIDAS NAGAR, BORIVALI(W)","pin":"400092","gstin":"27AAOFV6019Q2Z8","rev3y":940637,"rev26":266076,"rev25":405599,"yoy":"-34.4%","inv26":68,"avgOrder":3913,"topRev":[{"cat":"Spices","pct":57},{"cat":"Flours/Rice","pct":22},{"cat":"Syrups/Bev","pct":8}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Spices","pct":27},{"cat":"Snacks/Farsan","pct":9}],"gaps":["Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTVTH","name":"VEG TREAT HOTEL PVT LTD","chain":"TVT","status":"🔴 SHRINKING","address":"THE GRANDEUR BOUTIQUE BOR, IVALI,YOGI NAGAR BOIVALI, MUMBAI","pin":"400092","gstin":"27AADCV4687N2ZH","rev3y":923474,"rev26":198370,"rev25":383580,"yoy":"-48.3%","inv26":67,"avgOrder":2961,"topRev":[{"cat":"Spices","pct":62},{"cat":"Flours/Rice","pct":12},{"cat":"Pulses/Dal","pct":8}],"topVol":[{"cat":"Flours/Rice","pct":35},{"cat":"Spices","pct":22},{"cat":"Pulses/Dal","pct":14}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTOK","name":"TASTE OF KERALA - FORT","chain":"","status":"🟢 GROWING","address":"PROSPECT CHAMBER ANNEX,NR, SARSWATI TEMPL,OPP CITI B, FORT MUMBAI","pin":"400001","gstin":"","rev3y":922156,"rev26":784697,"rev25":137459,"yoy":"+470.9%","inv26":22,"avgOrder":35668,"topRev":[{"cat":"Spices","pct":59},{"cat":"Dry Fruits/Nuts","pct":22},{"cat":"Pulses/Dal","pct":12}],"topVol":[{"cat":"Spices","pct":38},{"cat":"Pulses/Dal","pct":24},{"cat":"Dry Fruits/Nuts","pct":11}],"gaps":["Oils/Ghee","Breakfast","Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HFLAV","name":"FLAVOUR FUSION KITCHEN","chain":"","status":"🟢 GROWING","address":"SHOP NO.7,GOSAI MISTRY CH, L,S.V.RD AMBAWADI,, DAHISAR(EAST)","pin":"400068","gstin":"27AAJFF9328D1ZB","rev3y":885942,"rev26":678316,"rev25":207627,"yoy":"+226.7%","inv26":27,"avgOrder":25123,"topRev":[{"cat":"Spices","pct":28},{"cat":"Dry Fruits/Nuts","pct":17},{"cat":"Sauces/Pastes","pct":12}],"topVol":[{"cat":"Sauces/Pastes","pct":65},{"cat":"Spices","pct":25},{"cat":"Flours/Rice","pct":5}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HVPA","name":"VIHAR PUNJAB - ANDHERI","chain":"","status":"🔴 SHRINKING","address":"ANDHERI, MUMBAI","pin":"400069","gstin":"27AVQPS4575H1ZS","rev3y":865805,"rev26":254462,"rev25":293699,"yoy":"-13.4%","inv26":28,"avgOrder":9088,"topRev":[{"cat":"Spices","pct":33},{"cat":"Dry Fruits/Nuts","pct":21},{"cat":"Sauces/Pastes","pct":13}],"topVol":[{"cat":"Sauces/Pastes","pct":29},{"cat":"Spices","pct":29},{"cat":"Flours/Rice","pct":16}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HAMAY","name":"AMEY VEG-VIVIR HOSPITALI","chain":"","status":"🆕 NEW","address":"NEAR MIG CRICKET CLUB, KALANAGAR SIGNAL-BANDRA, MUMBAI","pin":"400072","gstin":"27AABPD7800J1ZY","rev3y":837210,"rev26":837210,"rev25":0,"yoy":"NEW","inv26":38,"avgOrder":22032,"topRev":[{"cat":"Spices","pct":43},{"cat":"Dry Fruits/Nuts","pct":37},{"cat":"Sauces/Pastes","pct":5}],"topVol":[{"cat":"Sauces/Pastes","pct":54},{"cat":"Spices","pct":22},{"cat":"Dry Fruits/Nuts","pct":7}],"gaps":[],"nonVisitable":""},{"code":"HOPM","name":"OM PALACE MALAD","chain":"","status":"🟢 GROWING","address":"MALAD","pin":"400064","gstin":"27AALFH0668L1ZX","rev3y":761561,"rev26":462006,"rev25":138630,"yoy":"+233.3%","inv26":55,"avgOrder":8400,"topRev":[{"cat":"Spices","pct":42},{"cat":"Dry Fruits/Nuts","pct":23},{"cat":"Housekeeping","pct":15}],"topVol":[{"cat":"Housekeeping","pct":53},{"cat":"Spices","pct":16},{"cat":"Sugar/Salt","pct":10}],"gaps":["Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMAIN","name":"MAIN GATE - GHADYAL GODI","chain":"","status":"✅ STABLE","address":"","pin":"400009","gstin":"27AAKFM7768H1ZN","rev3y":704761,"rev26":214412,"rev25":221930,"yoy":"-3.4%","inv26":21,"avgOrder":10210,"topRev":[{"cat":"Spices","pct":55},{"cat":"Snacks/Farsan","pct":13},{"cat":"Dry Fruits/Nuts","pct":8}],"topVol":[{"cat":"Sauces/Pastes","pct":50},{"cat":"Spices","pct":40},{"cat":"Bakery","pct":2}],"gaps":["Oils/Ghee","Ready Mixes"],"nonVisitable":""},{"code":"HSRLA","name":"SHREE RAM LUNCH HOME-ANDH","chain":"","status":"✅ STABLE","address":"ERI. S.V. ROAD., MUMBAI","pin":"400058","gstin":"27AAOPS0061K1ZD","rev3y":701963,"rev26":185638,"rev25":187584,"yoy":"-1.0%","inv26":20,"avgOrder":9282,"topRev":[{"cat":"Spices","pct":70},{"cat":"Dry Fruits/Nuts","pct":23},{"cat":"Pulses/Dal","pct":5}],"topVol":[{"cat":"Spices","pct":63},{"cat":"Dry Fruits/Nuts","pct":20},{"cat":"Bakery","pct":8}],"gaps":["Oils/Ghee","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HCRYS","name":"CRYSTAL - NAVJEEVAN SOCY","chain":"","status":"✅ STABLE","address":"MUMBAI","pin":"400008","gstin":"27AACFH3207L1ZH","rev3y":694755,"rev26":231380,"rev25":224624,"yoy":"+3.0%","inv26":25,"avgOrder":9255,"topRev":[{"cat":"Flours/Rice","pct":28},{"cat":"Spices","pct":24},{"cat":"Pulses/Dal","pct":9}],"topVol":[{"cat":"Flours/Rice","pct":42},{"cat":"Housekeeping","pct":16},{"cat":"Sugar/Salt","pct":16}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HKEHC","name":"KESAR-E-HIND HOTEL-CARNAC","chain":"","status":"🔴 SHRINKING","address":"BUNDER R.P.D.DMELLO ROAD., MOHAMMED SETH-","pin":"400001","gstin":"27AALFM1245N1ZX","rev3y":681660,"rev26":145650,"rev25":255449,"yoy":"-43.0%","inv26":15,"avgOrder":9710,"topRev":[{"cat":"Spices","pct":57},{"cat":"Sauces/Pastes","pct":10},{"cat":"Flours/Rice","pct":7}],"topVol":[{"cat":"Spices","pct":33},{"cat":"Flours/Rice","pct":16},{"cat":"Sugar/Salt","pct":11}],"gaps":["Oils/Ghee","Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HMPA","name":"MILAN PUNJAB - ANDHERI","chain":"","status":"🟢 GROWING","address":"SAHAR ROAD, MUMBAI","pin":"400069","gstin":"27AMXPS9217N1ZT","rev3y":674556,"rev26":256589,"rev25":185574,"yoy":"+38.3%","inv26":26,"avgOrder":9869,"topRev":[{"cat":"Spices","pct":48},{"cat":"Dry Fruits/Nuts","pct":26},{"cat":"Flours/Rice","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":54},{"cat":"Spices","pct":26},{"cat":"Dry Fruits/Nuts","pct":11}],"gaps":["Housekeeping","Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HNITD","name":"NITYANAND - BELAPUR","chain":"","status":"🟢 GROWING","address":"SAI CHAMBERS,SHOP NO.7,, PLOT NO.44,OPP.IDBI BANK,, CBD BELAPUR","pin":"400614","gstin":"27ACMFS5326B1Z5","rev3y":670703,"rev26":581386,"rev25":89317,"yoy":"+550.9%","inv26":23,"avgOrder":25278,"topRev":[{"cat":"Spices","pct":51},{"cat":"Dry Fruits/Nuts","pct":22},{"cat":"Snacks/Farsan","pct":7}],"topVol":[{"cat":"Spices","pct":32},{"cat":"Sugar/Salt","pct":15},{"cat":"Dry Fruits/Nuts","pct":12}],"gaps":["Breakfast","Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HNMHH","name":"MAHARASHTRA CARNAC BUNDER","chain":"","status":"🔴 SHRINKING","address":"MASJID BUNDAR, MUMBAI","pin":"400009","gstin":"27AAMFM5404E1ZE","rev3y":658491,"rev26":159218,"rev25":181880,"yoy":"-12.5%","inv26":36,"avgOrder":4423,"topRev":[{"cat":"Spices","pct":42},{"cat":"Pulses/Dal","pct":17},{"cat":"Snacks/Farsan","pct":17}],"topVol":[{"cat":"Flours/Rice","pct":29},{"cat":"Pulses/Dal","pct":21},{"cat":"Sugar/Salt","pct":17}],"gaps":["Oils/Ghee","Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HMOAR","name":"MAO - RAIGAD","chain":"MAO","status":"🔴 SHRINKING","address":"","pin":"","gstin":"","rev3y":653047,"rev26":138945,"rev25":327627,"yoy":"-57.6%","inv26":4,"avgOrder":34736,"topRev":[{"cat":"Spices","pct":90},{"cat":"Snacks/Farsan","pct":4},{"cat":"Dry Fruits/Nuts","pct":2}],"topVol":[{"cat":"Spices","pct":79},{"cat":"Snacks/Farsan","pct":7},{"cat":"Flours/Rice","pct":6}],"gaps":["Pulses/Dal","Oils/Ghee","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HCCA","name":"CRAY CRAFT - MAROL","chain":"","status":"🟢 GROWING","address":"UNIT NO.6,106,TOWN CENTRE, OPP TIME SQUARE BLDG, MAROL, ANDHERI E","pin":"400059","gstin":"27BKHPS9980F1ZF","rev3y":528552,"rev26":421604,"rev25":79681,"yoy":"+429.1%","inv26":33,"avgOrder":12776,"topRev":[{"cat":"Spices","pct":65},{"cat":"Pulses/Dal","pct":17},{"cat":"Dry Fruits/Nuts","pct":9}],"topVol":[{"cat":"Spices","pct":35},{"cat":"Pulses/Dal","pct":34},{"cat":"Breakfast","pct":15}],"gaps":["Snacks/Farsan","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTAZA","name":"TAAZA FAST FOOD - MAHIM.","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AADFT7239D1Z5","rev3y":506953,"rev26":0,"rev25":150767,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":36},{"cat":"Pulses/Dal","pct":34},{"cat":"Sugar/Salt","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":52},{"cat":"Sugar/Salt","pct":25},{"cat":"Pulses/Dal","pct":18}],"gaps":["Oils/Ghee","Snacks/Farsan","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HVWE","name":"VRINDAVAN RESTAURANT-WADA","chain":"","status":"🔴 DORMANT","address":"WADALA-NEW WADALA SPORT, CLUB M.RD.DOSTI ACRE.ANTO, PHILL","pin":"400037","gstin":"27AKOPP7265N1Z5","rev3y":491997,"rev26":0,"rev25":0,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":30},{"cat":"Flours/Rice","pct":19},{"cat":"Dry Fruits/Nuts","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":37},{"cat":"Spices","pct":15},{"cat":"Sugar/Salt","pct":10}],"gaps":["Housekeeping","Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HHGPG","name":"GRAND PRIDE - GHATKOPAR(W","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AKGPS1591N1ZH","rev3y":485316,"rev26":0,"rev25":104129,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":39},{"cat":"Spices","pct":37},{"cat":"Dry Fruits/Nuts","pct":9}],"topVol":[{"cat":"Flours/Rice","pct":61},{"cat":"Spices","pct":15},{"cat":"Sugar/Salt","pct":8}],"gaps":["Housekeeping","Canned","Ready Mixes"],"nonVisitable":""},{"code":"HHJ","name":"HINDUSTAN-JOGEHWARI","chain":"","status":"🟢 GROWING","address":"","pin":"400060","gstin":"27ACWPS5516M1ZN","rev3y":484117,"rev26":119651,"rev25":27969,"yoy":"+327.8%","inv26":4,"avgOrder":29913,"topRev":[{"cat":"Spices","pct":44},{"cat":"Flours/Rice","pct":32},{"cat":"Dry Fruits/Nuts","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":60},{"cat":"Spices","pct":19},{"cat":"Dry Fruits/Nuts","pct":9}],"gaps":["Oils/Ghee","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HUMAK","name":"UMA VEG - KURLA","chain":"","status":"✅ STABLE","address":"JARIMARI NINETYFEET ROAD, NEAR UMA MAHESHWARI TEMPL, MUMBAI","pin":"400072","gstin":"27AKEPS7409K1ZO","rev3y":446300,"rev26":166574,"rev25":160095,"yoy":"+4.0%","inv26":10,"avgOrder":16657,"topRev":[{"cat":"Spices","pct":39},{"cat":"Pulses/Dal","pct":22},{"cat":"Dry Fruits/Nuts","pct":20}],"topVol":[{"cat":"Flours/Rice","pct":39},{"cat":"Pulses/Dal","pct":24},{"cat":"Spices","pct":19}],"gaps":["Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HRDM","name":"ROYAL DARBAR - MANGALORE","chain":"","status":"🔴 SHRINKING","address":"BENDOOR WELL,KANKANADY,, GOOD FOOD CATERERS, MANGLORE","pin":"575002","gstin":"29ADJPB2580N3Z5","rev3y":425915,"rev26":121952,"rev25":177727,"yoy":"-31.4%","inv26":3,"avgOrder":40651,"topRev":[{"cat":"Spices","pct":100},{"cat":"Pulses/Dal","pct":0}],"topVol":[{"cat":"Spices","pct":100},{"cat":"Pulses/Dal","pct":0}],"gaps":["Dry Fruits/Nuts","Flours/Rice","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HPS","name":"PIKNIK - SAKINAKA","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27ABCFP1392B1ZI","rev3y":409741,"rev26":0,"rev25":51161,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":42},{"cat":"Dry Fruits/Nuts","pct":28},{"cat":"Flours/Rice","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":26},{"cat":"Spices","pct":25},{"cat":"Dry Fruits/Nuts","pct":17}],"gaps":["Snacks/Farsan","Housekeeping","Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HVTUP","name":"THE VEG TREAT UDUPI-BORIV","chain":"TVT","status":"🆕 NEW","address":"GROUND FLOOR,DISHA APARTM, ENTS,OPP.JOGGERS PARK RD, CHIKUWADI BORIVAL","pin":"400092","gstin":"27AAXFT4970H1ZD","rev3y":349977,"rev26":349977,"rev25":0,"yoy":"NEW","inv26":61,"avgOrder":5737,"topRev":[{"cat":"Spices","pct":48},{"cat":"Flours/Rice","pct":16},{"cat":"Syrups/Bev","pct":11}],"topVol":[{"cat":"Flours/Rice","pct":31},{"cat":"Sugar/Salt","pct":24},{"cat":"Spices","pct":15}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl"],"nonVisitable":""},{"code":"HSLVP","name":"SHIV LEELA REST & BAR","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AAQPS4107G1ZH","rev3y":338712,"rev26":0,"rev25":34191,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":90},{"cat":"Oils/Ghee","pct":5},{"cat":"Sugar/Salt","pct":2}],"topVol":[{"cat":"Spices","pct":70},{"cat":"Sugar/Salt","pct":20},{"cat":"Oils/Ghee","pct":5}],"gaps":["Flours/Rice","Pulses/Dal","Snacks/Farsan","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HGK2","name":"G K 2- ANDHERI (E)","chain":"","status":"🔴 SHRINKING","address":"OPP. INDL STAR","pin":"","gstin":"27AAUHS0243P1ZE","rev3y":319197,"rev26":47862,"rev25":155867,"yoy":"-69.3%","inv26":7,"avgOrder":6837,"topRev":[{"cat":"Spices","pct":89},{"cat":"Canned","pct":7},{"cat":"Dry Fruits/Nuts","pct":3}],"topVol":[{"cat":"Sauces/Pastes","pct":75},{"cat":"Spices","pct":20},{"cat":"Canned","pct":4}],"gaps":["Flours/Rice","Pulses/Dal","Oils/Ghee","Breakfast","Housekeeping","Syrups/Bev","Bakery","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSPIC","name":"SPICE HEAVEN-VIKHROLI(E)","chain":"","status":"🟢 GROWING","address":"SHOP NO.153,KANNAMWAR, NAGAR 2,NEAR JANTA MARKET, VIKHROLI-EAST","pin":"400083","gstin":"","rev3y":271756,"rev26":149228,"rev25":122528,"yoy":"+21.8%","inv26":8,"avgOrder":18654,"topRev":[{"cat":"Spices","pct":79},{"cat":"Flours/Rice","pct":17},{"cat":"Dry Fruits/Nuts","pct":2}],"topVol":[{"cat":"Spices","pct":66},{"cat":"Flours/Rice","pct":26},{"cat":"Bakery","pct":5}],"gaps":["Pulses/Dal","Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HJAYM","name":"JAYRAJ REST & BAR-MALAD","chain":"","status":"🔴 SHRINKING","address":"BALAJI COMPOUND,NEAR BALA, JI WINN SHOP MITH CHOWKY, ORLEM MALAD(WEST)","pin":"400064","gstin":"27AATFJ2215R1ZO","rev3y":263024,"rev26":17176,"rev25":137155,"yoy":"-87.5%","inv26":2,"avgOrder":8588,"topRev":[{"cat":"Spices","pct":62},{"cat":"Dry Fruits/Nuts","pct":14},{"cat":"Pulses/Dal","pct":6}],"topVol":[{"cat":"Spices","pct":30},{"cat":"Housekeeping","pct":22},{"cat":"Flours/Rice","pct":19}],"gaps":["Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSCM","name":"SANJHA CHULA - MALAD(E)","chain":"","status":"🔴 SHRINKING","address":"","pin":"400097","gstin":"27AEQFS3539A1ZW","rev3y":259158,"rev26":40333,"rev25":109176,"yoy":"-63.1%","inv26":2,"avgOrder":20167,"topRev":[{"cat":"Spices","pct":61},{"cat":"Dry Fruits/Nuts","pct":27},{"cat":"Snacks/Farsan","pct":9}],"topVol":[{"cat":"Spices","pct":59},{"cat":"Dry Fruits/Nuts","pct":16},{"cat":"Sugar/Salt","pct":13}],"gaps":["Flours/Rice","Oils/Ghee","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSTP","name":"SUGAR TOOTH PATISSREIE","chain":"","status":"🟢 GROWING","address":"OPP. HOTEL KALINGA, ANDHERI, MUMBAI","pin":"400053","gstin":"27AKIPS5246E1ZY","rev3y":250318,"rev26":208262,"rev25":35008,"yoy":"+494.9%","inv26":36,"avgOrder":5785,"topRev":[{"cat":"Dry Fruits/Nuts","pct":98},{"cat":"Breakfast","pct":2},{"cat":"Spices","pct":0}],"topVol":[{"cat":"Dry Fruits/Nuts","pct":89},{"cat":"Breakfast","pct":9},{"cat":"Spices","pct":2}],"gaps":["Flours/Rice","Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HTVTG","name":"THE GLOBAL VEG TREAT-DAHI","chain":"TVT","status":"🆕 NEW","address":"LOWER GROUND,REST NO.1&2,, WING-A/3 GAGANGIRI JAYRAM, HEIGHT DAHISAR(W)","pin":"400068","gstin":"27AAXFT4969J1Z1","rev3y":244821,"rev26":244821,"rev25":0,"yoy":"NEW","inv26":55,"avgOrder":4451,"topRev":[{"cat":"Spices","pct":53},{"cat":"Flours/Rice","pct":18},{"cat":"Pulses/Dal","pct":11}],"topVol":[{"cat":"Flours/Rice","pct":34},{"cat":"Sugar/Salt","pct":27},{"cat":"Spices","pct":14}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HKMP","name":"KIRTI MAHAL PAREL","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AXJPK4863B1ZG","rev3y":184196,"rev26":0,"rev25":11441,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":51},{"cat":"Dry Fruits/Nuts","pct":26},{"cat":"Flours/Rice","pct":11}],"topVol":[{"cat":"Sauces/Pastes","pct":46},{"cat":"Flours/Rice","pct":18},{"cat":"Sugar/Salt","pct":12}],"gaps":["Snacks/Farsan","Housekeeping","Syrups/Bev","Canned","Ready Mixes"],"nonVisitable":""},{"code":"HSRBR","name":"SAI RUKHRAJ(SNEHA)GOREGAO","chain":"","status":"🔴 DORMANT","address":"97,1/1,INDIRA NAGAR,VASAN, TH OPP.GOREGAON BUS DEPO, GOREGAON-WEST","pin":"400104","gstin":"27ABGFS1744N1ZQ","rev3y":178335,"rev26":0,"rev25":178335,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":33},{"cat":"Spices","pct":27},{"cat":"Pulses/Dal","pct":16}],"topVol":[{"cat":"Flours/Rice","pct":44},{"cat":"Sauces/Pastes","pct":17},{"cat":"Spices","pct":10}],"gaps":["Syrups/Bev","Ready Mixes"],"nonVisitable":""},{"code":"HFEST","name":"FEAST & FABLE","chain":"","status":"✅ STABLE","address":"NEAR.HOTEL KALINGA, ANDHERI, MUMBAI","pin":"400053","gstin":"27AKIPS5246E1ZY","rev3y":168315,"rev26":85586,"rev25":82729,"yoy":"+3.5%","inv26":26,"avgOrder":3292,"topRev":[{"cat":"Spices","pct":45},{"cat":"Dry Fruits/Nuts","pct":19},{"cat":"Syrups/Bev","pct":9}],"topVol":[{"cat":"Spices","pct":27},{"cat":"Sugar/Salt","pct":21},{"cat":"Breakfast","pct":10}],"gaps":["Ready Mixes"],"nonVisitable":""},{"code":"HMERG","name":"MERITAS GRAND INN-GOA","chain":"MERITAS","status":"🆕 NEW","address":"GR.FLOOR,SURVEY.NO.10/7-A, NAIKAWADOO,BARDEZ,CALANGU, TE,NORTH GOA","pin":"403516","gstin":"30ACEFM1218L1ZK","rev3y":167928,"rev26":167928,"rev25":0,"yoy":"NEW","inv26":2,"avgOrder":83964,"topRev":[{"cat":"Spices","pct":24},{"cat":"Flours/Rice","pct":19},{"cat":"Syrups/Bev","pct":15}],"topVol":[{"cat":"Sauces/Pastes","pct":47},{"cat":"Flours/Rice","pct":22},{"cat":"Spices","pct":15}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HSNDR","name":"SAI NATH - DOKYARD ROAD","chain":"","status":"🔴 SHRINKING","address":"MUMBAI","pin":"400010","gstin":"27AAEPS5951N2ZZ","rev3y":160103,"rev26":40521,"rev25":67907,"yoy":"-40.3%","inv26":20,"avgOrder":2026,"topRev":[{"cat":"Spices","pct":69},{"cat":"Flours/Rice","pct":10},{"cat":"Pulses/Dal","pct":10}],"topVol":[{"cat":"Spices","pct":52},{"cat":"Flours/Rice","pct":21},{"cat":"Pulses/Dal","pct":10}],"gaps":["Oils/Ghee","Sauces/Pastes","Housekeeping","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HCRP","name":"CROWN PALACE REST & BAR","chain":"","status":"🔴 DORMANT","address":"SHOP NO.92,PATEL TERRANCE, BLDG,A D MARG,PAREL, MUMBAI","pin":"400012","gstin":"27AAFFC0528G2ZR","rev3y":159959,"rev26":0,"rev25":159959,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Pulses/Dal","pct":42},{"cat":"Flours/Rice","pct":36},{"cat":"Dry Fruits/Nuts","pct":10}],"topVol":[{"cat":"Flours/Rice","pct":61},{"cat":"Pulses/Dal","pct":33},{"cat":"Spices","pct":2}],"gaps":["Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSBKR","name":"SHETAL BHUKHARA - KHAR","chain":"","status":"🟢 GROWING","address":"MUMBAI","pin":"400052","gstin":"27AABCS8700K1Z7","rev3y":150358,"rev26":60663,"rev25":32918,"yoy":"+84.3%","inv26":31,"avgOrder":1957,"topRev":[{"cat":"Spices","pct":63},{"cat":"Bakery","pct":23},{"cat":"Sugar/Salt","pct":7}],"topVol":[{"cat":"Bakery","pct":62},{"cat":"Spices","pct":19},{"cat":"Sugar/Salt","pct":17}],"gaps":["Flours/Rice","Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HFREG","name":"FRESSIA RESIDENCY-GANSOLI","chain":"","status":"🔴 SHRINKING","address":"BY EXPRESS INN PLOT NO.2,, SECTOR-6,GANSOLI, NAVI MUMBAI","pin":"400701","gstin":"27AAFCS0440N3Z6","rev3y":141909,"rev26":39267,"rev25":102642,"yoy":"-61.7%","inv26":8,"avgOrder":4908,"topRev":[{"cat":"Flours/Rice","pct":31},{"cat":"Spices","pct":21},{"cat":"Dry Fruits/Nuts","pct":18}],"topVol":[{"cat":"Flours/Rice","pct":59},{"cat":"Pulses/Dal","pct":17},{"cat":"Spices","pct":6}],"gaps":["Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HUNID","name":"UNIQUE DARBAR-GOVANDI","chain":"","status":"🆕 NEW","address":"BAIGAN WADI SIGNAL GOVAND, JEEJABAI BHOSLE MARG, GOVANDI EAST","pin":"400043","gstin":"27BOTPP6158N1ZT","rev3y":132200,"rev26":132200,"rev25":0,"yoy":"NEW","inv26":8,"avgOrder":16525,"topRev":[{"cat":"Spices","pct":70},{"cat":"Snacks/Farsan","pct":12},{"cat":"Bakery","pct":6}],"topVol":[{"cat":"Sauces/Pastes","pct":54},{"cat":"Spices","pct":37},{"cat":"Sugar/Salt","pct":4}],"gaps":["Pulses/Dal","Housekeeping","Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HNAC","name":"NEW APOLLO - COLABA","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AAAFN5386L1ZT","rev3y":126023,"rev26":0,"rev25":17892,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":100},{"cat":"Syrups/Bev","pct":0},{"cat":"Bakery","pct":0}],"topVol":[{"cat":"Spices","pct":99},{"cat":"Syrups/Bev","pct":0},{"cat":"Bakery","pct":0}],"gaps":["Dry Fruits/Nuts","Flours/Rice","Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HGKJE","name":"GOPAL KRISHNA-JOGESHWARI","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"","rev3y":119106,"rev26":0,"rev25":63349,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":50},{"cat":"Spices","pct":25},{"cat":"Pulses/Dal","pct":8}],"topVol":[{"cat":"Flours/Rice","pct":73},{"cat":"Pulses/Dal","pct":8},{"cat":"Spices","pct":7}],"gaps":["Snacks/Farsan","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HMRD","name":"MAHATMA-DOCKYARD ROAD","chain":"","status":"✅ STABLE","address":"","pin":"","gstin":"","rev3y":117755,"rev26":34247,"rev25":35218,"yoy":"-2.8%","inv26":8,"avgOrder":4281,"topRev":[{"cat":"Spices","pct":69},{"cat":"Pulses/Dal","pct":21},{"cat":"Dry Fruits/Nuts","pct":4}],"topVol":[{"cat":"Spices","pct":48},{"cat":"Pulses/Dal","pct":22},{"cat":"Sugar/Salt","pct":9}],"gaps":["Oils/Ghee","Snacks/Farsan","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HCRVP","name":"CROSS ROAD REST-V PARLE","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AAHPJ4752B2ZX","rev3y":115625,"rev26":0,"rev25":31652,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":31},{"cat":"Spices","pct":26},{"cat":"Pulses/Dal","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":63},{"cat":"Pulses/Dal","pct":12},{"cat":"Sugar/Salt","pct":7}],"gaps":["Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HFRNK","name":"FRESSIA RESIDENCY EXPRESS","chain":"","status":"🔴 SHRINKING","address":"INN NASHIK, COLLAGE ROAD,, MODEL COLONY,NASHIK, NASHIK","pin":"422005","gstin":"27AAFCS0440N4Z5","rev3y":88036,"rev26":33617,"rev25":42139,"yoy":"-20.2%","inv26":8,"avgOrder":4202,"topRev":[{"cat":"Spices","pct":76},{"cat":"Pulses/Dal","pct":9},{"cat":"Sauces/Pastes","pct":6}],"topVol":[{"cat":"Spices","pct":47},{"cat":"Pulses/Dal","pct":18},{"cat":"Flours/Rice","pct":11}],"gaps":["Dry Fruits/Nuts","Sugar/Salt","Housekeeping","Syrups/Bev","Bakery","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HBHDN","name":"BHARTIYA HOSPITALITY","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27ABBFB3525F1ZU","rev3y":86968,"rev26":0,"rev25":3437,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":34},{"cat":"Pulses/Dal","pct":29},{"cat":"Flours/Rice","pct":12}],"topVol":[{"cat":"Flours/Rice","pct":32},{"cat":"Pulses/Dal","pct":25},{"cat":"Sugar/Salt","pct":15}],"gaps":["Housekeeping","Ready Mixes"],"nonVisitable":""},{"code":"HMUMB","name":"MIDTOWN HOSPITALITY-MIRA","chain":"","status":"🔴 DORMANT","address":"MUMBAI MENU-MIRA ROAD, SHOP NO.1 HARSH RESIDENCY, MIRA BHAYNDER RD.","pin":"401107","gstin":"27ABCFM1301R2Z6","rev3y":66999,"rev26":0,"rev25":66999,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":28},{"cat":"Dry Fruits/Nuts","pct":23},{"cat":"Pulses/Dal","pct":20}],"topVol":[{"cat":"Sauces/Pastes","pct":58},{"cat":"Pulses/Dal","pct":12},{"cat":"Spices","pct":11}],"gaps":["Snacks/Farsan","Housekeeping","Syrups/Bev","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HDP","name":"DEVI KRUPA - POWAI","chain":"","status":"🟢 GROWING","address":"","pin":"","gstin":"","rev3y":60630,"rev26":19898,"rev25":15160,"yoy":"+31.3%","inv26":7,"avgOrder":2843,"topRev":[{"cat":"Spices","pct":82},{"cat":"Pulses/Dal","pct":10},{"cat":"Dry Fruits/Nuts","pct":6}],"topVol":[{"cat":"Spices","pct":70},{"cat":"Sugar/Salt","pct":13},{"cat":"Dry Fruits/Nuts","pct":9}],"gaps":["Oils/Ghee","Snacks/Farsan","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSUDA","name":"SUDARSHAN-JOGESHWARI","chain":"","status":"🔴 DORMANT","address":"JOGESHWARI, MUMBAI","pin":"400060","gstin":"27ACQPH0410H1ZW","rev3y":52000,"rev26":0,"rev25":20000,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":100}],"topVol":[{"cat":"Flours/Rice","pct":100}],"gaps":["Spices","Dry Fruits/Nuts","Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSPIV","name":"SPICE HEAVEN VASHI","chain":"","status":"🆕 NEW","address":"SHOP NO.14,SEC-26,PLAM, BEACH RD, KHOPRI,, VASHI (EAST)","pin":"400703","gstin":"","rev3y":47561,"rev26":47561,"rev25":0,"yoy":"NEW","inv26":1,"avgOrder":47561,"topRev":[{"cat":"Spices","pct":90},{"cat":"Dry Fruits/Nuts","pct":4},{"cat":"Snacks/Farsan","pct":3}],"topVol":[{"cat":"Spices","pct":82},{"cat":"Sugar/Salt","pct":6},{"cat":"Snacks/Farsan","pct":4}],"gaps":["Flours/Rice","Pulses/Dal","Oils/Ghee","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HSBMR","name":"SUNIL BHAI-MIRA ROAD","chain":"","status":"🟢 GROWING","address":"SKYLINE-2,205/B WING,2ND, FLR,ST XAVIER HIGH SCHOOL, ROAD,MIRA ROAD","pin":"401107","gstin":"","rev3y":46012,"rev26":29137,"rev25":16876,"yoy":"+72.7%","inv26":7,"avgOrder":4162,"topRev":[{"cat":"Flours/Rice","pct":42},{"cat":"Pulses/Dal","pct":22},{"cat":"Dry Fruits/Nuts","pct":17}],"topVol":[{"cat":"Flours/Rice","pct":65},{"cat":"Pulses/Dal","pct":15},{"cat":"Sugar/Salt","pct":11}],"gaps":["Oils/Ghee","Snacks/Farsan","Sauces/Pastes","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HUFR","name":"UNIQUE DARBAR F - CHEMBUR","chain":"","status":"🆕 NEW","address":"NARAYAN GAJANAN ACHARYA, MARG,NEAR KOLEKAR HOSPITA, GHATLA CHEMBUR","pin":"400071","gstin":"27BOTPP6158N1ZT","rev3y":44905,"rev26":44905,"rev25":0,"yoy":"NEW","inv26":4,"avgOrder":11226,"topRev":[{"cat":"Spices","pct":89},{"cat":"Oils/Ghee","pct":6},{"cat":"Flours/Rice","pct":1}],"topVol":[{"cat":"Spices","pct":76},{"cat":"Oils/Ghee","pct":12},{"cat":"Sugar/Salt","pct":5}],"gaps":["Pulses/Dal","Sauces/Pastes","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HGAYT","name":"GAYITHRI CATERERS-ANDHERI","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"","rev3y":41196,"rev26":0,"rev25":16745,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Pulses/Dal","pct":38},{"cat":"Flours/Rice","pct":32},{"cat":"Spices","pct":25}],"topVol":[{"cat":"Flours/Rice","pct":67},{"cat":"Pulses/Dal","pct":19},{"cat":"Spices","pct":7}],"gaps":["Oils/Ghee","Snacks/Farsan","Breakfast","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HBBWA","name":"BREAKING BREAD WITH AARON","chain":"","status":"🟢 GROWING","address":"234/1,XETTICHEM AROUM,BEL, LA VISTA,LIVRAMENTSANGOLD, A,NORTH GOA,GOA","pin":"403521","gstin":"30AYSPD9034D1ZO","rev3y":39490,"rev26":26922,"rev25":12568,"yoy":"+114.2%","inv26":1,"avgOrder":26922,"topRev":[{"cat":"Dry Fruits/Nuts","pct":68},{"cat":"Breakfast","pct":32}],"topVol":[{"cat":"Dry Fruits/Nuts","pct":59},{"cat":"Breakfast","pct":41}],"gaps":["Spices","Flours/Rice","Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HDCMA","name":"DELIGHT CORNER -ANDHERI E","chain":"","status":"🔴 DORMANT","address":"","pin":"","gstin":"27AAQFD4733M1ZW","rev3y":33881,"rev26":0,"rev25":3406,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Spices","pct":98},{"cat":"Pasta/Intl","pct":2},{"cat":"Flours/Rice","pct":0}],"topVol":[{"cat":"Spices","pct":91},{"cat":"Pasta/Intl","pct":7},{"cat":"Flours/Rice","pct":1}],"gaps":["Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Ready Mixes"],"nonVisitable":""},{"code":"HRITM","name":"RITVIK FAMILY REST-MAHAD","chain":"","status":"🆕 NEW","address":"","pin":"","gstin":"","rev3y":27921,"rev26":27921,"rev25":0,"yoy":"NEW","inv26":1,"avgOrder":27921,"topRev":[{"cat":"Spices","pct":91},{"cat":"Snacks/Farsan","pct":4},{"cat":"Dry Fruits/Nuts","pct":2}],"topVol":[{"cat":"Spices","pct":84},{"cat":"Snacks/Farsan","pct":5},{"cat":"Bakery","pct":5}],"gaps":["Flours/Rice","Pulses/Dal","Oils/Ghee","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HGBAB","name":"GANESH BHAI-AL RON BANDRA","chain":"","status":"🔴 SHRINKING","address":"","pin":"","gstin":"","rev3y":27239,"rev26":12577,"rev25":14663,"yoy":"-14.2%","inv26":6,"avgOrder":2096,"topRev":[{"cat":"Spices","pct":71},{"cat":"Pulses/Dal","pct":15},{"cat":"Oils/Ghee","pct":6}],"topVol":[{"cat":"Spices","pct":46},{"cat":"Pulses/Dal","pct":32},{"cat":"Sugar/Salt","pct":14}],"gaps":["Flours/Rice","Snacks/Farsan","Sauces/Pastes","Breakfast","Housekeeping","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HBOMB","name":"BOMBAY BELLYS ANDHERI (W)","chain":"","status":"🔴 DORMANT","address":"SHOP NO.28,MEERA TOWER,OS, HIWARA LINK RD,OPP.MEGHAM, ANDHERI (W)","pin":"400053","gstin":"","rev3y":16914,"rev26":0,"rev25":0,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Flours/Rice","pct":51},{"cat":"Oils/Ghee","pct":27},{"cat":"Pulses/Dal","pct":13}],"topVol":[{"cat":"Flours/Rice","pct":86},{"cat":"Pulses/Dal","pct":7},{"cat":"Sugar/Salt","pct":4}],"gaps":["Dry Fruits/Nuts","Snacks/Farsan","Sauces/Pastes","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HVRC","name":"VRINDAVAN RUIA COLLAGE","chain":"","status":"🔴 DORMANT","address":"MATUNGA, MATUNGA","pin":"400034","gstin":"27AAFFV0093F1Z7","rev3y":16565,"rev26":0,"rev25":0,"yoy":"-100%","inv26":0,"avgOrder":0,"topRev":[{"cat":"Sauces/Pastes","pct":33},{"cat":"Spices","pct":32},{"cat":"Flours/Rice","pct":20}],"topVol":[{"cat":"Sugar/Salt","pct":34},{"cat":"Flours/Rice","pct":27},{"cat":"Sauces/Pastes","pct":15}],"gaps":["Pulses/Dal","Oils/Ghee","Snacks/Farsan","Breakfast","Housekeeping","Syrups/Bev","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""},{"code":"HPVG","name":"PALI VILLAGE GHODBUNDAR","chain":"","status":"🆕 NEW","address":"SURVEY NO.193,PLOT-26,32, POST MIRA RD,GHODBUNDER R, THANE","pin":"401104","gstin":"27AAECP6992R1ZB","rev3y":3737,"rev26":3737,"rev25":0,"yoy":"NEW","inv26":1,"avgOrder":3737,"topRev":[{"cat":"Spices","pct":86},{"cat":"Flours/Rice","pct":14}],"topVol":[{"cat":"Spices","pct":71},{"cat":"Flours/Rice","pct":29}],"gaps":["Dry Fruits/Nuts","Pulses/Dal","Oils/Ghee","Snacks/Farsan","Sugar/Salt","Sauces/Pastes","Breakfast","Housekeeping","Syrups/Bev","Bakery","Canned","Pasta/Intl","Ready Mixes"],"nonVisitable":""}];
+
+const CLIENT_TYPES = ['Hotel', 'Restaurant', 'Caterer', 'Café', 'Cloud Kitchen', 'Sweet Shop', 'Bakery', 'Mess/Tiffin', 'Other'];
+const PAYMENT_TERMS = ['Cash', '7 days', '15 days', '30 days', '45 days', '60 days', '75 days', '90 days', 'Other'];
+const PAYMENT_BEHAVIOUR = ['Always on time', 'Mostly on time', 'Often delayed', 'Major issues'];
+const ORDER_FREQUENCY = ['Daily', '2-3x a week', 'Weekly', 'Bi-weekly', 'Monthly', 'Irregular'];
+const ORDER_CHANNELS = ['WhatsApp', 'Phone call', 'In-person', 'Email', 'Sales rep visit', 'Multiple'];
+const STATUS_PROMPTS = {
+  '🟢 GROWING': { className: 'growing', text: 'Push more — what else can we supply?' },
+  '✅ STABLE': { className: 'stable', text: 'Steady relationship — explore deeper.' },
+  '🔴 SHRINKING': { className: 'shrinking', text: 'Find out why revenue is dropping.' },
+  '🔴 DORMANT': { className: 'dormant', text: 'Win-back conversation — when did they last order?' },
+  '🆕 NEW': { className: 'new', text: 'Strengthen relationship — what brought them in?' },
+};
+
+// === STATE ===
+let currentFilter = 'all';
+let currentSearch = '';
+let currentClient = null;
+let formState = {};
+let isSubmitting = false;
+
+// Visit records: { code: {status, data, timestamp} }
+function getVisits() { try { return JSON.parse(localStorage.getItem('vsp_visits') || '{}'); } catch(e) { return {}; } }
+function setVisit(code, record) {
+  const visits = getVisits();
+  visits[code] = record;
+  localStorage.setItem('vsp_visits', JSON.stringify(visits));
+}
+
+function getSettings() { try { return JSON.parse(localStorage.getItem('vsp_settings') || '{}'); } catch(e) { return {}; } }
+function setSettings(s) { localStorage.setItem('vsp_settings', JSON.stringify(s)); }
+
+// === HELPERS ===
+function fmtINR(n) {
+  if (!n) return '₹0';
+  if (n >= 10000000) return '₹' + (n/10000000).toFixed(2) + ' Cr';
+  if (n >= 100000) return '₹' + (n/100000).toFixed(1) + ' L';
+  if (n >= 1000) return '₹' + (n/1000).toFixed(0) + ' K';
+  return '₹' + n;
+}
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'error' ? ' error' : '');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function getVisitStatus(code) {
+  const visits = getVisits();
+  return visits[code] ? visits[code].status : null;
+}
+
+// === RENDER: LIST ===
+function renderList() {
+  const visits = getVisits();
+  let filtered = CLIENTS;
+  
+  if (currentSearch) {
+    const q = currentSearch.toLowerCase();
+    filtered = filtered.filter(c => 
+      (c.name || '').toLowerCase().includes(q) ||
+      (c.code || '').toLowerCase().includes(q)
+    );
+  }
+  
+  if (currentFilter !== 'all') {
+    if (currentFilter === 'pending') {
+      filtered = filtered.filter(c => !visits[c.code]);
+    } else if (currentFilter === 'done') {
+      filtered = filtered.filter(c => visits[c.code] && visits[c.code].status === 'Visited');
+    } else if (['GROWING', 'STABLE', 'SHRINKING', 'DORMANT', 'NEW'].includes(currentFilter)) {
+      filtered = filtered.filter(c => c.status.includes(currentFilter));
+    } else {
+      filtered = filtered.filter(c => c.chain === currentFilter);
+    }
+  }
+  
+  // Stats
+  const total = CLIENTS.length;
+  const done = Object.values(visits).filter(v => v.status === 'Visited').length;
+  const attempted = Object.values(visits).filter(v => v.status === 'Attempted - Not Met').length;
+  const skipped = Object.values(visits).filter(v => v.status && v.status.startsWith('Skip')).length;
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-pill"><span class="num">${total}</span><span class="lbl">Total</span></div>
+    <div class="stat-pill"><span class="num">${done}</span><span class="lbl">Visited</span></div>
+    <div class="stat-pill"><span class="num">${attempted}</span><span class="lbl">Tried</span></div>
+    <div class="stat-pill"><span class="num">${total - done - attempted - skipped}</span><span class="lbl">Pending</span></div>
+  `;
+  
+  const cards = document.getElementById('clientCards');
+  if (!filtered.length) {
+    cards.innerHTML = '<div class="no-results"><h3>No clients match</h3><p>Try a different search or filter.</p></div>';
+    return;
+  }
+  
+  cards.innerHTML = filtered.map(c => {
+    const v = visits[c.code];
+    let visitClass = '';
+    if (v) {
+      if (v.status === 'Visited') visitClass = 'visited';
+      else if (v.status === 'Attempted - Not Met') visitClass = 'attempted';
+      else if (v.status && v.status.startsWith('Skip')) visitClass = 'skipped';
+    }
+    
+    return `
+      <div class="client-card ${visitClass}" onclick="openClient('${c.code}')">
+        <div class="card-main">
+          <div class="card-name">${escapeHtml(c.name)}</div>
+          <div class="card-meta">
+            ${c.chain ? `<span class="chain-tag">${c.chain}</span>` : ''}
+            <span class="status-dot">${c.status}</span>
+          </div>
+        </div>
+        <div class="card-rev">
+          <span class="lbl">FY26</span>
+          ${fmtINR(c.rev26)}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// === RENDER: DETAIL ===
+function openClient(code) {
+  currentClient = CLIENTS.find(c => c.code === code);
+  if (!currentClient) return;
+  
+  document.getElementById('detailCode').textContent = currentClient.code + (currentClient.chain ? ' · ' + currentClient.chain : '');
+  document.getElementById('detailName').textContent = currentClient.name;
+  
+  const visits = getVisits();
+  const existing = visits[code] ? visits[code].data : {};
+  formState = { ...existing };
+  
+  const statusInfo = STATUS_PROMPTS[currentClient.status] || { className: 'stable', text: '' };
+  const c = currentClient;
+  
+  let context = `
+    <div class="status-banner ${statusInfo.className}">
+      <span class="emoji">${c.status.split(' ')[0]}</span>
+      <span><strong>${c.status.split(' ').slice(1).join(' ')}</strong> · ${statusInfo.text}</span>
+    </div>
+    
+    <div class="context">
+      <div class="context-grid">
+        <div class="context-stat"><div class="num">${fmtINR(c.rev26)}</div><div class="lbl">FY26 Rev</div></div>
+        <div class="context-stat"><div class="num ${c.yoy.startsWith('+') ? 'green' : 'red'}">${c.yoy}</div><div class="lbl">YoY</div></div>
+        <div class="context-stat"><div class="num">${fmtINR(c.rev3y)}</div><div class="lbl">3Y Total</div></div>
+        <div class="context-stat"><div class="num">${c.inv26}</div><div class="lbl">Invoices</div></div>
+        <div class="context-stat"><div class="num">${fmtINR(c.avgOrder)}</div><div class="lbl">Avg Order</div></div>
+        <div class="context-stat"><div class="num">${c.gaps.length}/16</div><div class="lbl">Cat Gaps</div></div>
+      </div>
+      
+      ${c.topRev.length ? `
+        <div class="context-block">
+          <h4>Top by Revenue</h4>
+          <div class="cat-pill-row">
+            ${c.topRev.map(t => `<span class="cat-pill rev">${t.cat}<span class="pct"> ${t.pct}%</span></span>`).join('')}
+          </div>
+        </div>
+      ` : ''}
+      
+      ${c.topVol.length ? `
+        <div class="context-block">
+          <h4>Top by Volume</h4>
+          <div class="cat-pill-row">
+            ${c.topVol.map(t => `<span class="cat-pill vol">${t.cat}<span class="pct"> ${t.pct}%</span></span>`).join('')}
+          </div>
+        </div>
+      ` : ''}
+      
+      ${c.gaps.length ? `
+        <div class="context-block">
+          <h4>Upsell Opportunities · Zero Spend</h4>
+          <div class="cat-pill-row">
+            ${c.gaps.slice(0, 8).map(g => `<span class="cat-pill gap">${g}</span>`).join('')}
+          </div>
+        </div>
+      ` : ''}
+      
+      <div class="address-row">
+        ${c.address ? `<strong>Address:</strong> ${escapeHtml(c.address)}${c.pin ? ' · ' + c.pin : ''}<br>` : ''}
+        ${c.gstin ? `<strong>GSTIN:</strong> ${c.gstin}` : ''}
+      </div>
+    </div>
+  `;
+  
+  // ===== FORM =====
+  const f = formState;
+  const isNonVisitable = !!c.nonVisitable;
+  const defaultStatus = isNonVisitable ? 'Skip - Non-visitable' : (f.visitStatus || '');
+  
+  let form = `
+    <div class="form">
+      <div class="form-section">
+        <div class="form-section-title">Visit Status</div>
+        <div class="pill-group" id="pills-visitStatus">
+          ${['Visited', 'Attempted - Not Met', 'Skip - Decided', 'Skip - Non-visitable'].map(s => {
+            let cls = 'pill-choice';
+            if (s === 'Visited') cls += ' status-visited';
+            else if (s === 'Attempted - Not Met') cls += ' status-attempted';
+            else cls += ' status-skip';
+            if (defaultStatus === s) cls += ' selected';
+            return `<button class="${cls}" onclick="setPill('visitStatus', '${s}', this)">${s}</button>`;
+          }).join('')}
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">Contact Details</div>
+        <div class="field">
+          <label>Owner / Decision Maker</label>
+          <input type="text" id="f-ownerName" value="${escapeHtml(f.ownerName || '')}" placeholder="Name">
+        </div>
+        <div class="field">
+          <label>Owner Mobile</label>
+          <input type="tel" id="f-ownerMobile" value="${escapeHtml(f.ownerMobile || '')}" placeholder="10-digit number" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label>Procurement Person <span style="font-weight:400;color:var(--ink-muted)">(if different)</span></label>
+          <input type="text" id="f-procName" value="${escapeHtml(f.procName || '')}" placeholder="Name">
+        </div>
+        <div class="field">
+          <label>Procurement Mobile</label>
+          <input type="tel" id="f-procMobile" value="${escapeHtml(f.procMobile || '')}" placeholder="10-digit number" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label>Client Type</label>
+          <select id="f-clientType">
+            <option value="">— Select —</option>
+            ${CLIENT_TYPES.map(t => `<option value="${t}" ${f.clientType === t ? 'selected' : ''}>${t}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">Commercial</div>
+        <div class="field">
+          <label>Payment Terms</label>
+          <div class="pill-group" id="pills-paymentTerms">
+            ${PAYMENT_TERMS.map(t => `<button class="pill-choice ${f.paymentTerms === t ? 'selected' : ''}" onclick="setPill('paymentTerms', '${t}', this)">${t}</button>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <label>Payment Behaviour</label>
+          <div class="pill-group" id="pills-paymentBehaviour">
+            ${PAYMENT_BEHAVIOUR.map(t => `<button class="pill-choice ${f.paymentBehaviour === t ? 'selected' : ''}" onclick="setPill('paymentBehaviour', '${t.replace(/'/g, '\\\'')}', this)">${t}</button>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <label>Client Since (Year)</label>
+          <input type="number" id="f-clientSince" value="${escapeHtml(f.clientSince || '')}" placeholder="e.g. 2015" inputmode="numeric" min="1970" max="2026">
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">Intelligence</div>
+        <div class="field">
+          <label>Number of Outlets</label>
+          <input type="number" id="f-numOutlets" value="${escapeHtml(f.numOutlets || '')}" placeholder="1" inputmode="numeric" min="1">
+        </div>
+        <div class="field">
+          <label>Order Frequency</label>
+          <div class="pill-group" id="pills-orderFrequency">
+            ${ORDER_FREQUENCY.map(t => `<button class="pill-choice ${f.orderFrequency === t ? 'selected' : ''}" onclick="setPill('orderFrequency', '${t.replace(/'/g, '\\\'')}', this)">${t}</button>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <label>Preferred Order Channel</label>
+          <div class="pill-group" id="pills-channel">
+            ${ORDER_CHANNELS.map(t => `<button class="pill-choice ${f.channel === t ? 'selected' : ''}" onclick="setPill('channel', '${t}', this)">${t}</button>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <label>Competitors <span style="font-weight:400;color:var(--ink-muted)">(who else they buy from)</span></label>
+          <input type="text" id="f-competitors" value="${escapeHtml(f.competitors || '')}" placeholder="e.g. ABC Wholesale, XYZ Traders">
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">Action</div>
+        <div class="field">
+          <label>Next Follow-Up Date</label>
+          <input type="date" id="f-nextFollowUp" value="${escapeHtml(f.nextFollowUp || '')}">
+        </div>
+        <div class="field">
+          <label>Visit Notes <span style="font-weight:400;color:var(--ink-muted)">(pain points, opportunities, anything else)</span></label>
+          <textarea id="f-notes" placeholder="What did they say? What's bothering them? What did you commit to?">${escapeHtml(f.notes || '')}</textarea>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('detailContent').innerHTML = context + form;
+  if (defaultStatus) formState.visitStatus = defaultStatus;
+  
+  // Auto-save form state on input
+  document.getElementById('detailContent').addEventListener('input', autoSave);
+  document.getElementById('detailContent').addEventListener('change', autoSave);
+  
+  switchScreen('screen-detail');
+  window.scrollTo(0, 0);
+}
+
+function setPill(field, value, btn) {
+  const group = btn.closest('.pill-group');
+  group.querySelectorAll('.pill-choice').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  formState[field] = value;
+}
+
+function autoSave() {
+  const f = formState;
+  f.ownerName = (document.getElementById('f-ownerName') || {}).value || '';
+  f.ownerMobile = (document.getElementById('f-ownerMobile') || {}).value || '';
+  f.procName = (document.getElementById('f-procName') || {}).value || '';
+  f.procMobile = (document.getElementById('f-procMobile') || {}).value || '';
+  f.clientType = (document.getElementById('f-clientType') || {}).value || '';
+  f.clientSince = (document.getElementById('f-clientSince') || {}).value || '';
+  f.numOutlets = (document.getElementById('f-numOutlets') || {}).value || '';
+  f.competitors = (document.getElementById('f-competitors') || {}).value || '';
+  f.nextFollowUp = (document.getElementById('f-nextFollowUp') || {}).value || '';
+  f.notes = (document.getElementById('f-notes') || {}).value || '';
+  formState = f;
+}
+
+// === SUBMIT ===
+async function submitForm() {
+  if (isSubmitting) return;
+  
+  autoSave();
+  
+  if (!formState.visitStatus) {
+    showToast('Pick a visit status first', 'error');
+    return;
+  }
+  
+  const settings = getSettings();
+  if (!settings.webhook) {
+    showToast('Set up the Apps Script URL in Settings first', 'error');
+    openSettings();
+    return;
+  }
+  if (!settings.visitor) {
+    showToast('Set your name in Settings first', 'error');
+    openSettings();
+    return;
+  }
+  
+  isSubmitting = true;
+  const btn = document.getElementById('submitBtn');
+  btn.innerHTML = '<span class="spinner"></span> Saving...';
+  btn.disabled = true;
+  
+  // Build payload
+  const payload = {
+    timestamp: new Date().toISOString(),
+    visitDate: new Date().toLocaleDateString('en-IN'),
+    visitedBy: settings.visitor,
+    clientCode: currentClient.code,
+    clientName: currentClient.name,
+    chain: currentClient.chain || '',
+    erpStatus: currentClient.status,
+    erpRev3y: currentClient.rev3y,
+    erpRev26: currentClient.rev26,
+    erpYoY: currentClient.yoy,
+    visitStatus: formState.visitStatus || '',
+    ownerName: formState.ownerName || '',
+    ownerMobile: formState.ownerMobile || '',
+    procName: formState.procName || '',
+    procMobile: formState.procMobile || '',
+    clientType: formState.clientType || '',
+    paymentTerms: formState.paymentTerms || '',
+    paymentBehaviour: formState.paymentBehaviour || '',
+    clientSince: formState.clientSince || '',
+    numOutlets: formState.numOutlets || '',
+    orderFrequency: formState.orderFrequency || '',
+    channel: formState.channel || '',
+    competitors: formState.competitors || '',
+    nextFollowUp: formState.nextFollowUp || '',
+    notes: formState.notes || '',
+  };
+  
+  try {
+    const formData = new FormData();
+    Object.keys(payload).forEach(k => formData.append(k, payload[k]));
+    
+    const response = await fetch(settings.webhook, {
+      method: 'POST',
+      body: formData,
+    });
+    
+    // Save locally regardless (offline-friendly)
+    setVisit(currentClient.code, {
+      status: formState.visitStatus,
+      data: formState,
+      timestamp: new Date().toISOString(),
+    });
+    
+    document.getElementById('successName').textContent = currentClient.name;
+    switchScreen('screen-success');
+  } catch (err) {
+    console.error(err);
+    // Still save locally so they don't lose work
+    setVisit(currentClient.code, {
+      status: formState.visitStatus,
+      data: formState,
+      timestamp: new Date().toISOString(),
+      pendingSync: true,
+    });
+    showToast('Saved locally. Will sync when online.', 'error');
+    document.getElementById('successName').textContent = currentClient.name;
+    switchScreen('screen-success');
+  } finally {
+    isSubmitting = false;
+    btn.innerHTML = 'Save Visit';
+    btn.disabled = false;
+  }
+}
+
+// === SCREENS ===
+function switchScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goToList() {
+  switchScreen('screen-list');
+  renderList();
+  window.scrollTo(0, 0);
+}
+
+// === SETTINGS ===
+function openSettings() {
+  const s = getSettings();
+  document.getElementById('settingVisitor').value = s.visitor || '';
+  document.getElementById('settingWebhook').value = s.webhook || '';
+  document.getElementById('settingsModal').classList.add('active');
+}
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('active');
+}
+function saveSettings() {
+  const visitor = document.getElementById('settingVisitor').value.trim();
+  const webhook = document.getElementById('settingWebhook').value.trim();
+  if (!visitor || !webhook) {
+    showToast('Fill in both fields', 'error');
+    return;
+  }
+  setSettings({ visitor, webhook });
+  showToast('Settings saved');
+  closeSettings();
+}
+
+// === INIT ===
+document.getElementById('searchInput').addEventListener('input', e => {
+  currentSearch = e.target.value;
+  renderList();
+});
+document.querySelectorAll('#filterChips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#filterChips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    currentFilter = chip.dataset.filter;
+    renderList();
+  });
+});
+document.getElementById('backBtn').addEventListener('click', goToList);
+document.getElementById('submitBtn').addEventListener('click', submitForm);
+document.getElementById('settingsBtn').addEventListener('click', openSettings);
+document.getElementById('settingsModal').addEventListener('click', e => {
+  if (e.target.id === 'settingsModal') closeSettings();
+});
+
+// First-run prompt
+window.addEventListener('load', () => {
+  renderList();
+  const s = getSettings();
+  if (!s.visitor || !s.webhook) {
+    setTimeout(openSettings, 600);
+  }
+});
+</script>
+</body>
+</html>
