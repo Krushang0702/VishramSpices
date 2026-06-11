@@ -186,9 +186,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:#fff;border-botto
 .option-btn.sel-variant{background:var(--amber);border-color:var(--amber);color:white;}
 .option-btn.sel-brand{background:var(--maroon);border-color:var(--maroon);color:white;}
 .option-btn.sel-size{background:var(--maroon);border-color:var(--maroon);color:white;}
-.vishram-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:13px 16px;font-size:14px;font-family:"DM Sans",sans-serif;color:var(--dark);outline:none;background:white;margin-top:8px;}
-.vishram-input::placeholder{color:#b0a090;}
-.vishram-input:focus{border-color:var(--maroon);}
 .qty-label{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:14px;display:block;}
 .qty-field{display:flex;align-items:center;gap:20px;}
 .qty-minus,.qty-plus{width:40px;height:40px;border-radius:50%;border:2px solid var(--maroon);background:white;font-size:20px;cursor:pointer;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
@@ -382,8 +379,7 @@ footer p{font-size:11px;color:rgba(255,255,255,0.4);}
       <div class="field-group" id="sizeField" style="display:none;">
         <span class="field-label" id="sizeLabel">Choose Pack Size</span>
         <div class="option-btns" id="sizeOptions"></div>
-        <input type="text" class="vishram-input" id="vishramInput" placeholder="Enter custom size e.g. 5kg, 500g" style="display:none;" autocorrect="off">
-      </div>
+        </div>
       <div class="field-group">
         <span class="qty-label">How many packs?</span>
         <div class="qty-field">
@@ -419,7 +415,5502 @@ footer p{font-size:11px;color:rgba(255,255,255,0.4);}
 
 <footer><p>&#169; 2026 Vishram Spices (India) Pvt. Ltd. &middot; Est. 1972 &middot; Mumbai</p></footer>
 <script>
-var products = [{"cat": "Spices & Masalas", "name": "Kashmiri Mirchi", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Akola Chilly", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Bedgi Chilly", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Boriya Chilly", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Pandi Chilly", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Resham Patti Chilly", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Elaichi Green (Green Cardamom)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Elaichi Black (Black Cardamom)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kali Miri (Black Pepper)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Safed Miri (White Pepper)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Javantry (Mace)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Lavang (Cloves)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Daalchini (Cinnamon)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Jaiphal (Nutmeg)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Badiyan (Star Anise)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Shah Jeera", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Tejpatta (Bay Leaf)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Dagad Phool", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Gulab Phool", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Lasoon Akkha (Whole Garlic)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Anardana (Pomegranate Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Imli (Tamarind)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Sooth (Dry Ginger)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kababchini (Cubeb Pepper)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Sichuan pepper", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Methi (Fenugreek Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Ajma (Carom Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kachri", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Haldi (Turmeric)", "brands": "Vishram, MDH", "notes": "To Order (Vishram), 500g (MDH)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Jeera (Cumin)", "brands": "Vishram, MDH", "notes": "To Order (Vishram), 100g (MDH)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Dhaniya (Coriander)", "brands": "Vishram, MDH", "notes": "To Order (Vishram), 500g (MDH)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Mirchi Powder (Red Chilly)", "brands": "Vishram, MDH", "notes": "To Order (Vishram), 500g (MDH)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Mirchi Powder (Yellow Chilly)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Deggi Mirchi", "brands": "MDH", "notes": "100g, 500g (MDH)", "variants": [], "parsed": [{"brand": "MDH", "sizes": ["100g", "500g"]}]}, {"cat": "Spices & Masalas", "name": "Amchur Powder (Dry Mango)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kasuri Methi", "brands": "Vishram, MDH", "notes": "To Order (Vishram), 100g, 1kg (MDH)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["100g", "1kg"]}]}, {"cat": "Spices & Masalas", "name": "Lasoon Powder (Garlic)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kanda Powder (Onion)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Dhaniya Jeera Powder", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Rajwadi Garam Masala", "brands": "Vishram, MDH, Badshah, Everest", "notes": "To Order (Vishram), 100g, 500g (MDH), 100g (Badshah), 100g (Everest)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["100g", "500g"]}, {"brand": "Badshah", "sizes": ["100g"]}, {"brand": "Everest", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Chaat Masala", "brands": "Vishram, MDH, Badshah, Everest", "notes": "To Order (Vishram), 100g, 500g (MDH), 1kg (Badshah), 100g (Everest)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["100g", "500g"]}, {"brand": "Badshah", "sizes": ["1kg"]}, {"brand": "Everest", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Kitchen King Masala", "brands": "Vishram, MDH, Badshah", "notes": "To Order (Vishram), 100g, 500g (MDH), 1kg (Badshah)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["100g", "500g"]}, {"brand": "Badshah", "sizes": ["1kg"]}]}, {"cat": "Spices & Masalas", "name": "Tandoori Masala", "brands": "Vishram, Badshah", "notes": "To Order (Vishram), 1kg (Badshah)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Badshah", "sizes": ["1kg"]}]}, {"cat": "Spices & Masalas", "name": "Pav Bhaji Masala", "brands": "Vishram, Kubal, Badshah, MDH", "notes": "To Order (Vishram), 1kg (Kubal), 1kg (Badshah), 100g (MDH)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Kubal", "sizes": ["1kg"]}, {"brand": "Badshah", "sizes": ["1kg"]}, {"brand": "MDH", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Sambhar Masala", "brands": "Vishram, MTR, Badshah, Everest", "notes": "To Order (Vishram), 200g (MTR), 1kg (Badshah), 100g (Everest)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MTR", "sizes": ["200g"]}, {"brand": "Badshah", "sizes": ["1kg"]}, {"brand": "Everest", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Rasam Powder", "brands": "MTR", "notes": "200g (MTR)", "variants": [], "parsed": [{"brand": "MTR", "sizes": ["200g"]}]}, {"cat": "Spices & Masalas", "name": "Biryani Masala", "brands": "Shan, Badshah, Everest", "notes": "60g (Shan), 1kg (Badshah), 50g (Everest)", "variants": [], "parsed": [{"brand": "Shan", "sizes": ["60g"]}, {"brand": "Badshah", "sizes": ["1kg"]}, {"brand": "Everest", "sizes": ["50g"]}]}, {"cat": "Spices & Masalas", "name": "Chicken Masala", "brands": "Badshah, Everest", "notes": "1kg (Badshah), 200g, 500g (Everest)", "variants": [], "parsed": [{"brand": "Badshah", "sizes": ["1kg"]}, {"brand": "Everest", "sizes": ["200g", "500g"]}]}, {"cat": "Spices & Masalas", "name": "Mutton Masala", "brands": "Badshah, MDH, Kubal", "notes": "1kg (Badshah), 100g (MDH), 100g (Kubal)", "variants": [], "parsed": [{"brand": "Badshah", "sizes": ["1kg"]}, {"brand": "MDH", "sizes": ["100g"]}, {"brand": "Kubal", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Usal Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Malvani Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Ghati Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Goda Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Chana Masala", "brands": "Vishram, MDH, Badshah", "notes": "To Order (Vishram), 500g (MDH), 1kg (Badshah)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MDH", "sizes": ["500g"]}, {"brand": "Badshah", "sizes": ["1kg"]}]}, {"cat": "Spices & Masalas", "name": "Kanda Lasoon Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kala Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Misal Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Chaas Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Kolhapuri Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Frankie Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Pizza Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Achari Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Dabeli Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Madras Curry Powder", "brands": "Ship", "notes": "500g (Ship)", "variants": [], "parsed": [{"brand": "Ship", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Sandwich Masala", "brands": "Kapol", "notes": "100g (Kapol)", "variants": [], "parsed": [{"brand": "Kapol", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Pani Puri Masala", "brands": "Badshah", "notes": "100g (Badshah)", "variants": [], "parsed": [{"brand": "Badshah", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Sabji Masala", "brands": "Everest", "notes": "100g (Everest)", "variants": [], "parsed": [{"brand": "Everest", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Rajma Masala", "brands": "MDH", "notes": "100g (MDH)", "variants": [], "parsed": [{"brand": "MDH", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Fish Masala", "brands": "Badshah", "notes": "100g (Badshah)", "variants": [], "parsed": [{"brand": "Badshah", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Tea Masala", "brands": "Badshah", "notes": "100g (Badshah)", "variants": [], "parsed": [{"brand": "Badshah", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Chole Masala", "brands": "Everest", "notes": "100g (Everest)", "variants": [], "parsed": [{"brand": "Everest", "sizes": ["100g"]}]}, {"cat": "Spices & Masalas", "name": "Hyderabadi Chicken Masala", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Cajun Spices", "brands": "Sarwar", "notes": "450g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["450g"]}]}, {"cat": "Spices & Masalas", "name": "Peri Peri Seasoning", "brands": "Sarwar", "notes": "1kg, 250g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["1kg", "250g"]}]}, {"cat": "Spices & Masalas", "name": "Lime Seasoning", "brands": "Knorr", "notes": "500g (Knorr)", "variants": [], "parsed": [{"brand": "Knorr", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Aromat Seasoning", "brands": "Knorr, Springburst", "notes": "500g (Knorr), 500g (Springburst)", "variants": [], "parsed": [{"brand": "Knorr", "sizes": ["500g"]}, {"brand": "Springburst", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Chicken Seasoning", "brands": "Knorr", "notes": "800g (Knorr)", "variants": [], "parsed": [{"brand": "Knorr", "sizes": ["800g"]}]}, {"cat": "Spices & Masalas", "name": "Hing (Asafoetida)", "brands": "LG, Kavita", "notes": "Whole:100g / Powder:100g, 500g (LG), Whole 200g Powder 500g (Kavita)", "variants": ["Whole", "Powder"], "parsed": [{"brand": "LG", "sizes": ["Whole:100g / Powder:100g", "500g"]}, {"brand": "Kavita", "sizes": ["Whole 200g Powder 500g"]}]}, {"cat": "Spices & Masalas", "name": "Oregano", "brands": "Vishram, Sarwar", "notes": "To Order (Vishram), 8g sachets x300 (Sarwar)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Sarwar", "sizes": ["8g sachets x300"]}]}, {"cat": "Spices & Masalas", "name": "Thyme", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Rosemary", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Basil", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Paprika", "brands": "Vishram, Sarwar", "notes": "To Order (Vishram), 8g sachets x300 (Sarwar)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Sarwar", "sizes": ["8g sachets x300"]}]}, {"cat": "Spices & Masalas", "name": "Chilly Flakes", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Spices & Masalas", "name": "Ajinomoto (MSG)", "brands": "Vishram, Golden Crown", "notes": "To Order (Vishram), 500g (Golden Crown)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Golden Crown", "sizes": ["500g"]}]}, {"cat": "Spices & Masalas", "name": "Kesar (Saffron)", "brands": "Mataji", "notes": "1g (Mataji)", "variants": [], "parsed": [{"brand": "Mataji", "sizes": ["1g"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Kaju (Cashew)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Fadcha (Splits)", "Tudka", "Kani (Fine)"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Badam (Almonds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Powder", "Flakes", "Mamra"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Pista (Pistachios)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Salted", "Flakes"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Akhrot (Walnuts)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Magaj (Kernels)"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Kissmiss (Raisins)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Green", "Black"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Magaj (Watermelon Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Khajoor (Dates)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Seedless", "Khimya", "Black", "Chutney"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Anjeer (Dried Figs)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Charoli", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Hazelnut", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Khopra (Dry Coconut)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Salli (Shredded)"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Alubukhar (Prunes)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Jardalu (Apricots)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Makhana (Fox Nuts)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Seeng (Peanuts)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Sekeli", "Salted", "Kacha"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Khuskhus (Poppy Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Til (Sesame Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Black", "White", "Polished"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Sowf (Fennel Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Regular", "Mint", "Lucknow"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Rai (Mustard Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Kalonji (Nigella Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Sabjaa (Basil Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Alsi (Flax Seeds)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Dry Fruits, Nuts & Seeds", "name": "Trifalla", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Basmati Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Biryani Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Colam Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Kani Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Ukda Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Mogra Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Jasmine Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Sushi Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Varai Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Arborio Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Staff Rice", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Gehun (Wheat)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Atta"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Maida (Refined Flour)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Besan (Chickpea Flour)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Regular", "Washing Grade"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Corn Flour", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Rawa (Semolina)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Jawari (Jowar)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Atta"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Baajra (Millet)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Atta"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Nachni (Ragi)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Atta"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Laapsi (Broken Wheat)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Dalia (Broken Wheat)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Poha (Flattened Rice)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Thick", "Thin"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Flours, Rice & Grains", "name": "Sabudana (Sago)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Tuvar Dal", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Urad", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Dal", "Gotha"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Moong", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Dal"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Chana Dal", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Masoor", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Dal"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Kabuli Chana", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Desi Chana", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Rajma", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Black", "White"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Vatana (Dried Peas)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Green", "White"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Matki (Moth Beans)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Chawla (Black Eyed Peas)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Vaal (Field Beans)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Nutrela Soya Chunks", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pulses, Lentils & Dal", "name": "Mosambi Chana", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Oils & Ghee", "name": "Sunflower Oil", "brands": "Fortune, Sunrich", "notes": "13kg (Fortune), 13kg (Sunrich)", "variants": [], "parsed": [{"brand": "Fortune", "sizes": ["13kg"]}, {"brand": "Sunrich", "sizes": ["13kg"]}]}, {"cat": "Oils & Ghee", "name": "Palm Oil (Palmolin)", "brands": "Ruchi Gold", "notes": "13kg (Ruchi Gold)", "variants": [], "parsed": [{"brand": "Ruchi Gold", "sizes": ["13kg"]}]}, {"cat": "Oils & Ghee", "name": "Mustard Oil", "brands": "Sarsola, Shreeji", "notes": "800ml (Sarsola), 1L, 15kg (Shreeji)", "variants": [], "parsed": [{"brand": "Sarsola", "sizes": ["800ml"]}, {"brand": "Shreeji", "sizes": ["1L", "15kg"]}]}, {"cat": "Oils & Ghee", "name": "Coconut Oil", "brands": "Nirmal", "notes": "1L (Nirmal)", "variants": [], "parsed": [{"brand": "Nirmal", "sizes": ["1L"]}]}, {"cat": "Oils & Ghee", "name": "Sesame Oil (Til Oil)", "brands": "Angelo", "notes": "500ml (Angelo)", "variants": [], "parsed": [{"brand": "Angelo", "sizes": ["500ml"]}]}, {"cat": "Oils & Ghee", "name": "Olive Oil", "brands": "Angelo", "notes": "1L (Angelo)", "variants": [], "parsed": [{"brand": "Angelo", "sizes": ["1L"]}]}, {"cat": "Oils & Ghee", "name": "Groundnut Oil", "brands": "RRO", "notes": "5L (RRO)", "variants": [], "parsed": [{"brand": "RRO", "sizes": ["5L"]}]}, {"cat": "Oils & Ghee", "name": "Salad Oil", "brands": "Sarwar", "notes": "1L (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["1L"]}]}, {"cat": "Oils & Ghee", "name": "Desi Ghee", "brands": "Gowardhan, Amul, Triveni", "notes": "1L (Gowardhan), 1L (Amul), 1L (Triveni)", "variants": [], "parsed": [{"brand": "Gowardhan", "sizes": ["1L"]}, {"brand": "Amul", "sizes": ["1L"]}, {"brand": "Triveni", "sizes": ["1L"]}]}, {"cat": "Oils & Ghee", "name": "Vegetable Ghee", "brands": "Ruchi, Lion", "notes": "893g, 15kg (Ruchi), 893g (Lion)", "variants": [], "parsed": [{"brand": "Ruchi", "sizes": ["893g", "15kg"]}, {"brand": "Lion", "sizes": ["893g"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Sugar", "brands": "Vishram, MB Sugar, Sugar Free", "notes": "To Order (Vishram), 200 Sachet Pack (MB Sugar), 100 Sachet Pack (Sugar Free)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "MB Sugar", "sizes": ["200 Sachet Pack"]}, {"brand": "Sugar Free", "sizes": ["100 Sachet Pack"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Gud (Jaggery)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Regular", "Desi"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Rawalgaon (Sugar Candy)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Salt", "brands": "Tata, Captain Cook", "notes": "1kg (Tata), 1kg (Captain Cook)", "variants": [], "parsed": [{"brand": "Tata", "sizes": ["1kg"]}, {"brand": "Captain Cook", "sizes": ["1kg"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Sanchar (Black Salt)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Whole", "Pink", "Black"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Honey", "brands": "Lokmanya", "notes": "1kg (Lokmanya)", "variants": [], "parsed": [{"brand": "Lokmanya", "sizes": ["1kg"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Rock Salt", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Sindha Namak", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Sugar Cube", "brands": "MB Sugar", "notes": "500g (MB Sugar)", "variants": [], "parsed": [{"brand": "MB Sugar", "sizes": ["500g"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Bura Sugar (Powdered Sugar)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sugar, Salt & Sweeteners", "name": "Limbu Phool (Citric Acid)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Maggi Seasoning", "brands": "Maggi", "notes": "200ml (Maggi)", "variants": [], "parsed": [{"brand": "Maggi", "sizes": ["200ml"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Soya Sauce", "brands": "Winn, Chings", "notes": "700ml, 4.5kg, 10kg, 100 sachet pack (Winn), 700g (Chings)", "variants": [], "parsed": [{"brand": "Winn", "sizes": ["700ml", "4.5kg", "10kg", "100 sachet pack"]}, {"brand": "Chings", "sizes": ["700g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Chilly Sauce", "brands": "Winn, Chings, Sarwar", "notes": "690g, 10kg, 100 sachet pack (Winn), 690g, 5kg, 10kg (Chings), 5kg (Sarwar)", "variants": [], "parsed": [{"brand": "Winn", "sizes": ["690g", "10kg", "100 sachet pack"]}, {"brand": "Chings", "sizes": ["690g", "5kg", "10kg"]}, {"brand": "Sarwar", "sizes": ["5kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Tomato Sauce/Ketchup", "brands": "Kissan, Magic, Winn", "notes": "1kg (Kissan), 1kg, 4.5kg (Magic), 950g, 4.5kg, 100 sachet pack (Winn)", "variants": [], "parsed": [{"brand": "Kissan", "sizes": ["1kg"]}, {"brand": "Magic", "sizes": ["1kg", "4.5kg"]}, {"brand": "Winn", "sizes": ["950g", "4.5kg", "100 sachet pack"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Mayonnaise", "brands": "Winn", "notes": "1kg (Winn)", "variants": [], "parsed": [{"brand": "Winn", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Oyster Sauce", "brands": "Lee Kum Kee", "notes": "500g, 2.2kg (Lee Kum Kee)", "variants": [], "parsed": [{"brand": "Lee Kum Kee", "sizes": ["500g", "2.2kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Veg Oyster Sauce", "brands": "Lee Kum Kee, Woh Hup", "notes": "510g (Lee Kum Kee), 510g (Woh Hup)", "variants": [], "parsed": [{"brand": "Lee Kum Kee", "sizes": ["510g"]}, {"brand": "Woh Hup", "sizes": ["510g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Tomato Puree", "brands": "Sarwar", "notes": "850g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["850g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Hot and Sweet Sauce", "brands": "Maggi", "notes": "1kg (Maggi)", "variants": [], "parsed": [{"brand": "Maggi", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Hoisin Sauce", "brands": "Woh Hup", "notes": "320g (Woh Hup)", "variants": [], "parsed": [{"brand": "Woh Hup", "sizes": ["320g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Chipotle Mayo", "brands": "Wingreens", "notes": "1kg (Wingreens)", "variants": [], "parsed": [{"brand": "Wingreens", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Light Soya Sauce", "brands": "Lee Kum Kee", "notes": "500g (Lee Kum Kee)", "variants": [], "parsed": [{"brand": "Lee Kum Kee", "sizes": ["500g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Dark Soya Sauce", "brands": "Lee Kum Kee", "notes": "600g (Lee Kum Kee)", "variants": [], "parsed": [{"brand": "Lee Kum Kee", "sizes": ["600g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Dijon Mustard", "brands": "Angelo", "notes": "400g (Angelo)", "variants": [], "parsed": [{"brand": "Angelo", "sizes": ["400g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Sambal Olek Sauce", "brands": "Who Hup", "notes": "340g (Who Hup)", "variants": [], "parsed": [{"brand": "Who Hup", "sizes": ["340g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "US Mustard", "brands": "American Garden", "notes": "227g (American Garden)", "variants": [], "parsed": [{"brand": "American Garden", "sizes": ["227g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Tobasco", "brands": "Tabasco", "notes": "60ml (Tabasco)", "variants": ["Red", "Green"], "parsed": [{"brand": "Tabasco", "sizes": ["60ml"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Capsico Red Sauce", "brands": "Capsico", "notes": "60ml (Capsico)", "variants": [], "parsed": [{"brand": "Capsico", "sizes": ["60ml"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Hot Chilly Sauce", "brands": "Sriraja Panich", "notes": "570g (Sriraja Panich)", "variants": [], "parsed": [{"brand": "Sriraja Panich", "sizes": ["570g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Sweet Chilly Sauce", "brands": "Maepranom", "notes": "980g (Maepranom)", "variants": [], "parsed": [{"brand": "Maepranom", "sizes": ["980g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Green Chilly Sauce", "brands": "Sarwar", "notes": "650g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["650g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Chipotle Sauce", "brands": "Veeba", "notes": "1kg (Veeba)", "variants": [], "parsed": [{"brand": "Veeba", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Barbeque Sauce", "brands": "American Garden", "notes": "510ml (American Garden)", "variants": [], "parsed": [{"brand": "American Garden", "sizes": ["510ml"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Spicy Black Bean Sauce", "brands": "Who Hup", "notes": "340g (Who Hup)", "variants": [], "parsed": [{"brand": "Who Hup", "sizes": ["340g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Teriyaki Sauce", "brands": "Lee Kum Kee", "notes": "250g (Lee Kum Kee)", "variants": [], "parsed": [{"brand": "Lee Kum Kee", "sizes": ["250g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Tahina Paste", "brands": "Al Ammar", "notes": "1kg (Al Ammar)", "variants": [], "parsed": [{"brand": "Al Ammar", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Worcestershire Sauce", "brands": "Sams", "notes": "190g (Sams)", "variants": [], "parsed": [{"brand": "Sams", "sizes": ["190g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Thai Curry Paste", "brands": "Namjai", "notes": "1kg (Namjai)", "variants": ["Yellow", "Red", "Green"], "parsed": [{"brand": "Namjai", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Vinegar (White)", "brands": "Sarwar", "notes": "700ml, 5L (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["700ml", "5L"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Acetic Acid", "brands": "Sarwar", "notes": "500ml (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["500ml"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Pickle (Mix)", "brands": "Sidhi Vinayak, Winn", "notes": "5kg (Sidhi Vinayak), 100 sachet pack (Winn)", "variants": [], "parsed": [{"brand": "Sidhi Vinayak", "sizes": ["5kg"]}, {"brand": "Winn", "sizes": ["100 sachet pack"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Pickle (Mango)", "brands": "Sidhi Vinayak", "notes": "5kg (Sidhi Vinayak)", "variants": [], "parsed": [{"brand": "Sidhi Vinayak", "sizes": ["5kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Pickle (Ginger)", "brands": "Twin Tusk", "notes": "840g (Twin Tusk)", "variants": [], "parsed": [{"brand": "Twin Tusk", "sizes": ["840g"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "Kasundi Mustard", "brands": "Sarwar", "notes": "1kg (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["1kg"]}]}, {"cat": "Sauces, Pastes & Condiments", "name": "8 to 9 Sauce", "brands": "Sams", "notes": "200g (Sams)", "variants": [], "parsed": [{"brand": "Sams", "sizes": ["200g"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Tea Powder", "brands": "Vishram, Tata Agni, Society, Wagh Bakri", "notes": "To Order (Vishram), 1kg (Tata Agni), 1kg (Society), 500g (Wagh Bakri)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Tata Agni", "sizes": ["1kg"]}, {"brand": "Society", "sizes": ["1kg"]}, {"brand": "Wagh Bakri", "sizes": ["500g"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Tea Bags", "brands": "Taj", "notes": "200 bag packet (Taj)", "variants": [], "parsed": [{"brand": "Taj", "sizes": ["200 bag packet"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Coffee", "brands": "Nescafe, MR Coffee, Sunrise Coffee", "notes": "90g, 500g, Sachet (Nescafe), 100g (MR Coffee), 500g (Sunrise Coffee)", "variants": [], "parsed": [{"brand": "Nescafe", "sizes": ["90g", "500g", "Sachet"]}, {"brand": "MR Coffee", "sizes": ["100g"]}, {"brand": "Sunrise Coffee", "sizes": ["500g"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Kokam Syrup", "brands": "Shree Sidhivinayak", "notes": "1L (Shree Sidhivinayak)", "variants": [], "parsed": [{"brand": "Shree Sidhivinayak", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Kokam Agul", "brands": "Shree Sidhivinayak", "notes": "1L (Shree Sidhivinayak)", "variants": [], "parsed": [{"brand": "Shree Sidhivinayak", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Rose Syrup (Rooh Afza)", "brands": "Davars", "notes": "700ml (Davars)", "variants": [], "parsed": [{"brand": "Davars", "sizes": ["700ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Kesar Syrup", "brands": "Davars", "notes": "700ml (Davars)", "variants": [], "parsed": [{"brand": "Davars", "sizes": ["700ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Ginger Lime Syrup", "brands": "Tina", "notes": "750ml (Tina)", "variants": [], "parsed": [{"brand": "Tina", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Mojito Syrup (Lime Mint)", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Sikonjbin (Sekanjabin)", "brands": "Davars", "notes": "750ml (Davars)", "variants": [], "parsed": [{"brand": "Davars", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Pista Syrup", "brands": "Sarwar", "notes": "750ml (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Kala Khatta Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Grenadine Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Aam Panha Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Blue Curacao", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Pina Colada", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Mango Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Mango Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Strawberry Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Strawberry Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Chocolate Sauce", "brands": "Hersheys", "notes": "623ml (Hersheys)", "variants": [], "parsed": [{"brand": "Hersheys", "sizes": ["623ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Blueberry Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Blueberry Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Black Currant Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Orange Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Blackberry Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Ice Tea Powder (Lemon)", "brands": "Nestle", "notes": "1L (Nestle)", "variants": [], "parsed": [{"brand": "Nestle", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Butterscotch Syrup", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Jaljeera", "brands": "MDH", "notes": "100g (MDH)", "variants": [], "parsed": [{"brand": "MDH", "sizes": ["100g"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Kesari Milk Masala", "brands": "Everest", "notes": "100g (Everest)", "variants": [], "parsed": [{"brand": "Everest", "sizes": ["100g"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Kiwi Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Watermelon Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Watermelon Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Pineapple Crush", "brands": "Manama", "notes": "1L (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["1L"]}]}, {"cat": "Syrups, Crushes & Beverages", "name": "Pomegranare Syrup", "brands": "Manama", "notes": "750ml (Manama)", "variants": [], "parsed": [{"brand": "Manama", "sizes": ["750ml"]}]}, {"cat": "Snacks & Farsan", "name": "Papad", "brands": "Lijjat", "notes": "1Kg (Lijjat)", "variants": ["Large", "Small"], "parsed": [{"brand": "Lijjat", "sizes": ["1Kg"]}]}, {"cat": "Snacks & Farsan", "name": "Khichiya Papad", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Regular", "Masala"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Nachni Papad", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Aloo Papad", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Cut Sev", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Sev", "brands": "Titan", "notes": "250g, 500g (Titan)", "variants": [], "parsed": [{"brand": "Titan", "sizes": ["250g", "500g"]}]}, {"cat": "Snacks & Farsan", "name": "Bikaneri Sev", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Roasted Sev", "brands": "Bambino", "notes": "450g (Bambino)", "variants": [], "parsed": [{"brand": "Bambino", "sizes": ["450g"]}]}, {"cat": "Snacks & Farsan", "name": "Boondi (Khara)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Yellow"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Fry Yums", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Heart Shape", "Penne"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Snacks & Farsan", "name": "Choco Flakes", "brands": "Chocos", "notes": "500g (Chocos)", "variants": [], "parsed": [{"brand": "Chocos", "sizes": ["500g"]}]}, {"cat": "Snacks & Farsan", "name": "Falooda Sev", "brands": "King", "notes": "100g (King)", "variants": [], "parsed": [{"brand": "King", "sizes": ["100g"]}]}, {"cat": "Snacks & Farsan", "name": "Mukhwaas", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Green", "Salli Khopra"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Bakery & Baking", "name": "Tutti Fruiti", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Dry", "Wet Green", "Wet Red"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Bakery & Baking", "name": "Cherry (Glazed)", "brands": "Vishram, Golden Crown", "notes": "To Order (Vishram), 850g (Golden Crown)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Golden Crown", "sizes": ["850g"]}]}, {"cat": "Bakery & Baking", "name": "Bread Crumbs", "brands": "Vishram, Panko", "notes": "To Order (Vishram), 1kg (Panko)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}, {"brand": "Panko", "sizes": ["1kg"]}]}, {"cat": "Bakery & Baking", "name": "Baking Powder", "brands": "Sarwar, Golden Crown", "notes": "500g (Sarwar), 400g (Golden Crown)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["500g"]}, {"brand": "Golden Crown", "sizes": ["400g"]}]}, {"cat": "Bakery & Baking", "name": "Jelly", "brands": "Winn", "notes": "90g (Winn)", "variants": ["Rasberry", "Strawberry"], "parsed": [{"brand": "Winn", "sizes": ["90g"]}]}, {"cat": "Bakery & Baking", "name": "Food Colour", "brands": "Bush", "notes": "100g (Bush)", "variants": ["Red", "Yellow", "Green"], "parsed": [{"brand": "Bush", "sizes": ["100g"]}]}, {"cat": "Bakery & Baking", "name": "Cooking Soda", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Bakery & Baking", "name": "Dry Yeast", "brands": "Blue Valley", "notes": "500g (Blue Valley)", "variants": [], "parsed": [{"brand": "Blue Valley", "sizes": ["500g"]}]}, {"cat": "Bakery & Baking", "name": "Kewra Water", "brands": "Sarwar", "notes": "500ml (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["500ml"]}]}, {"cat": "Bakery & Baking", "name": "Rose Water", "brands": "Sarwar", "notes": "500ml (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["500ml"]}]}, {"cat": "Ready Mixes & Premixes", "name": "Nylon Khaman Mix", "brands": "Talod", "notes": "500g (Talod)", "variants": [], "parsed": [{"brand": "Talod", "sizes": ["500g"]}]}, {"cat": "Ready Mixes & Premixes", "name": "Caramel Pudding", "brands": "Sarwar", "notes": "90g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["90g"]}]}, {"cat": "Ready Mixes & Premixes", "name": "Custard Powder", "brands": "Sarwar", "notes": "500g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["500g"]}]}, {"cat": "Ready Mixes & Premixes", "name": "Tom Yam Broth", "brands": "Knorr", "notes": "72g (Knorr)", "variants": [], "parsed": [{"brand": "Knorr", "sizes": ["72g"]}]}, {"cat": "Ready Mixes & Premixes", "name": "White Chutney", "brands": "MTR", "notes": "200g (MTR)", "variants": [], "parsed": [{"brand": "MTR", "sizes": ["200g"]}]}, {"cat": "Ready Mixes & Premixes", "name": "Gulab Jamun Mix", "brands": "Gits", "notes": "400g (Gits)", "variants": [], "parsed": [{"brand": "Gits", "sizes": ["400g"]}]}, {"cat": "Ready Mixes & Premixes", "name": "Dhokla White Mix", "brands": "Talod", "notes": "500g (Talod)", "variants": [], "parsed": [{"brand": "Talod", "sizes": ["500g"]}]}, {"cat": "Pasta, Noodles & International", "name": "Pasta", "brands": "Vero Bella", "notes": "500g (Vero Bella)", "variants": ["Spagetti", "Penne", "Macroni", "Fusilli"], "parsed": [{"brand": "Vero Bella", "sizes": ["500g"]}]}, {"cat": "Pasta, Noodles & International", "name": "Egg Noodles", "brands": "Sarwar, Lee Yong", "notes": "100g (Sarwar), 1Kg (Lee Yong)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["100g"]}, {"brand": "Lee Yong", "sizes": ["1Kg"]}]}, {"cat": "Pasta, Noodles & International", "name": "Veg Hakka Noodles", "brands": "Sarwar, Lee Yong", "notes": "100g (Sarwar), 1kg (Lee Yong)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["100g"]}, {"brand": "Lee Yong", "sizes": ["1kg"]}]}, {"cat": "Pasta, Noodles & International", "name": "Lasagna Sheets", "brands": "Pasta Reggia", "notes": "500g (Pasta Reggia)", "variants": [], "parsed": [{"brand": "Pasta Reggia", "sizes": ["500g"]}]}, {"cat": "Pasta, Noodles & International", "name": "Fried Noodles", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Canned & Preserved Goods", "name": "Button Mushroom", "brands": "Golden Crown, Value", "notes": "800g (Golden Crown), 800g (Value)", "variants": [], "parsed": [{"brand": "Golden Crown", "sizes": ["800g"]}, {"brand": "Value", "sizes": ["800g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Tandoori Mushroom", "brands": "Sarwar", "notes": "800g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["800g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Sweet Corn", "brands": "Winn", "notes": "425g, 850g (Winn)", "variants": [], "parsed": [{"brand": "Winn", "sizes": ["425g", "850g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Baby Corn", "brands": "Sarwar, Austin", "notes": "425g (Sarwar), 800g (Austin)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["425g"]}, {"brand": "Austin", "sizes": ["800g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Bamboo Shoots", "brands": "Sarwar", "notes": "560g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["560g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Baked Beans", "brands": "Sarwar", "notes": "400g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["400g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Pineapple (Canned)", "brands": "Sarwar", "notes": "850g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["850g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Mango Pulp", "brands": "Aditi", "notes": "860g (Aditi)", "variants": [], "parsed": [{"brand": "Aditi", "sizes": ["860g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Olives", "brands": "Euro Gold", "notes": "450g (Euro Gold)", "variants": ["Green", "Black"], "parsed": [{"brand": "Euro Gold", "sizes": ["450g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Gherkins", "brands": "Golden Crown", "notes": "670g (Golden Crown)", "variants": [], "parsed": [{"brand": "Golden Crown", "sizes": ["670g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Jalapenos", "brands": "Golden Crown", "notes": "650g (Golden Crown)", "variants": [], "parsed": [{"brand": "Golden Crown", "sizes": ["650g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Sarson Ka Saag", "brands": "Sarwar", "notes": "450g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["450g"]}]}, {"cat": "Canned & Preserved Goods", "name": "Veg Soya Chaap", "brands": "Golden Crown", "notes": "850g (Golden Crown)", "variants": [], "parsed": [{"brand": "Golden Crown", "sizes": ["850g"]}]}, {"cat": "Housekeeping & Disposables", "name": "Nirma Washing Powder", "brands": "Nirma", "notes": "500g (Nirma)", "variants": [], "parsed": [{"brand": "Nirma", "sizes": ["500g"]}]}, {"cat": "Housekeeping & Disposables", "name": "Pitambari Powder", "brands": "Pitambari", "notes": "150g (Pitambari)", "variants": [], "parsed": [{"brand": "Pitambari", "sizes": ["150g"]}]}, {"cat": "Housekeeping & Disposables", "name": "Shine It", "brands": "Shineit", "notes": "4kg (Shineit)", "variants": [], "parsed": [{"brand": "Shineit", "sizes": ["4kg"]}]}, {"cat": "Housekeeping & Disposables", "name": "Dishwash Scrubber", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Nylon", "Steel Wool"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Housekeeping & Disposables", "name": "Cloth", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Table", "Floor"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Housekeeping & Disposables", "name": "Garbage Bags (Biodegradable)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Housekeeping & Disposables", "name": "Toothpick", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": ["Small", "Large"], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Housekeeping & Disposables", "name": "Klin Film (Cling Wrap)", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Breakfast & Cereals", "name": "Bournvita", "brands": "Cadbury", "notes": "1kg (Cadbury)", "variants": [], "parsed": [{"brand": "Cadbury", "sizes": ["1kg"]}]}, {"cat": "Breakfast & Cereals", "name": "Drinking Chocolate", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Breakfast & Cereals", "name": "Milk Powder", "brands": "Sagar", "notes": "500g (Sagar)", "variants": [], "parsed": [{"brand": "Sagar", "sizes": ["500g"]}]}, {"cat": "Breakfast & Cereals", "name": "Milk Maid (Condensed Milk)", "brands": "Nestle", "notes": "1kg (Nestle)", "variants": [], "parsed": [{"brand": "Nestle", "sizes": ["1kg"]}]}, {"cat": "Breakfast & Cereals", "name": "Coconut Milk Powder", "brands": "Maggi", "notes": "1kg (Maggi)", "variants": [], "parsed": [{"brand": "Maggi", "sizes": ["1kg"]}]}, {"cat": "Breakfast & Cereals", "name": "Coconut Powder", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Breakfast & Cereals", "name": "Corn Flakes", "brands": "Golden Crown", "notes": "500g (Golden Crown)", "variants": [], "parsed": [{"brand": "Golden Crown", "sizes": ["500g"]}]}, {"cat": "Breakfast & Cereals", "name": "Oats", "brands": "Quaker", "notes": "1kg (Quaker)", "variants": [], "parsed": [{"brand": "Quaker", "sizes": ["1kg"]}]}, {"cat": "Breakfast & Cereals", "name": "Nutella", "brands": "Nutella", "notes": "350g (Nutella)", "variants": [], "parsed": [{"brand": "Nutella", "sizes": ["350g"]}]}, {"cat": "Breakfast & Cereals", "name": "Peanut Butter", "brands": "Sarwar", "notes": "510g (Sarwar)", "variants": [], "parsed": [{"brand": "Sarwar", "sizes": ["510g"]}]}, {"cat": "Breakfast & Cereals", "name": "Jam", "brands": "Noble", "notes": "1kg (Noble)", "variants": ["Mixed Fruit"], "parsed": [{"brand": "Noble", "sizes": ["1kg"]}]}, {"cat": "Pooja & Religious", "name": "Pooja Oil", "brands": "Pitambari", "notes": "900ml (Pitambari)", "variants": [], "parsed": [{"brand": "Pitambari", "sizes": ["900ml"]}]}, {"cat": "Pooja & Religious", "name": "Agarbatti", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}, {"cat": "Pooja & Religious", "name": "Dhup Kani", "brands": "Vishram", "notes": "To Order (Vishram)", "variants": [], "parsed": [{"brand": "Vishram", "sizes": ["__vishram__"]}]}];
+var products = [
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kashmiri Mirchi",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Akola Chilly",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Bedgi Chilly",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Boriya Chilly",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Pandi Chilly",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Resham Patti Chilly",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Elaichi Green (Green Cardamom)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Elaichi Black (Black Cardamom)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kali Miri (Black Pepper)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Safed Miri (White Pepper)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Javantry (Mace)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Lavang (Cloves)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Daalchini (Cinnamon)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Jaiphal (Nutmeg)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Badiyan (Star Anise)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Shah Jeera",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Tejpatta (Bay Leaf)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Dagad Phool",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Gulab Phool",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Lasoon Akkha (Whole Garlic)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Anardana (Pomegranate Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Imli (Tamarind)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Sooth (Dry Ginger)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kababchini (Cubeb Pepper)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Sichuan pepper",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Methi (Fenugreek Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Ajma (Carom Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kachri",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Haldi (Turmeric)",
+    "brands": "Vishram, MDH",
+    "notes": "To Order (Vishram), 500g (MDH)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Jeera (Cumin)",
+    "brands": "Vishram, MDH",
+    "notes": "To Order (Vishram), 100g (MDH)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Dhaniya (Coriander)",
+    "brands": "Vishram, MDH",
+    "notes": "To Order (Vishram), 500g (MDH)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Mirchi Powder (Red Chilly)",
+    "brands": "Vishram, MDH",
+    "notes": "To Order (Vishram), 500g (MDH)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Mirchi Powder (Yellow Chilly)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Deggi Mirchi",
+    "brands": "MDH",
+    "notes": "100g, 500g (MDH)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g",
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Amchur Powder (Dry Mango)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kasuri Methi",
+    "brands": "Vishram, MDH",
+    "notes": "To Order (Vishram), 100g, 1kg (MDH)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Lasoon Powder (Garlic)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kanda Powder (Onion)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Dhaniya Jeera Powder",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Rajwadi Garam Masala",
+    "brands": "Vishram, MDH, Badshah, Everest",
+    "notes": "To Order (Vishram), 100g, 500g (MDH), 100g (Badshah), 100g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g",
+          "500g"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "100g"
+        ]
+      },
+      {
+        "brand": "Everest",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chaat Masala",
+    "brands": "Vishram, MDH, Badshah, Everest",
+    "notes": "To Order (Vishram), 100g, 500g (MDH), 1kg (Badshah), 100g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g",
+          "500g"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Everest",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kitchen King Masala",
+    "brands": "Vishram, MDH, Badshah",
+    "notes": "To Order (Vishram), 100g, 500g (MDH), 1kg (Badshah)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g",
+          "500g"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Tandoori Masala",
+    "brands": "Vishram, Badshah",
+    "notes": "To Order (Vishram), 1kg (Badshah)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Pav Bhaji Masala",
+    "brands": "Vishram, Kubal, Badshah, MDH",
+    "notes": "To Order (Vishram), 1kg (Kubal), 1kg (Badshah), 100g (MDH)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Kubal",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Sambhar Masala",
+    "brands": "Vishram, MTR, Badshah, Everest",
+    "notes": "To Order (Vishram), 200g (MTR), 1kg (Badshah), 100g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "MTR",
+        "sizes": [
+          "200g"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Everest",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Rasam Powder",
+    "brands": "MTR",
+    "notes": "200g (MTR)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "MTR",
+        "sizes": [
+          "200g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Biryani Masala",
+    "brands": "Shan, Badshah, Everest",
+    "notes": "60g (Shan), 1kg (Badshah), 50g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Shan",
+        "sizes": [
+          "60g"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Everest",
+        "sizes": [
+          "50g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chicken Masala",
+    "brands": "Badshah, Everest",
+    "notes": "1kg (Badshah), 200g, 500g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Everest",
+        "sizes": [
+          "200g",
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Mutton Masala",
+    "brands": "Badshah, MDH, Kubal",
+    "notes": "1kg (Badshah), 100g (MDH), 100g (Kubal)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g"
+        ]
+      },
+      {
+        "brand": "Kubal",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Usal Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Malvani Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Ghati Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Goda Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chana Masala",
+    "brands": "Vishram, MDH, Badshah",
+    "notes": "To Order (Vishram), 500g (MDH), 1kg (Badshah)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "MDH",
+        "sizes": [
+          "500g"
+        ]
+      },
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kanda Lasoon Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kala Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Misal Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chaas Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kolhapuri Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Frankie Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Pizza Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Achari Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Dabeli Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Madras Curry Powder",
+    "brands": "Ship",
+    "notes": "500g (Ship)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Ship",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Sandwich Masala",
+    "brands": "Kapol",
+    "notes": "100g (Kapol)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Kapol",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Pani Puri Masala",
+    "brands": "Badshah",
+    "notes": "100g (Badshah)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Sabji Masala",
+    "brands": "Everest",
+    "notes": "100g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Everest",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Rajma Masala",
+    "brands": "MDH",
+    "notes": "100g (MDH)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Fish Masala",
+    "brands": "Badshah",
+    "notes": "100g (Badshah)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Tea Masala",
+    "brands": "Badshah",
+    "notes": "100g (Badshah)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Badshah",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chole Masala",
+    "brands": "Everest",
+    "notes": "100g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Everest",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Hyderabadi Chicken Masala",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Cajun Spices",
+    "brands": "Sarwar",
+    "notes": "450g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "450g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Peri Peri Seasoning",
+    "brands": "Sarwar",
+    "notes": "1kg, 250g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "1kg",
+          "250g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Lime Seasoning",
+    "brands": "Knorr",
+    "notes": "500g (Knorr)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Knorr",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Aromat Seasoning",
+    "brands": "Knorr, Springburst",
+    "notes": "500g (Knorr), 500g (Springburst)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Knorr",
+        "sizes": [
+          "500g"
+        ]
+      },
+      {
+        "brand": "Springburst",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chicken Seasoning",
+    "brands": "Knorr",
+    "notes": "800g (Knorr)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Knorr",
+        "sizes": [
+          "800g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Hing (Asafoetida)",
+    "brands": "LG, Kavita",
+    "notes": "Whole:100g / Powder:100g, 500g (LG), Whole 200g Powder 500g (Kavita)",
+    "variants": [
+      "Whole",
+      "Powder"
+    ],
+    "parsed": [
+      {
+        "brand": "LG",
+        "sizes": [
+          "Whole:100g / Powder:100g",
+          "500g"
+        ]
+      },
+      {
+        "brand": "Kavita",
+        "sizes": [
+          "Whole 200g Powder 500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Oregano",
+    "brands": "Vishram, Sarwar",
+    "notes": "To Order (Vishram), 8g sachets x300 (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "8g sachets x300"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Thyme",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Rosemary",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Basil",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Paprika",
+    "brands": "Vishram, Sarwar",
+    "notes": "To Order (Vishram), 8g sachets x300 (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "8g sachets x300"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Chilly Flakes",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Ajinomoto (MSG)",
+    "brands": "Vishram, Golden Crown",
+    "notes": "To Order (Vishram), 500g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      },
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Spices & Masalas",
+    "name": "Kesar (Saffron)",
+    "brands": "Mataji",
+    "notes": "1g (Mataji)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Mataji",
+        "sizes": [
+          "1g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Kaju (Cashew)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Fadcha (Splits)",
+      "Tudka",
+      "Kani (Fine)"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Badam (Almonds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Powder",
+      "Flakes",
+      "Mamra"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Pista (Pistachios)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Salted",
+      "Flakes"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Akhrot (Walnuts)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Magaj (Kernels)"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Kissmiss (Raisins)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Green",
+      "Black"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Magaj (Watermelon Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Khajoor (Dates)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Seedless",
+      "Khimya",
+      "Black",
+      "Chutney"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Anjeer (Dried Figs)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Charoli",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Hazelnut",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Khopra (Dry Coconut)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Salli (Shredded)"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Alubukhar (Prunes)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Jardalu (Apricots)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Makhana (Fox Nuts)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Seeng (Peanuts)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Sekeli",
+      "Salted",
+      "Kacha"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Khuskhus (Poppy Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Til (Sesame Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Black",
+      "White",
+      "Polished"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Sowf (Fennel Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Regular",
+      "Mint",
+      "Lucknow"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Rai (Mustard Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Kalonji (Nigella Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Sabjaa (Basil Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Alsi (Flax Seeds)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Dry Fruits, Nuts & Seeds",
+    "name": "Trifalla",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Basmati Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Biryani Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Colam Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Kani Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Ukda Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Mogra Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Jasmine Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "2kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Sushi Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Staff Rice",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Gehun (Wheat)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Atta"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ],
+        "sizesByVariant": {
+          "Whole": [
+            "500g",
+            "1kg",
+            "5kg",
+            "10kg"
+          ],
+          "Atta": [
+            "1kg",
+            "5kg",
+            "10kg",
+            "50kg"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Makai Atta",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Maida (Refined Flour)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "50kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Besan (Chickpea Flour)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Regular",
+      "Washing Grade"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "50kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Corn Flour",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "50kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Rawa (Semolina)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg",
+          "50kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Idli Rawa",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg",
+          "50kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Jawari (Jowar)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Atta"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ],
+        "sizesByVariant": {
+          "Whole": [
+            "500g",
+            "1kg",
+            "5kg",
+            "10kg"
+          ],
+          "Atta": [
+            "1kg",
+            "5kg",
+            "10kg",
+            "30kg"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Baajra (Millet)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Atta"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ],
+        "sizesByVariant": {
+          "Whole": [
+            "500g",
+            "1kg",
+            "5kg",
+            "10kg"
+          ],
+          "Atta": [
+            "1kg",
+            "5kg",
+            "10kg",
+            "30kg"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Nachni (Ragi)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Atta"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ],
+        "sizesByVariant": {
+          "Whole": [
+            "500g",
+            "1kg",
+            "5kg",
+            "10kg"
+          ],
+          "Atta": [
+            "1kg",
+            "5kg",
+            "10kg",
+            "30kg"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Laapsi (Broken Wheat)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Dalia (Broken Wheat)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Poha (Flattened Rice)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Thick",
+      "Thin"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "2kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Flours, Rice & Grains",
+    "name": "Sabudana (Sago)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Tuvar Dal",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Urad",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Dal",
+      "Gotha"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Moong",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Dal"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Chana Dal",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Masoor",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Dal"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Kabuli Chana",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Desi Chana",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Rajma",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Black",
+      "White"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Vatana (Dried Peas)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Green",
+      "White"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Matki (Moth Beans)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Chawla (Black Eyed Peas)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Vaal (Field Beans)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Nutrela Soya Chunks",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pulses, Lentils & Dal",
+    "name": "Mosambi Chana",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "30kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Sunflower Oil",
+    "brands": "Fortune, Sunrich",
+    "notes": "13kg (Fortune), 13kg (Sunrich)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Fortune",
+        "sizes": [
+          "13kg"
+        ]
+      },
+      {
+        "brand": "Sunrich",
+        "sizes": [
+          "13kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Palm Oil (Palmolin)",
+    "brands": "Ruchi Gold",
+    "notes": "13kg (Ruchi Gold)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Ruchi Gold",
+        "sizes": [
+          "13kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Mustard Oil",
+    "brands": "Sarsola, Shreeji",
+    "notes": "800ml (Sarsola), 1L, 15kg (Shreeji)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarsola",
+        "sizes": [
+          "800ml"
+        ]
+      },
+      {
+        "brand": "Shreeji",
+        "sizes": [
+          "1L",
+          "15kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Coconut Oil",
+    "brands": "Nirmal",
+    "notes": "1L (Nirmal)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Nirmal",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Sesame Oil (Til Oil)",
+    "brands": "Angelo",
+    "notes": "500ml (Angelo)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Angelo",
+        "sizes": [
+          "500ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Olive Oil",
+    "brands": "Angelo",
+    "notes": "1L (Angelo)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Angelo",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Groundnut Oil",
+    "brands": "RRO",
+    "notes": "5L (RRO)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "RRO",
+        "sizes": [
+          "5L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Salad Oil",
+    "brands": "Sarwar",
+    "notes": "1L (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Desi Ghee",
+    "brands": "Gowardhan, Amul, Triveni",
+    "notes": "1L (Gowardhan), 1L (Amul), 1L (Triveni)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Gowardhan",
+        "sizes": [
+          "1L"
+        ]
+      },
+      {
+        "brand": "Amul",
+        "sizes": [
+          "1L"
+        ]
+      },
+      {
+        "brand": "Triveni",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Oils & Ghee",
+    "name": "Vegetable Ghee",
+    "brands": "Ruchi, Lion",
+    "notes": "893g, 15kg (Ruchi), 893g (Lion)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Ruchi",
+        "sizes": [
+          "893g",
+          "15kg"
+        ]
+      },
+      {
+        "brand": "Lion",
+        "sizes": [
+          "893g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Sugar",
+    "brands": "Vishram, MB Sugar, Sugar Free",
+    "notes": "To Order (Vishram), 200 Sachet Pack (MB Sugar), 100 Sachet Pack (Sugar Free)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg",
+          "5kg",
+          "10kg",
+          "50kg"
+        ]
+      },
+      {
+        "brand": "MB Sugar",
+        "sizes": [
+          "200 Sachet Pack"
+        ]
+      },
+      {
+        "brand": "Sugar Free",
+        "sizes": [
+          "100 Sachet Pack"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Gud (Jaggery)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Regular",
+      "Desi"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Rawalgaon (Sugar Candy)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Salt",
+    "brands": "Tata, Captain Cook",
+    "notes": "1kg (Tata), 1kg (Captain Cook)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Tata",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Captain Cook",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Sanchar (Black Salt)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Whole",
+      "Pink",
+      "Black"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Honey",
+    "brands": "Lokmanya",
+    "notes": "1kg (Lokmanya)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Lokmanya",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Rock Salt",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Sindha Namak",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Sugar Cube",
+    "brands": "MB Sugar",
+    "notes": "500g (MB Sugar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "MB Sugar",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Bura Sugar (Powdered Sugar)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sugar, Salt & Sweeteners",
+    "name": "Limbu Phool (Citric Acid)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Maggi Seasoning",
+    "brands": "Maggi",
+    "notes": "200ml (Maggi)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Maggi",
+        "sizes": [
+          "200ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Soya Sauce",
+    "brands": "Winn, Chings",
+    "notes": "700ml, 4.5kg, 10kg, 100 sachet pack (Winn), 700g (Chings)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Winn",
+        "sizes": [
+          "700ml",
+          "4.5kg",
+          "10kg",
+          "100 sachet pack"
+        ]
+      },
+      {
+        "brand": "Chings",
+        "sizes": [
+          "700g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Chilly Sauce",
+    "brands": "Winn, Chings, Sarwar",
+    "notes": "690g, 10kg, 100 sachet pack (Winn), 690g, 5kg, 10kg (Chings), 5kg (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Winn",
+        "sizes": [
+          "690g",
+          "10kg",
+          "100 sachet pack"
+        ]
+      },
+      {
+        "brand": "Chings",
+        "sizes": [
+          "690g",
+          "5kg",
+          "10kg"
+        ]
+      },
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "5kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Tomato Sauce/Ketchup",
+    "brands": "Kissan, Magic, Winn",
+    "notes": "1kg (Kissan), 1kg, 4.5kg (Magic), 950g, 4.5kg, 100 sachet pack (Winn)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Kissan",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Magic",
+        "sizes": [
+          "1kg",
+          "4.5kg"
+        ]
+      },
+      {
+        "brand": "Winn",
+        "sizes": [
+          "950g",
+          "4.5kg",
+          "100 sachet pack"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Mayonnaise",
+    "brands": "Winn",
+    "notes": "1kg (Winn)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Winn",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Oyster Sauce",
+    "brands": "Lee Kum Kee",
+    "notes": "500g, 2.2kg (Lee Kum Kee)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Lee Kum Kee",
+        "sizes": [
+          "500g",
+          "2.2kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Veg Oyster Sauce",
+    "brands": "Lee Kum Kee, Woh Hup",
+    "notes": "510g (Lee Kum Kee), 510g (Woh Hup)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Lee Kum Kee",
+        "sizes": [
+          "510g"
+        ]
+      },
+      {
+        "brand": "Woh Hup",
+        "sizes": [
+          "510g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Tomato Puree",
+    "brands": "Sarwar",
+    "notes": "850g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "850g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Hot and Sweet Sauce",
+    "brands": "Maggi",
+    "notes": "1kg (Maggi)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Maggi",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Hoisin Sauce",
+    "brands": "Woh Hup",
+    "notes": "320g (Woh Hup)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Woh Hup",
+        "sizes": [
+          "320g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Chipotle Mayo",
+    "brands": "Wingreens",
+    "notes": "1kg (Wingreens)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Wingreens",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Light Soya Sauce",
+    "brands": "Lee Kum Kee",
+    "notes": "500g (Lee Kum Kee)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Lee Kum Kee",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Dark Soya Sauce",
+    "brands": "Lee Kum Kee",
+    "notes": "600g (Lee Kum Kee)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Lee Kum Kee",
+        "sizes": [
+          "600g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Dijon Mustard",
+    "brands": "Angelo",
+    "notes": "400g (Angelo)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Angelo",
+        "sizes": [
+          "400g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Sambal Olek Sauce",
+    "brands": "Who Hup",
+    "notes": "340g (Who Hup)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Who Hup",
+        "sizes": [
+          "340g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "US Mustard",
+    "brands": "American Garden",
+    "notes": "227g (American Garden)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "American Garden",
+        "sizes": [
+          "227g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Tobasco",
+    "brands": "Tabasco",
+    "notes": "60ml (Tabasco)",
+    "variants": [
+      "Red",
+      "Green"
+    ],
+    "parsed": [
+      {
+        "brand": "Tabasco",
+        "sizes": [
+          "60ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Capsico Red Sauce",
+    "brands": "Capsico",
+    "notes": "60ml (Capsico)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Capsico",
+        "sizes": [
+          "60ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Hot Chilly Sauce",
+    "brands": "Sriraja Panich",
+    "notes": "570g (Sriraja Panich)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sriraja Panich",
+        "sizes": [
+          "570g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Sweet Chilly Sauce",
+    "brands": "Maepranom",
+    "notes": "980g (Maepranom)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Maepranom",
+        "sizes": [
+          "980g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Green Chilly Sauce",
+    "brands": "Sarwar",
+    "notes": "650g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "650g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Chipotle Sauce",
+    "brands": "Veeba",
+    "notes": "1kg (Veeba)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Veeba",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Barbeque Sauce",
+    "brands": "American Garden",
+    "notes": "510ml (American Garden)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "American Garden",
+        "sizes": [
+          "510ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Spicy Black Bean Sauce",
+    "brands": "Who Hup",
+    "notes": "340g (Who Hup)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Who Hup",
+        "sizes": [
+          "340g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Teriyaki Sauce",
+    "brands": "Lee Kum Kee",
+    "notes": "250g (Lee Kum Kee)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Lee Kum Kee",
+        "sizes": [
+          "250g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Tahina Paste",
+    "brands": "Al Ammar",
+    "notes": "1kg (Al Ammar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Al Ammar",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Worcestershire Sauce",
+    "brands": "Sams",
+    "notes": "190g (Sams)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sams",
+        "sizes": [
+          "190g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Thai Curry Paste",
+    "brands": "Namjai",
+    "notes": "1kg (Namjai)",
+    "variants": [
+      "Yellow",
+      "Red",
+      "Green"
+    ],
+    "parsed": [
+      {
+        "brand": "Namjai",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Vinegar (White)",
+    "brands": "Sarwar",
+    "notes": "700ml, 5L (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "700ml",
+          "5L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Acetic Acid",
+    "brands": "Sarwar",
+    "notes": "500ml (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "500ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Pickle (Mix)",
+    "brands": "Sidhi Vinayak, Winn",
+    "notes": "5kg (Sidhi Vinayak), 100 sachet pack (Winn)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sidhi Vinayak",
+        "sizes": [
+          "5kg"
+        ]
+      },
+      {
+        "brand": "Winn",
+        "sizes": [
+          "100 sachet pack"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Pickle (Mango)",
+    "brands": "Sidhi Vinayak",
+    "notes": "5kg (Sidhi Vinayak)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sidhi Vinayak",
+        "sizes": [
+          "5kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Pickle (Ginger)",
+    "brands": "Twin Tusk",
+    "notes": "840g (Twin Tusk)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Twin Tusk",
+        "sizes": [
+          "840g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "Kasundi Mustard",
+    "brands": "Sarwar",
+    "notes": "1kg (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Sauces, Pastes & Condiments",
+    "name": "8 to 9 Sauce",
+    "brands": "Sams",
+    "notes": "200g (Sams)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sams",
+        "sizes": [
+          "200g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Tea Powder",
+    "brands": "Vishram, Tata Agni, Society, Wagh Bakri",
+    "notes": "To Order (Vishram), 1kg (Tata Agni), 1kg (Society), 500g (Wagh Bakri)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Tata Agni",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Society",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Wagh Bakri",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Tea Bags",
+    "brands": "Taj",
+    "notes": "200 bag packet (Taj)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Taj",
+        "sizes": [
+          "200 bag packet"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Coffee",
+    "brands": "Nescafe, MR Coffee, Sunrise Coffee",
+    "notes": "90g, 500g, Sachet (Nescafe), 100g (MR Coffee), 500g (Sunrise Coffee)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Nescafe",
+        "sizes": [
+          "90g",
+          "500g",
+          "Sachet"
+        ]
+      },
+      {
+        "brand": "MR Coffee",
+        "sizes": [
+          "100g"
+        ]
+      },
+      {
+        "brand": "Sunrise Coffee",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Kokam Syrup",
+    "brands": "Shree Sidhivinayak",
+    "notes": "1L (Shree Sidhivinayak)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Shree Sidhivinayak",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Kokam Agul",
+    "brands": "Shree Sidhivinayak",
+    "notes": "1L (Shree Sidhivinayak)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Shree Sidhivinayak",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Rose Syrup (Rooh Afza)",
+    "brands": "Davars",
+    "notes": "700ml (Davars)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Davars",
+        "sizes": [
+          "700ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Kesar Syrup",
+    "brands": "Davars",
+    "notes": "700ml (Davars)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Davars",
+        "sizes": [
+          "700ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Ginger Lime Syrup",
+    "brands": "Tina",
+    "notes": "750ml (Tina)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Tina",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Mojito Syrup (Lime Mint)",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Sikonjbin (Sekanjabin)",
+    "brands": "Davars",
+    "notes": "750ml (Davars)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Davars",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Pista Syrup",
+    "brands": "Sarwar",
+    "notes": "750ml (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Kala Khatta Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Grenadine Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Aam Panha Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Blue Curacao",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Pina Colada",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Mango Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Mango Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Strawberry Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Strawberry Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Chocolate Sauce",
+    "brands": "Hersheys",
+    "notes": "623ml (Hersheys)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Hersheys",
+        "sizes": [
+          "623ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Blueberry Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Blueberry Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Black Currant Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Orange Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Blackberry Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Ice Tea Powder (Lemon)",
+    "brands": "Nestle",
+    "notes": "1L (Nestle)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Nestle",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Butterscotch Syrup",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Jaljeera",
+    "brands": "MDH",
+    "notes": "100g (MDH)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "MDH",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Kesari Milk Masala",
+    "brands": "Everest",
+    "notes": "100g (Everest)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Everest",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Kiwi Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Watermelon Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Watermelon Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Pineapple Crush",
+    "brands": "Manama",
+    "notes": "1L (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "1L"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Syrups, Crushes & Beverages",
+    "name": "Pomegranare Syrup",
+    "brands": "Manama",
+    "notes": "750ml (Manama)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Manama",
+        "sizes": [
+          "750ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Papad",
+    "brands": "Lijjat",
+    "notes": "1Kg (Lijjat)",
+    "variants": [
+      "Large",
+      "Small"
+    ],
+    "parsed": [
+      {
+        "brand": "Lijjat",
+        "sizes": [
+          "1Kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Khichiya Papad",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Regular",
+      "Masala"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Nachni Papad",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Aloo Papad",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Cut Sev",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Sev",
+    "brands": "Titan",
+    "notes": "250g, 500g (Titan)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Titan",
+        "sizes": [
+          "250g",
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Bikaneri Sev",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Roasted Sev",
+    "brands": "Bambino",
+    "notes": "450g (Bambino)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Bambino",
+        "sizes": [
+          "450g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Boondi (Khara)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Yellow"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Fry Yums",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Heart Shape",
+      "Penne"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Choco Flakes",
+    "brands": "Chocos",
+    "notes": "500g (Chocos)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Chocos",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Falooda Sev",
+    "brands": "King",
+    "notes": "100g (King)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "King",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Snacks & Farsan",
+    "name": "Mukhwaas",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Green",
+      "Salli Khopra"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Tutti Fruiti",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Dry",
+      "Wet Green",
+      "Wet Red"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Cherry (Glazed)",
+    "brands": "Vishram, Golden Crown",
+    "notes": "To Order (Vishram), 850g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "850g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Bread Crumbs",
+    "brands": "Vishram, Panko",
+    "notes": "To Order (Vishram), 1kg (Panko)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1kg"
+        ]
+      },
+      {
+        "brand": "Panko",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Baking Powder",
+    "brands": "Sarwar, Golden Crown",
+    "notes": "500g (Sarwar), 400g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "500g"
+        ]
+      },
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "400g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Jelly",
+    "brands": "Winn",
+    "notes": "90g (Winn)",
+    "variants": [
+      "Rasberry",
+      "Strawberry"
+    ],
+    "parsed": [
+      {
+        "brand": "Winn",
+        "sizes": [
+          "90g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Food Colour",
+    "brands": "Bush",
+    "notes": "100g (Bush)",
+    "variants": [
+      "Red",
+      "Yellow",
+      "Green"
+    ],
+    "parsed": [
+      {
+        "brand": "Bush",
+        "sizes": [
+          "100g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Cooking Soda",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "100g",
+          "250g",
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Dry Yeast",
+    "brands": "Blue Valley",
+    "notes": "500g (Blue Valley)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Blue Valley",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Kewra Water",
+    "brands": "Sarwar",
+    "notes": "500ml (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "500ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Bakery & Baking",
+    "name": "Rose Water",
+    "brands": "Sarwar",
+    "notes": "500ml (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "500ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "Nylon Khaman Mix",
+    "brands": "Talod",
+    "notes": "500g (Talod)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Talod",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "Caramel Pudding",
+    "brands": "Sarwar",
+    "notes": "90g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "90g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "Custard Powder",
+    "brands": "Sarwar",
+    "notes": "500g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "Tom Yam Broth",
+    "brands": "Knorr",
+    "notes": "72g (Knorr)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Knorr",
+        "sizes": [
+          "72g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "White Chutney",
+    "brands": "MTR",
+    "notes": "200g (MTR)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "MTR",
+        "sizes": [
+          "200g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "Gulab Jamun Mix",
+    "brands": "Gits",
+    "notes": "400g (Gits)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Gits",
+        "sizes": [
+          "400g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Ready Mixes & Premixes",
+    "name": "Dhokla White Mix",
+    "brands": "Talod",
+    "notes": "500g (Talod)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Talod",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pasta, Noodles & International",
+    "name": "Pasta",
+    "brands": "Vero Bella",
+    "notes": "500g (Vero Bella)",
+    "variants": [
+      "Spagetti",
+      "Penne",
+      "Macroni",
+      "Fusilli"
+    ],
+    "parsed": [
+      {
+        "brand": "Vero Bella",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pasta, Noodles & International",
+    "name": "Egg Noodles",
+    "brands": "Sarwar, Lee Yong",
+    "notes": "100g (Sarwar), 1Kg (Lee Yong)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "100g"
+        ]
+      },
+      {
+        "brand": "Lee Yong",
+        "sizes": [
+          "1Kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pasta, Noodles & International",
+    "name": "Veg Hakka Noodles",
+    "brands": "Sarwar, Lee Yong",
+    "notes": "100g (Sarwar), 1kg (Lee Yong)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "100g"
+        ]
+      },
+      {
+        "brand": "Lee Yong",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pasta, Noodles & International",
+    "name": "Lasagna Sheets",
+    "brands": "Pasta Reggia",
+    "notes": "500g (Pasta Reggia)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Pasta Reggia",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pasta, Noodles & International",
+    "name": "Fried Noodles",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Button Mushroom",
+    "brands": "Golden Crown, Value",
+    "notes": "800g (Golden Crown), 800g (Value)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "800g"
+        ]
+      },
+      {
+        "brand": "Value",
+        "sizes": [
+          "800g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Tandoori Mushroom",
+    "brands": "Sarwar",
+    "notes": "800g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "800g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Sweet Corn",
+    "brands": "Winn",
+    "notes": "425g, 850g (Winn)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Winn",
+        "sizes": [
+          "425g",
+          "850g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Baby Corn",
+    "brands": "Sarwar, Austin",
+    "notes": "425g (Sarwar), 800g (Austin)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "425g"
+        ]
+      },
+      {
+        "brand": "Austin",
+        "sizes": [
+          "800g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Bamboo Shoots",
+    "brands": "Sarwar",
+    "notes": "560g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "560g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Baked Beans",
+    "brands": "Sarwar",
+    "notes": "400g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "400g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Pineapple (Canned)",
+    "brands": "Sarwar",
+    "notes": "850g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "850g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Mango Pulp",
+    "brands": "Aditi",
+    "notes": "860g (Aditi)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Aditi",
+        "sizes": [
+          "860g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Olives",
+    "brands": "Euro Gold",
+    "notes": "450g (Euro Gold)",
+    "variants": [
+      "Green",
+      "Black"
+    ],
+    "parsed": [
+      {
+        "brand": "Euro Gold",
+        "sizes": [
+          "450g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Gherkins",
+    "brands": "Golden Crown",
+    "notes": "670g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "670g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Jalapenos",
+    "brands": "Golden Crown",
+    "notes": "650g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "650g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Sarson Ka Saag",
+    "brands": "Sarwar",
+    "notes": "450g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "450g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Canned & Preserved Goods",
+    "name": "Veg Soya Chaap",
+    "brands": "Golden Crown",
+    "notes": "850g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "850g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Nirma Washing Powder",
+    "brands": "Nirma",
+    "notes": "500g (Nirma)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Nirma",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Pitambari Powder",
+    "brands": "Pitambari",
+    "notes": "150g (Pitambari)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Pitambari",
+        "sizes": [
+          "150g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Shine It",
+    "brands": "Shineit",
+    "notes": "4kg (Shineit)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Shineit",
+        "sizes": [
+          "4kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Dishwash Scrubber",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Nylon",
+      "Steel Wool"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1 piece",
+          "1 dozen"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Cloth",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Table",
+      "Floor"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "2 piece",
+          "1 dozen"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Garbage Bags (Biodegradable)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1 packet"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Toothpick",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [
+      "Small",
+      "Large"
+    ],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1 box"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Housekeeping & Disposables",
+    "name": "Klin Film (Cling Wrap)",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1 roll"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Bournvita",
+    "brands": "Cadbury",
+    "notes": "1kg (Cadbury)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Cadbury",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Drinking Chocolate",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Milk Powder",
+    "brands": "Sagar",
+    "notes": "500g (Sagar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sagar",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Milk Maid (Condensed Milk)",
+    "brands": "Nestle",
+    "notes": "1kg (Nestle)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Nestle",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Coconut Milk Powder",
+    "brands": "Maggi",
+    "notes": "1kg (Maggi)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Maggi",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Coconut Powder",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "500g",
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Corn Flakes",
+    "brands": "Golden Crown",
+    "notes": "500g (Golden Crown)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Golden Crown",
+        "sizes": [
+          "500g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Oats",
+    "brands": "Quaker",
+    "notes": "1kg (Quaker)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Quaker",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Nutella",
+    "brands": "Nutella",
+    "notes": "350g (Nutella)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Nutella",
+        "sizes": [
+          "350g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Peanut Butter",
+    "brands": "Sarwar",
+    "notes": "510g (Sarwar)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Sarwar",
+        "sizes": [
+          "510g"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Breakfast & Cereals",
+    "name": "Jam",
+    "brands": "Noble",
+    "notes": "1kg (Noble)",
+    "variants": [
+      "Mixed Fruit"
+    ],
+    "parsed": [
+      {
+        "brand": "Noble",
+        "sizes": [
+          "1kg"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pooja & Religious",
+    "name": "Pooja Oil",
+    "brands": "Pitambari",
+    "notes": "900ml (Pitambari)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Pitambari",
+        "sizes": [
+          "900ml"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pooja & Religious",
+    "name": "Agarbatti",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "1 box"
+        ]
+      }
+    ]
+  },
+  {
+    "cat": "Pooja & Religious",
+    "name": "Dhup Kani",
+    "brands": "Vishram",
+    "notes": "To Order (Vishram)",
+    "variants": [],
+    "parsed": [
+      {
+        "brand": "Vishram",
+        "sizes": [
+          "2 box"
+        ]
+      }
+    ]
+  }
+];
 
 var catLabels = {"Spices & Masalas": "Spices & Masalas", "Flours, Rice & Grains": "Flours, Rice & Grains", "Pulses, Lentils & Dal": "Pulses, Lentils & Dal", "Oils & Ghee": "Oils & Ghee", "Dry Fruits, Nuts & Seeds": "Dry Fruits, Nuts & Seeds", "Sugar, Salt & Sweeteners": "Sugar, Salt & Sweeteners", "Sauces, Pastes & Condiments": "Sauces & Condiments", "Syrups, Crushes & Beverages": "Syrups & Beverages", "Canned & Preserved Goods": "Canned Goods", "Bakery & Baking": "Bakery & Baking", "Pasta, Noodles & International": "Pasta & Noodles", "Snacks & Farsan": "Snacks & Farsan", "Ready Mixes & Premixes": "Ready Mixes", "Breakfast & Cereals": "Breakfast & Cereals", "Housekeeping & Disposables": "Housekeeping", "Pooja & Religious": "Pooja & Religious"};
 
@@ -613,7 +6104,7 @@ function openPopup(idx) {
               document.querySelectorAll(".brand-select-btn").forEach(function(b){b.classList.remove("selected");});
               row.classList.add("selected"); sbtn.classList.add("selected");
               selBrand=item.brand; selSize="";
-              showSizes(item);
+              showSizes(item, selVariant);
             };
             row.appendChild(nameSpan);
             row.appendChild(sbtn);
@@ -622,7 +6113,7 @@ function openPopup(idx) {
           if(singleBrand) {
             // Auto-select the only brand and show sizes
             selBrand=p.parsed[0].brand; selSize="";
-            showSizes(p.parsed[0]);
+            showSizes(p.parsed[0], selVariant);
           }
         } else {
           // Any other variant (Whole, Barik, Jada, etc.) — show Vishram only in brand field
@@ -642,14 +6133,14 @@ function openPopup(idx) {
           sbtn.textContent="Select →";
           sbtn.onclick=function(){
             selBrand=vishramItem.brand; selSize="";
-            showSizes(vishramItem);
+            showSizes(vishramItem, selVariant);
           };
           row.appendChild(nameSpan);
           row.appendChild(sbtn);
           br.appendChild(row);
           // Auto select Vishram and show sizes
           selBrand=vishramItem.brand; selSize="";
-          showSizes(vishramItem);
+          showSizes(vishramItem, selVariant);
         }
       };
       vo.appendChild(btn);
@@ -657,7 +6148,7 @@ function openPopup(idx) {
 
   } else if(p.parsed.length===1&&p.parsed[0].brand==="") {
     // No brand at all — skip brand field, go straight to sizes
-    selBrand=""; showSizes(p.parsed[0]);
+    selBrand=""; showSizes(p.parsed[0], selVariant);
   } else {
     // Always show brand field, even with one brand. Single brand = auto-selected pill.
     var br=document.getElementById("brandRows");
@@ -678,7 +6169,7 @@ function openPopup(idx) {
         document.querySelectorAll(".brand-select-btn").forEach(function(b){b.classList.remove("selected");});
         row.classList.add("selected"); btn.classList.add("selected");
         selBrand=item.brand; selSize="";
-        showSizes(item);
+        showSizes(item, selVariant);
       };
       row.appendChild(nameSpan);
       row.appendChild(btn);
@@ -687,36 +6178,32 @@ function openPopup(idx) {
     if(singleBrand) {
       // Auto-select the only brand and show sizes
       selBrand=p.parsed[0].brand; selSize="";
-      showSizes(p.parsed[0]);
+      showSizes(p.parsed[0], selVariant);
     }
   }
   document.getElementById("popupOverlay").classList.add("show");
 }
 
-function showSizes(item) {
+function showSizes(item, variant) {
   var sf=document.getElementById("sizeField");
   var so=document.getElementById("sizeOptions");
-  var vi=document.getElementById("vishramInput");
   var sl=document.getElementById("sizeLabel");
   sf.style.display="block"; so.innerHTML="";
-  if(item.sizes.length===1&&item.sizes[0]==="__vishram__") {
-    so.style.display="none"; vi.style.display="block"; vi.value="";
-    sl.textContent="Specify Size / Packing";
-    vi.oninput=function(){ selSize=this.value.trim(); };
-    setTimeout(function(){ vi.focus(); },100);
-  } else {
-    so.style.display="flex"; vi.style.display="none";
-    sl.textContent="Choose Pack Size"; selSize="";
-    item.sizes.forEach(function(size) {
-      var btn=document.createElement("button");
-      btn.className="option-btn"; btn.textContent=size;
-      btn.onclick=function(){
-        document.querySelectorAll("#sizeOptions .option-btn").forEach(function(b){b.classList.remove("sel-size");});
-        btn.classList.add("sel-size"); selSize=size;
-      };
-      so.appendChild(btn);
-    });
+  var sizes = item.sizes || [];
+  if (variant && item.sizesByVariant && item.sizesByVariant[variant]) {
+    sizes = item.sizesByVariant[variant];
   }
+  so.style.display="flex";
+  sl.textContent="Choose Pack Size"; selSize="";
+  sizes.forEach(function(size) {
+    var btn=document.createElement("button");
+    btn.className="option-btn"; btn.textContent=size;
+    btn.onclick=function(){
+      document.querySelectorAll("#sizeOptions .option-btn").forEach(function(b){b.classList.remove("sel-size");});
+      btn.classList.add("sel-size"); selSize=size;
+    };
+    so.appendChild(btn);
+  });
 }
 
 function changeQty(d) {
@@ -732,10 +6219,7 @@ function confirmAdd() {
   if(hasVariants && selVariant.toLowerCase()==="powder" && p.parsed.length>1 && !selBrand){ alert("Please select a brand."); return; }
   // No variant products: brand must be selected if multiple
   if(!hasVariants && p.parsed.length>1 && !selBrand){ alert("Please select a brand."); return; }
-  if(!selSize){
-    selSize=document.getElementById("vishramInput").value.trim();
-    if(!selSize){alert("Please select or enter a pack size.");return;}
-  }
+  if(!selSize){alert("Please select a pack size.");return;}
   var qty=parseInt(document.getElementById("qtyInput").value)||1;
   var parts=[];
   if(selVariant) parts.push(selVariant);
