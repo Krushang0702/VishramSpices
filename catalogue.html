@@ -6292,4 +6292,14 @@ function sendOrder() {
     msg+=(i+1)+". "+item.name;
     if(item.variant) msg+=" ("+item.variant+")";
     if(item.brand) msg+=" - "+item.brand;
-    msg+=" - "+item.size+" x
+    msg+=" - "+item.size+" x"+item.qty+"\n";
+  });
+  msg+="\n_Sent via Vishram Spices Catalogue_";
+  window.open("https://wa.me/919819381088?text="+encodeURIComponent(msg),"_blank");
+  closeCart();
+}
+
+init();
+</script>
+</body>
+</html>
