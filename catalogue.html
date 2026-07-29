@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vishram Spices (India) Pvt. Ltd. - Wholesale Food & Spice Supplier</title>
     <meta name="description" content="Vishram Spices (India) Pvt. Ltd. - Mumbai's trusted wholesale food & spice supplier since 1972. 300+ products across 16 categories. Supplying hotels, restaurants, caterers & canteens across Maharashtra.">
     <meta property="og:title" content="Vishram Spices (India) Pvt. Ltd.">
@@ -20,15 +20,16 @@
   --amber:#C89D4C; --white:#FFFFFF; --muted:#86533F;
   --text:#1C1C1C; --wa:#25D366;
   --frame:#6B0F0F; --frame-gap:12px; --frame-radius:36px;
+  --nav-h:64px; --safe-top:env(safe-area-inset-top,0px); --safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{background:var(--frame);font-family:"DM Sans",sans-serif;color:var(--dark);-webkit-text-size-adjust:100%;overflow-x:hidden;}
-.site-canvas{background:var(--cream);border-radius:0 0 var(--frame-radius) var(--frame-radius);margin:0 var(--frame-gap) var(--frame-gap);min-height:calc(100vh - var(--frame-gap));}
+.site-canvas{background:var(--cream);border-radius:0 0 var(--frame-radius) var(--frame-radius);margin:0 var(--frame-gap) var(--frame-gap);min-height:calc(100vh - var(--frame-gap));min-height:calc(100dvh - var(--frame-gap));}
 body::after{content:"";position:fixed;inset:var(--frame-gap);border-radius:var(--frame-radius);box-shadow:0 0 0 calc(var(--frame-gap) + 30px) var(--frame);pointer-events:none;z-index:400;}
 
 /* NAVBAR */
-nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-gap);z-index:500;background:rgba(246,240,230,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(177,158,124,0.4);border-radius:var(--frame-radius) var(--frame-radius) 0 0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;}
+nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-gap);z-index:500;background:rgba(246,240,230,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(177,158,124,0.4);border-radius:var(--frame-radius) var(--frame-radius) 0 0;height:calc(var(--nav-h) + var(--safe-top));display:flex;align-items:center;justify-content:space-between;padding:var(--safe-top) 16px 0;}
 .nav-left{display:flex;align-items:center;gap:10px;}
 .nav-logo-img{width:44px;height:44px;border-radius:6px;object-fit:contain;}
 .nav-brand-wrap{display:flex;flex-direction:column;}
@@ -47,15 +48,15 @@ nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-
   nav{padding:0 32px;}
 }
 @media(max-width:700px){
-  :root{--frame-gap:8px;--frame-radius:24px;}
+  :root{--frame-gap:0px;--frame-radius:0px;}
 }
-.mobile-menu{display:none;position:fixed;top:calc(64px + var(--frame-gap));left:var(--frame-gap);right:var(--frame-gap);background:rgba(246,240,230,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(177,158,124,0.4);z-index:499;padding:8px 16px;flex-direction:column;gap:2px;}
+.mobile-menu{display:none;position:fixed;top:calc(var(--nav-h) + var(--safe-top) + var(--frame-gap));left:var(--frame-gap);right:var(--frame-gap);background:rgba(246,240,230,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(177,158,124,0.4);z-index:499;padding:8px 16px;flex-direction:column;gap:2px;}
 .mobile-menu.open{display:flex;}
 .mobile-menu-link{color:var(--dark);font-size:14px;font-weight:500;padding:11px 14px;border-radius:8px;cursor:pointer;border:none;background:none;text-align:left;width:100%;font-family:"DM Sans",sans-serif;}
 .mobile-menu-link:hover{background:rgba(177,158,124,0.15);color:var(--maroon);}
 
 /* VIEWS */
-.view{display:none;padding-top:calc(72px + var(--frame-gap));min-height:calc(100vh - var(--frame-gap));}
+.view{display:none;padding-top:calc(var(--nav-h) + 8px + var(--safe-top) + var(--frame-gap));min-height:calc(100vh - var(--frame-gap));min-height:calc(100dvh - var(--frame-gap));}
 .view.active{display:block;}
 
 /* HOME */
@@ -94,13 +95,13 @@ nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-
 .contact-address-text{font-size:13px;color:var(--dark);line-height:1.8;}
 
 /* CATALOGUE */
-.catalogue-view{background:var(--cream);min-height:100vh;}
+.catalogue-view{background:var(--cream);min-height:100vh;min-height:100dvh;}
 .breadcrumb{padding:14px 20px 0;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
 .breadcrumb-link{color:var(--muted);cursor:pointer;background:none;border:none;font-family:"DM Sans",sans-serif;font-size:12px;padding:0;transition:color 0.2s;}
 .breadcrumb-link:hover{color:var(--maroon);}
 .breadcrumb-sep{color:var(--border);}
 .breadcrumb-current{color:var(--dark);font-weight:600;}
-.search-wrap{padding:12px 20px;background:var(--cream);position:sticky;top:calc(64px + var(--frame-gap));z-index:100;border-bottom:1px solid var(--border);}
+.search-wrap{padding:12px 20px;background:var(--cream);position:sticky;top:calc(var(--nav-h) + var(--safe-top) + var(--frame-gap));z-index:100;border-bottom:1px solid var(--border);}
 .search-box{display:flex;align-items:center;background:white;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;gap:10px;transition:border-color 0.2s;box-shadow:0 1px 4px rgba(102,24,8,0.05);}
 .search-box:focus-within{border-color:var(--dark);}
 .search-box input{border:none;outline:none;font-family:"DM Sans",sans-serif;font-size:15px;color:var(--dark);width:100%;background:transparent;}
@@ -156,7 +157,7 @@ nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-
 /* POPUP */
 .popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:600;align-items:flex-end;justify-content:center;}
 .popup-overlay.show{display:flex;}
-.popup{background:var(--cream);border-radius:20px 20px 0 0;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(102,24,8,0.2);}
+.popup{background:var(--cream);border-radius:20px 20px 0 0;width:100%;max-height:92vh;max-height:92dvh;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 -8px 40px rgba(102,24,8,0.2);}
 @media(min-width:600px){.popup{max-width:560px;}}
 .popup-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;display:block;}
 .popup-header{padding:14px 20px 10px;display:flex;align-items:flex-start;gap:12px;}
@@ -193,7 +194,7 @@ nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-
 
 /* CART MODAL */
 .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:700;}
-.cart-modal{position:fixed;bottom:0;left:0;right:0;background:var(--cream);border-radius:20px 20px 0 0;z-index:800;max-height:85vh;display:none;flex-direction:column;box-shadow:0 -8px 40px rgba(170,26,10,0.15);}
+.cart-modal{position:fixed;bottom:0;left:0;right:0;background:var(--cream);border-radius:20px 20px 0 0;z-index:800;max-height:85vh;max-height:85dvh;display:none;flex-direction:column;overscroll-behavior:contain;box-shadow:0 -8px 40px rgba(170,26,10,0.15);}
 @media(min-width:600px){.cart-modal{max-width:560px;left:50%;transform:translateX(-50%);}}
 .cart-modal.show{display:flex;}
 .cart-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;display:block;flex-shrink:0;}
@@ -221,6 +222,32 @@ nav{position:fixed;top:var(--frame-gap);left:var(--frame-gap);right:var(--frame-
 .empty-cart p{font-size:14px;line-height:1.6;}
 footer{background:transparent;padding:20px 20px 28px;text-align:center;border-top:1px solid rgba(177,158,124,0.35);}
 footer p{font-size:11px;color:var(--muted);}
+
+/* ==========================================================================
+   MOBILE OVERRIDES — must stay last in this stylesheet.
+   The decorative maroon frame is a fixed, transparent overlay whose border is
+   painted with a 42px box-shadow spread. On phones that layer does not repaint
+   when the URL bar collapses/expands, so scrolled content smears through it —
+   and the blurred fixed nav/bottom bar sitting on top make it worse.
+   Below 700px we drop the frame entirely and make the fixed bars fully opaque:
+   nothing transparent, nothing to leak, nothing to repaint.
+   Desktop (>=700px) keeps the framed look unchanged.
+   ========================================================================== */
+@media(max-width:700px){
+  body{background:var(--cream);}
+  body::after{display:none;}
+  .site-canvas{margin:0;border-radius:0;min-height:100vh;min-height:100dvh;}
+  nav{top:0;left:0;right:0;border-radius:0;
+      background:#F6F0E6;backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .mobile-menu{left:0;right:0;
+      background:#F6F0E6;backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .bottom-bar{left:0;right:0;bottom:0;border-radius:0;
+      background:#FBF7F0;backdrop-filter:none;-webkit-backdrop-filter:none;
+      padding-bottom:var(--safe-bottom);}
+  .popup-footer{padding-bottom:calc(28px + var(--safe-bottom));}
+  .cart-modal-footer{padding-bottom:calc(28px + var(--safe-bottom));}
+  footer{padding-bottom:calc(28px + var(--safe-bottom));}
+}
 </style>
 </head>
 <body>
