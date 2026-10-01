@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order · Vishram Spices</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --maroon:#6B0F0F; --ink:#4A423A; --cream:#F7F1E6; }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       background:var(--cream);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;padding:24px}
+  .card{max-width:420px;width:100%;text-align:center}
+  h1{font-family:"Playfair Display",Georgia,serif;color:var(--maroon);font-size:30px;
+     letter-spacing:.06em;margin:0 0 6px}
+  .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);
+       font-weight:700;margin:0 0 28px}
+  .btn{display:block;background:var(--maroon);color:#fff;text-decoration:none;font-weight:700;
+       padding:17px 20px;border-radius:10px;font-size:17px;margin-bottom:12px}
+  .alt{display:block;color:var(--maroon);text-decoration:none;font-weight:500;padding:12px;font-size:15px}
+  .note{font-size:13px;color:#8a8279;margin-top:22px;line-height:1.6}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>VISHRAM SPICES</h1>
+    <p class="tag">Supplying professional kitchens since 1972</p>
+    <a class="btn" id="wa" href="#">Order on WhatsApp</a>
+    <a class="alt" id="tel" href="#">Call (022) 2083 0242</a>
+    <a class="alt" href="https://vishramspices.com/">See the full catalogue</a>
+    <p class="note">Vishram Spices (India) Pvt. Ltd. · Darukhana, Mumbai 400 010<br>sales@vishramspices.com</p>
+  </div>
+<script>
+  /* ------------------------------------------------------------------
+     CHANGE THE DESTINATION HERE AND NOWHERE ELSE.
+     Everything the goni QR points at comes through this one line.
+     ------------------------------------------------------------------ */
+  var DESTINATION = "https://wa.me/919819381088?text="
+      + encodeURIComponent("Hi Vishram Spices, I would like to place an order.");
+  var PHONE = "+912220830242";
+
+  document.getElementById("wa").href  = DESTINATION;
+  document.getElementById("tel").href = "tel:" + PHONE;
+
+  /* On a phone, go straight through. On a desktop, show this page instead,
+     because wa.me on a desktop just offers a download. */
+  if (/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
+    location.replace(DESTINATION);
+  }
+</script>
+</body>
+</html>
